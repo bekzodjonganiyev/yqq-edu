@@ -2,7 +2,6 @@ import { Hero, Navbar } from "./components";
 import { useAppContext } from "./context/app.context";
 
 function App() {
-  const {text} = useAppContext()
   const { setScrolValue} = useAppContext();
   const handleScroll = event => {
     setScrolValue(event.currentTarget.scrollTop);

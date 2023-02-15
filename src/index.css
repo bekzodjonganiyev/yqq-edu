@@ -1,3 +1,32 @@
 @tailwind base;
+/* Firefox */
+* {
+  scrollbar-width: 0px;
+  /* scrollbar-color: var(--secondary) var(--primary); */
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+*::-webkit-scrollbar-track {
+  /* background: gray;
+  border-radius: 5px; */
+}
+
+*::-webkit-scrollbar-thumb {
+  /* background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary); */
+}
+
+/* For Heeo section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
 @tailwind components;
 @tailwind utilities;

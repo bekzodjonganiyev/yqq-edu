@@ -9,9 +9,9 @@ const Navbar = () => {
   console.log(scrolValue ?? 0)
   return (
     <nav
-      className={`py-4 top-0 w-full ${scrolValue > 0 ? "bg-black" : "backdrop-blur-md"} text-white  transition-opacity absolute`}
+      className={`py-4 ${scrolValue > 0 ? "bg-black" : "backdrop-blur-2xl"} text-white  transition-opacity absolute top-0 w-full`}
     >
-      <div className="flex items-center justify-between max-w-screen-xl mx-auto container">
+      <div className="flex items-center justify-between container mx-auto w-[90%]">
         <div className="w-1/6">
           <MainLogo />
         </div>

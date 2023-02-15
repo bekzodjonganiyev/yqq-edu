@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from "react";
 
-const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
+
+const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   const [scrolValue, setScrolValue] = useState();
   return (
