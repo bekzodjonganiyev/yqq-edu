@@ -28,5 +28,12 @@
   gap: 20px;
   align-items: center;
 }
+
+.bg-hero{
+  background-image: url("./assets/images/bg-image.png");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
 @tailwind components;
 @tailwind utilities;

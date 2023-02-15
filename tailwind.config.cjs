@@ -6,9 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'hero': "url('./src/assets/images/bg-image.png')",
-      },
+      // backgroundImage: {
+      //   'hero': "url('./src/assets/images/bg-image.png')",
+      // },
       backgroundColor: {
         'bg-language-btn': ' rgba(255, 255, 255, 0.5);'
       }
