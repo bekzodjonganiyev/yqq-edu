@@ -42,5 +42,14 @@
   background-repeat: no-repeat;
 }
 /* For Hero section */
+
+/* For footer */
+.flex-directionq{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+/* For footer */
 @tailwind components;
 @tailwind utilities;

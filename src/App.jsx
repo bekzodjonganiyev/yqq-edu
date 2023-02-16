@@ -1,19 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy, Suspense } from "react";
-
-import { useAppContext } from "./context/app.context";
-import { lazyImport } from "./utils/lazyImport";
-
-// const Layout = lazyImport("../components", "Layout")
-// const Home = lazyImport("../pages", "Home")
-// const LatestNews = lazyImport("../pages", "LatestNews")
+import { Suspense } from "react";
 
 import { Layout } from "./components";
 import { Home, LatestNews } from "./pages";
 
-// const Layout = lazy(() => import("./components"));
-// const Home = lazy(() => import("./pages"));
-// const LatestNews = lazy(() => import("./pages/latest_news/LatestNews"))
+import { useAppContext } from "./context/app.context";
 
 function App() {
   const { setScrolValue } = useAppContext();

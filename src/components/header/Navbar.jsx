@@ -9,11 +9,9 @@ const Navbar = () => {
   console.log(scrolValue ?? 0);
   return (
     <nav
-      className={`py-4 ${
-        scrolValue > 0 || pathname !== "/" ? "bg-black" : "backdrop-blur-2xl"
-      } text-white  transition-opacity ${
-        pathname === "/" ? "absolute" : ""
-      } top-0 w-full`}
+      className={`py-4 ${ scrolValue > 0 || pathname !== "/" ? "bg-black " : "backdrop-blur-2xl"}
+       text-white  transition-opacity ${ pathname === "/" ? "absolute w-full" : ""}
+       ${pathname !== "/" ? "sticky top-0 h-auto" : ""}  z-10`}
     >
       <div className="flex items-center justify-between container mx-auto w-[90%]">
         <div className="w-1/6">

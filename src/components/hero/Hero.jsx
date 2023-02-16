@@ -15,7 +15,7 @@ const Hero = () => {
         {/* SOCIAL MEDIAS */}
         <div className="hero">
           <VerticalLineIcon />
-          <FacebookIcon />
+          <FacebookIcon  />
           <InstagramIcon />
           <YouTubeIcon />
           <TelegramIcon />
