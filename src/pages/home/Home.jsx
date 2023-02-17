@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Hero } from "../../components";
-import { ShortInfoCard } from "../../components";
+import { Hero, NewsCard } from "../../components";
 
 const Home = () => {
   return (

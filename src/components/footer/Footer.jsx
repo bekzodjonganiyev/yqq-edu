@@ -10,14 +10,14 @@ import {
 } from "../../assets/icons";
 const Footer = () => {
   return (
-    <div className="bg-black w-full py-10">
+    <footer className="bg-black w-full py-10">
       <div className="container mx-auto w-[90%]">
         <Link to="/" className="my-9">
           <MainLogo />
         </Link>
         <br />
         <div className="flex gap-4 items-end justify-between">
-          <div className="" style={{display: "flex", flexDirection: "column", gap: "35px"}}>
+          <div className="flex flex-col justify-between gap-[35px]">
             <div className="flex gap-4">
               <FacebookIcon color="white" />
               <InstagramIcon color="white" />
@@ -29,7 +29,7 @@ const Footer = () => {
               <span className="text-white"> +998 94 332 00 16</span>
             </div>
           </div>
-          <p className="text-white">
+          <p className="text-gray-400">
             Guvohnoma: №0987. Berilgan sanasi: 22.06.2015-yil. Muassis: “WEB
             EXPERT” MCHJ. Tahririyat manzili: 100043, Toshkent shahri, K.
             Yormatov koʻchasi, 12-uy. <br /> Elektron manzil: info@kun.uz.{" "}
@@ -41,7 +41,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

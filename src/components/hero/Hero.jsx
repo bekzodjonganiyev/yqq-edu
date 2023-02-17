@@ -11,9 +11,9 @@ const Hero = () => {
   return (
     <div className="mx-auto bg-hero bg-origin-content bg-no-repeat bg-cover w-full h-[100px] sm:h-[300px] md:h-[500px] xl:h-[800px] 2xl:h-screen">
       {/* HERO TEXT */}
-      <div className="pt-32 mx-auto container w-[90%] flex items-center gap-10">
+      <div className="py-32 mx-auto container w-[90%] flex items-center gap-10">
         {/* SOCIAL MEDIAS */}
-        <div className="hero">
+        <div className="flex flex-col items-center gap-5">
           <VerticalLineIcon />
           <FacebookIcon  />
           <InstagramIcon />

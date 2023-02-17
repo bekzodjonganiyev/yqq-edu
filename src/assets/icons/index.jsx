@@ -258,10 +258,11 @@ const CalendarIcon = () => (
   </svg>
 );
 
-const VideoPlayerIcon = () => (
-  <svg
-    width="20"
-    height="20"
+const VideoPlayerIcon = ({width = "20", height = "20"}) => (
+  <svg 
+    className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+    width={width}
+    height={height}
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

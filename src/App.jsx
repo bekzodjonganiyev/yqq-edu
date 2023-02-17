@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 
 import { Layout } from "./components";
-import { Home, LatestNews } from "./pages";
+import { Home, LatestNews, ActualNews, VideoNews, PhotoNews } from "./pages";
 
 import { useAppContext } from "./context/app.context";
 
@@ -14,19 +14,30 @@ function App() {
 
   return (
     <div
-      className={`w-screen h-screen bg-no-repeat bg-cover bg-top bg-fixed overflow-x-hidden`}
+      className={`w-screen h-screen overflow-x-hidden flex flex-col`}
       onScroll={handleScroll}
     >
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route
-            path="latest-news"
-            element={
-              <Suspense fallback={<h1 className="pt-96">Loading...</h1>}>
-                <LatestNews />
-              </Suspense>
-            }
+          <Route 
+            index 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><Home /></Suspense>}
+          />
+          <Route 
+            path="latest-news" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><LatestNews /></Suspense>}
+          />
+          <Route 
+            path="actual-news" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><ActualNews /></Suspense>}
+          />
+          <Route 
+            path="video-news" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><VideoNews /></Suspense>}
+          />
+          <Route 
+            path="photo-news" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><PhotoNews /></Suspense>}
           />
         </Route>
       </Routes>
