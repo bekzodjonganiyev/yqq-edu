@@ -1,7 +1,7 @@
 .img-wrapper {
   position: relative;
-  width: 336px;
-  height: 210px;
+  width: 430px;
+  height: 280px;
   margin-bottom: 5px;
 }
 
@@ -14,8 +14,8 @@
 
 .lazy-image{
   position: relative;
-  width: 336px;
-  height: 210px;
+  width: 430px;
+  height: 280px;
   border-radius: 10px;
 }
 

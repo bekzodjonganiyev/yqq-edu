@@ -26,8 +26,8 @@ const ShortInfoCard = ({
     year = String(date.getFullYear());
   return (
     <Link to={endpoint}>
-      <div className={`flex ${inner ? "gap-5" : "flex-col w-[336px]"}`}>
-        <div className={` ${inner ? "img-wrapper-inner" : 'img-wrapper'}`}>
+      <div className={`flex ${inner ? "gap-5" : "flex-col w-[430px]"}`}>
+        <div className={` ${inner ? "w-[250px] h-[180px]" : 'w-full h-[250px]'} mb-2 relative`}>
           <LazyLoadImage
             src={`https://backend.tkti.uz/uploads/file-1676566960835.jpg`}
             alt={`Image Alt-${id}`}

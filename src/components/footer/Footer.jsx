@@ -29,7 +29,7 @@ const Footer = () => {
               <span className="text-white"> +998 94 332 00 16</span>
             </div>
           </div>
-          <p className="text-gray-400">
+          <p className="text-[#F2F2F2]">
             Guvohnoma: №0987. Berilgan sanasi: 22.06.2015-yil. Muassis: “WEB
             EXPERT” MCHJ. Tahririyat manzili: 100043, Toshkent shahri, K.
             Yormatov koʻchasi, 12-uy. <br /> Elektron manzil: info@kun.uz.{" "}
