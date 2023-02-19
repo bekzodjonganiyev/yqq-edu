@@ -79,10 +79,8 @@ const Home = () => {
       {/* Actual News */}
 
       {/* Image Gallary */}
-      <div className="">
-        <div className="container mx-auto w-[90%]  my-10">
-          <ImageGalary />
-        </div>
+      <div className="container mx-auto w-[90%] my-10">
+        <ImageGalary />
       </div>
       {/* Image Gallary */}
 
@@ -93,7 +91,8 @@ const Home = () => {
             <LazyLoadImage
               src={egamnazar}
               alt={`Egamnazar`}
-              width="100%" height="100%"
+              width="100%"
+              height="100%"
               className={`img-lazy`}
               effect="blur" // opacity | black-and-white
             />
@@ -111,6 +110,12 @@ const Home = () => {
         </div>
       </div>
       {/* About Me */}
+
+      {/* Video News */}
+      <div className="container mx-auto w-[90%]  my-10">
+        
+      </div>
+      {/* Video News */}
     </div>
   );
 };
