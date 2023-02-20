@@ -1,4 +1,4 @@
-import { NewsCard } from "../../components";
+import { NewsCard, RecommendContent } from "../../components";
 
 const LatestNews = () => {
   const generateArray = (items) => [...Array.from(Array(items).keys())];
@@ -12,9 +12,7 @@ const LatestNews = () => {
         ))}
         </div>
         <div className="w-3/12 ">
-        {generateArray(11).map((a) => (
-         <h1>reklama</h1>
-        ))}
+          <RecommendContent inner={true}/>
         </div>
       </div>
     </div>

@@ -27,9 +27,9 @@ const ShortInfoCard = ({
   return (
     <Link to={endpoint}>
       <div className={`flex ${inner ? "gap-5" : "flex-col w-[430px]"}`}>
-        <div className={` ${inner ? "w-[250px] h-[180px]" : 'w-full h-[250px]'} mb-2 relative`}>
+        <div className={` ${inner ? "w-[250px] h-[180px]" : 'w-full h-auto'} mb-2 relative`}>
           <LazyLoadImage
-            src={`https://backend.tkti.uz/uploads/file-1676566960835.jpg`}
+            src={`https://source.unsplash.com/2ShvY8Lf6l0/800x599`}
             alt={`Image Alt-${id}`}
             className={`img-lazy ${inner ? "lazy-image-inner" : "lazy-image"} `}
             placeholderSrc={placeholder}

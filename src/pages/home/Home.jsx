@@ -1,10 +1,18 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadComponent,
+  LazyLoadImage,
+} from "react-lazy-load-image-component";
 
 import egamnazar from "../../assets/images/egamnazar.png";
-import { Hero, NewsCard, ImageGalary } from "../../components";
+import video from "../../assets/images/video.png";
+import {
+  Hero,
+  NewsCard,
+  ImageGalary,
+  RecommendContent,
+} from "../../components";
 
 const Home = () => {
-  console.log("App render");
   const generateArray = (items) => [...Array.from(Array(items).keys())];
   const mock = {
     uz: {
@@ -61,9 +69,7 @@ const Home = () => {
           ))}
         </div>
         <div className="w-3/12 ">
-          {generateArray(2).map((a) => (
-            <h1>reklama</h1>
-          ))}
+          <RecommendContent title="So'nghi yangiliklar" inner={false} />
         </div>
       </div>
       {/* Latest News */}
@@ -112,8 +118,27 @@ const Home = () => {
       {/* About Me */}
 
       {/* Video News */}
-      <div className="container mx-auto w-[90%]  my-10">
-        
+      <div className="container mx-auto w-[90%] my-10 flex justify-between gap-10">
+        <div className="w-2/3 h-[580px] relative">
+          <LazyLoadImage
+            src={video}
+            alt={`Egamnazar`}
+            width="100%"
+            height="auto"
+            className={`img-lazy w-full h-[580px]  object-cover rounded-xl`}
+            effect="blur" // opacity | black-and-white
+          />
+          <span className="glightbox_video">
+            <span className={`play-btn`} href="#"></span>
+          </span>
+        </div>
+        <div className="w-1/3 h-[580px] overflow-y-scroll">
+          <RecommendContent
+            inner={false}
+            title={"Video yangiliklar"}
+            video={true}
+          />
+        </div>
       </div>
       {/* Video News */}
     </div>

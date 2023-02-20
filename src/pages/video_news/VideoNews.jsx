@@ -1,4 +1,4 @@
-import {NewsCard} from "../../components"
+import { NewsCard, RecommendContent } from "../../components";
 
 const VideoNews = () => {
   const generateArray = (items) => [...Array.from(Array(items).keys())];
@@ -6,18 +6,16 @@ const VideoNews = () => {
     <div className="w-full">
       <div className="container mx-auto w-[90%] flex justify-between gap-5 ">
         <div className="w-9/12 flex flex-wrap gap-5">
-        {generateArray(11).map((a) => (
-          <NewsCard key={a} id={a} video={true} inner={true}/>
-        ))}
+          {generateArray(11).map((a) => (
+            <NewsCard key={a} id={a} video={true} inner={true} />
+          ))}
         </div>
         <div className="w-3/12 ">
-        {generateArray(11).map((a) => (
-         <h1>reklama</h1>
-        ))}
+          <RecommendContent inner={true}/>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VideoNews
+export default VideoNews;

@@ -6,5 +6,7 @@ const Footer = lazy(() => import("./footer/Footer"));
 const Layout = lazy(() => import("./layout/Layout"));
 const NewsCard = lazy(() => import("./news_card/NewsCard"));
 const ImageGalary = lazy(() => import("./image_galary/ImageGalary"));
+const MoreDetails = lazy(() => import("./more_details/MoreDetails"));
+const RecommendContent = lazy(() => import("./recommend_content/RecommendContent"));
 
-export { Navbar, Hero, Footer, Layout, NewsCard, ImageGalary };
+export { Navbar, Hero, Footer, Layout, NewsCard, ImageGalary, MoreDetails, RecommendContent };
