@@ -16,7 +16,7 @@ const Navbar = () => {
        text-white  transition-opacity ${
          pathname === "/" ? "absolute w-full" : ""
        }
-       ${pathname !== "/" ? "sticky top-0" : ""}  z-10`}
+       ${pathname !== "/" ? "sticky top-0" : ""} w-full  z-10`}
     >
       <div className="flex items-center justify-between container mx-auto w-[90%]">
         <div className="w-1/6">

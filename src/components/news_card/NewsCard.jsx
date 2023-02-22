@@ -3,19 +3,19 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "./NewsCard.css";
 
-import { CalendarIcon, VideoPlayerIcon } from "../../assets/icons";
+import { CalendarIcon } from "../../assets/icons";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 import placeholder from "../../assets/images/img-placeholder.png";
 
 const ShortInfoCard = ({
   endpoint,
+  category,
   img,
   dateProps,
   title,
   body,
   video,
-  id,
   inner
 }) => {
   const date = new Date();
@@ -25,12 +25,12 @@ const ShortInfoCard = ({
     month = String(date.getMonth() + 1).padStart(2, 0),
     year = String(date.getFullYear());
   return (
-    <Link to={endpoint}>
+    <Link to={`/news/details/${category}/${endpoint}`}>
       <div className={`flex ${inner ? "gap-5" : "flex-col w-[430px]"}`}>
         <div className={` ${inner ? "w-[250px] h-[180px]" : 'w-full h-auto'} mb-2 relative`}>
           <LazyLoadImage
             src={`https://source.unsplash.com/2ShvY8Lf6l0/800x599`}
-            alt={`Image Alt-${id}`}
+            alt={`Image Alt`}
             className={`img-lazy ${inner ? "lazy-image-inner" : "lazy-image"} `}
             placeholderSrc={placeholder}
             effect="blur" // opacity | black-and-white
@@ -42,7 +42,7 @@ const ShortInfoCard = ({
           )}
         </div>
         <div className={`${inner ? "w-4/6" : ""}`}>
-          <div className="flex gap-2 ">
+          <div className="flex items-center gap-2 ">
             <CalendarIcon />{" "}
             <span>{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
           </div>

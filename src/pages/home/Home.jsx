@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import {
-  LazyLoadComponent,
   LazyLoadImage,
 } from "react-lazy-load-image-component";
 
@@ -58,18 +58,49 @@ const Home = () => {
       },
     },
   };
+  const [allNews, setAllNews] = useState([]);
+  async function getDataAll() {
+    try {
+      const res = await fetch(`http://localhost:4000/api/news/all`);
+      return res.json();
+    } catch (err) {
+      const e = { message: err.message, error: true, success: false };
+      return e;
+    }
+  }
+
+  useEffect(() => {
+    getDataAll().then((res) => setAllNews(res.data));
+  }, []);
   return (
     <div>
       <Hero />
+
       {/* Latest News */}
       <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10">
         <div className="w-9/12 flex flex-wrap gap-5">
-          {generateArray(2).map((a) => (
-            <NewsCard key={a} id={a} video={false} inner={true} />
-          ))}
+          {allNews
+            .filter((item) => item.category === "a")
+            .slice(0, 3)
+            .map((subItem) => (
+              <NewsCard
+                key={subItem._id}
+                id={subItem}
+                video={false}
+                inner={true}
+                endpoint={subItem._id}
+                category={subItem.category}
+              />
+            ))}
         </div>
         <div className="w-3/12 ">
-          <RecommendContent title="So'nghi yangiliklar" inner={false} />
+          <RecommendContent
+            title="So'ngi yangiliklar"
+            inner={false}
+            url={"news/all"}
+            category={"a"}
+            ownRoute={"/latest-news"}
+          />
         </div>
       </div>
       {/* Latest News */}
@@ -77,9 +108,19 @@ const Home = () => {
       {/* Actual News */}
       <div className="container mx-auto w-[90%]  my-10">
         <div className=" flex flex-auto flex-wrap justify-between">
-          {generateArray(3).map((a) => (
-            <NewsCard key={a} id={a} video={false} inner={false} />
-          ))}
+          {allNews
+            .filter((item) => item.category === "b")
+            .slice(0, 3)
+            .map((sebItem) => (
+              <NewsCard
+                key={sebItem._id}
+                id={sebItem}
+                video={false}
+                inner={false}
+                endpoint={sebItem._id}
+                category={sebItem.category}
+              />
+            ))}
         </div>
       </div>
       {/* Actual News */}
@@ -108,8 +149,8 @@ const Home = () => {
             <p className="mb-8">{mock.uz.about}</p>
             <ul>
               <p className="text-4xl font-bold mb-8">{mock.uz.hobbi.title}</p>
-              {mock.uz.hobbi.content.map((i) => (
-                <li className="list-inside list-disc mb-4">{i}</li>
+              {mock.uz.hobbi.content.map((i, id) => (
+                <li key={id} className="list-inside list-disc mb-4">{i}</li>
               ))}
             </ul>
           </div>
@@ -137,6 +178,9 @@ const Home = () => {
             inner={false}
             title={"Video yangiliklar"}
             video={true}
+            url={"news/all"}
+            category={"d"}
+            ownRoute={"/video-news"}
           />
         </div>
       </div>

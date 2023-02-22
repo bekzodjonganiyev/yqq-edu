@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 
-import { Layout } from "./components";
-import { Home, LatestNews, ActualNews, VideoNews, PhotoNews } from "./pages";
+import { Layout, MoreDetails } from "./components";
+import { Home, LatestNews, ActualNews, VideoNews, PhotoNews, FourZeroFour } from "./pages";
 
 import { smallActions } from "./context";
 
@@ -16,42 +16,42 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
-                <Home />
-              </Suspense>
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><Home /></Suspense>
             }
           />
           <Route
             path="latest-news"
-            element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
-                <LatestNews />
-              </Suspense>
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><LatestNews /></Suspense>
             }
           />
           <Route
             path="actual-news"
-            element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
-                <ActualNews />
-              </Suspense>
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><ActualNews /></Suspense>
             }
           />
           <Route
             path="video-news"
-            element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
-                <VideoNews />
-              </Suspense>
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><VideoNews /></Suspense>
             }
           />
           <Route
             path="photo-news"
-            element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
-                <PhotoNews />
-              </Suspense>
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><PhotoNews /></Suspense>
+            }
+          />
+          <Route 
+            path="news/details/:category/:id" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><MoreDetails /></Suspense>
+            }
+          />
+          <Route 
+            path="404" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><FourZeroFour /></Suspense>
+            }
+          />
+          <Route 
+            path="*" 
+            element={<Suspense fallback={<h1 className="">Loading...</h1>}><FourZeroFour /></Suspense>
             }
           />
         </Route>

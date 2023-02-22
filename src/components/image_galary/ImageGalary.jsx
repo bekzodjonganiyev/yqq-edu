@@ -106,7 +106,6 @@ const ImageGalary = ({ images }) => {
               width={photo.width}
               height={photo.height}
               onClick={() => setToggler(!toggler)}
-              // placeholder={placeholder}
               className="rounded-xl"
             />
           </div>
@@ -115,7 +114,8 @@ const ImageGalary = ({ images }) => {
       <FsLightbox
         toggler={toggler}
         sources={photos.map((i) => i.src)}
-        showThumbsOnMount={false}
+        showThumbsOnMount={true}
+        
       />
     </>
   );
