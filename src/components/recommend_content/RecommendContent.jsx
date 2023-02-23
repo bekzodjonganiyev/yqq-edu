@@ -40,7 +40,7 @@ const RecommendContent = ({
 
   return (
     <div className="bg-[#F2F2F2] rounded-xl p-4 hover:cursor-pointer">
-      {/* Title for see recommend */}
+      {/* Title htmlFor see recommend */}
       {!inner && <h3 className="text-bold text-3xl mb-4">{title}</h3>}
 
       {/* Date and short info */}

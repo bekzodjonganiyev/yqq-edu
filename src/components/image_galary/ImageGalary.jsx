@@ -1,124 +1,51 @@
-import React, { useState } from "react";
-import FsLightbox from "fslightbox-react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import Gallery from "react-photo-gallery";
+import { useState } from "react";
 
-import placeholder from "../../assets/images/img-placeholder.png";
+import PhotoAlbum from "react-photo-album";
 
-const ImageGalary = ({ images }) => {
-  const [toggler, setToggler] = useState(false);
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
-  const photos = [
-    {
-      src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
-      width: 1,
-      height: 1,
-    },
-    {
-      src: "https://source.unsplash.com/qDkso9nvCg0/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/iecJiKe_RNg/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/zh7GEuORbUw/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/PpOHJezOalU/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/I1ASdgphUH4/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/XiDA78wAZVw/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/x8xJpClTvR0/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/qGQNmBE7mYw/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/NuO6iTBkHxE/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/pF1ug8ysTtY/600x400",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/A-fubu9QJxE/800x533",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/5P91SF0zNsI/740x494",
-      width: 4,
-      height: 3,
-    },
-  ];
+// import optional lightbox plugins
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
+import photos from "./photos";
+
+const slides = photos.map(({ src, width, height, images }) => ({
+  src,
+  width,
+  height,
+  srcSet: images.map((image) => ({
+    src: image.src,
+    width: image.width,
+    height: image.height,
+  })),
+}));
+
+const App = () => {
+  const [index, setIndex] = useState(-1);
 
   return (
     <>
-      <Gallery
-        photos={images ? images : photos}
-        direction="column"
-        margin={15}
-        renderImage={({ index, left, top, key, photo }) => (
-          <div key={key} style={{ position: "absolute", left, top }}>
-            <LazyLoadImage
-              alt={photo.alt}
-              effect="blur"
-              src={photo.src}
-              width={photo.width}
-              height={photo.height}
-              onClick={() => setToggler(!toggler)}
-              className="rounded-xl"
-            />
-          </div>
-        )}
+      <PhotoAlbum
+        photos={photos}
+        layout="rows"
+        targetRowHeight={300}
+        onClick={({ index }) => setIndex(index)}
       />
-      <FsLightbox
-        toggler={toggler}
-        sources={photos.map((i) => i.src)}
-        showThumbsOnMount={true}
-        
+
+      <Lightbox
+        slides={slides}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
       />
     </>
   );
 };
 
-export default ImageGalary;
+export default App;

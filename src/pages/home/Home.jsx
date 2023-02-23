@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  LazyLoadImage,
-} from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import egamnazar from "../../assets/images/egamnazar.png";
 import video from "../../assets/images/video.png";
@@ -150,7 +148,9 @@ const Home = () => {
             <ul>
               <p className="text-4xl font-bold mb-8">{mock.uz.hobbi.title}</p>
               {mock.uz.hobbi.content.map((i, id) => (
-                <li key={id} className="list-inside list-disc mb-4">{i}</li>
+                <li key={id} className="list-inside list-disc mb-4">
+                  {i}
+                </li>
               ))}
             </ul>
           </div>

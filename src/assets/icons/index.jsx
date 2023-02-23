@@ -61,7 +61,7 @@ const DropDownIcon = () => (
   </svg>
 );
 
-const FacebookIcon = ({color = "#F06D06"}) => (
+const FacebookIcon = ({ color = "#F06D06" }) => (
   <svg
     width="32"
     height="32"
@@ -76,7 +76,7 @@ const FacebookIcon = ({color = "#F06D06"}) => (
   </svg>
 );
 
-const TwitterIcon = ({color = "#F06D06"}) => (
+const TwitterIcon = ({ color = "#F06D06" }) => (
   <svg
     width="32"
     height="32"
@@ -91,7 +91,7 @@ const TwitterIcon = ({color = "#F06D06"}) => (
   </svg>
 );
 
-const InstagramIcon = ({color = "#F06D06"}) => (
+const InstagramIcon = ({ color = "#F06D06" }) => (
   <svg
     width="32"
     height="32"
@@ -125,7 +125,7 @@ const InstagramIcon = ({color = "#F06D06"}) => (
   </svg>
 );
 
-const YouTubeIcon = ({color = "#F06D06"}) => (
+const YouTubeIcon = ({ color = "#F06D06" }) => (
   <svg
     width="32"
     height="32"
@@ -144,7 +144,7 @@ const YouTubeIcon = ({color = "#F06D06"}) => (
   </svg>
 );
 
-const TelegramIcon = ({color = "#F06D06"}) => (
+const TelegramIcon = ({ color = "#F06D06" }) => (
   <svg
     width="32"
     height="32"
@@ -173,7 +173,7 @@ const VerticalLineIcon = () => (
   </svg>
 );
 
-const CalendarIcon = ({inner}) => (
+const CalendarIcon = ({ inner }) => (
   <svg
     width="20"
     height="20"
@@ -258,8 +258,8 @@ const CalendarIcon = ({inner}) => (
   </svg>
 );
 
-const VideoPlayerIcon = ({width = "20", height = "20"}) => (
-  <svg 
+const VideoPlayerIcon = ({ width = "20", height = "20" }) => (
+  <svg
     className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
     width={width}
     height={height}
@@ -279,6 +279,70 @@ const VideoPlayerIcon = ({width = "20", height = "20"}) => (
     />
   </svg>
 );
+
+const DashboardIcon = () => (
+  <svg
+    width="16"
+    height="14"
+    viewBox="0 0 16 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0 8C0 7.73478 0.105357 7.48043 0.292893 7.29289C0.48043 7.10536 0.734784 7 1 7H3C3.26522 7 3.51957 7.10536 3.70711 7.29289C3.89464 7.48043 4 7.73478 4 8V13C4 13.2652 3.89464 13.5196 3.70711 13.7071C3.51957 13.8946 3.26522 14 3 14H1C0.734784 14 0.48043 13.8946 0.292893 13.7071C0.105357 13.5196 0 13.2652 0 13V8ZM6 4C6 3.73478 6.10536 3.48043 6.29289 3.29289C6.48043 3.10536 6.73478 3 7 3H9C9.26522 3 9.51957 3.10536 9.70711 3.29289C9.89464 3.48043 10 3.73478 10 4V13C10 13.2652 9.89464 13.5196 9.70711 13.7071C9.51957 13.8946 9.26522 14 9 14H7C6.73478 14 6.48043 13.8946 6.29289 13.7071C6.10536 13.5196 6 13.2652 6 13V4ZM12 1C12 0.734784 12.1054 0.48043 12.2929 0.292893C12.4804 0.105357 12.7348 0 13 0H15C15.2652 0 15.5196 0.105357 15.7071 0.292893C15.8946 0.48043 16 0.734784 16 1V13C16 13.2652 15.8946 13.5196 15.7071 13.7071C15.5196 13.8946 15.2652 14 15 14H13C12.7348 14 12.4804 13.8946 12.2929 13.7071C12.1054 13.5196 12 13.2652 12 13V1Z"
+      fill="#fff"
+    />
+  </svg>
+);
+
+const UsersIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9 6C9 6.79565 8.68393 7.55871 8.12132 8.12132C7.55871 8.68393 6.79565 9 6 9C5.20435 9 4.44129 8.68393 3.87868 8.12132C3.31607 7.55871 3 6.79565 3 6C3 5.20435 3.31607 4.44129 3.87868 3.87868C4.44129 3.31607 5.20435 3 6 3C6.79565 3 7.55871 3.31607 8.12132 3.87868C8.68393 4.44129 9 5.20435 9 6ZM17 6C17 6.39397 16.9224 6.78407 16.7716 7.14805C16.6209 7.51203 16.3999 7.84274 16.1213 8.12132C15.8427 8.3999 15.512 8.62087 15.1481 8.77164C14.7841 8.9224 14.394 9 14 9C13.606 9 13.2159 8.9224 12.8519 8.77164C12.488 8.62087 12.1573 8.3999 11.8787 8.12132C11.6001 7.84274 11.3791 7.51203 11.2284 7.14805C11.0776 6.78407 11 6.39397 11 6C11 5.20435 11.3161 4.44129 11.8787 3.87868C12.4413 3.31607 13.2044 3 14 3C14.7956 3 15.5587 3.31607 16.1213 3.87868C16.6839 4.44129 17 5.20435 17 6ZM12.93 17C12.976 16.673 13 16.34 13 16C13.0023 14.4289 12.4737 12.903 11.5 11.67C12.2601 11.2312 13.1223 11.0001 14 11.0001C14.8776 11.0001 15.7399 11.2311 16.4999 11.67C17.26 12.1088 17.8912 12.74 18.3301 13.5C18.7689 14.2601 19 15.1223 19 16V17H12.93ZM6 11C7.32608 11 8.59785 11.5268 9.53553 12.4645C10.4732 13.4021 11 14.6739 11 16V17H1V16C1 14.6739 1.52678 13.4021 2.46447 12.4645C3.40215 11.5268 4.67392 11 6 11Z"
+      fill="#fff"
+    />
+  </svg>
+);
+
+const LogoutIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-6 h-6 text-white"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+    />
+  </svg>
+);
+
+const NewsIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-6 h-6 text-gray-100"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+    />
+  </svg>
+);
 export {
   MainLogo,
   PhoneIcon,
@@ -290,5 +354,9 @@ export {
   TelegramIcon,
   VerticalLineIcon,
   CalendarIcon,
-  VideoPlayerIcon
+  VideoPlayerIcon,
+  DashboardIcon,
+  UsersIcon,
+  LogoutIcon,
+  NewsIcon,
 };
