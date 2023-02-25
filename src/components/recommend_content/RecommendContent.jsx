@@ -23,7 +23,11 @@ const RecommendContent = ({
   const [allNews, setAllNews] = useState([]);
   async function getDataAll() {
     try {
-      const res = await fetch(`http://localhost:4000/api/${url}`);
+      const res = await fetch(`http://localhost:4000/api/${url}`, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       return res.json();
     } catch (err) {
       const e = { message: err.message, error: true, success: false };

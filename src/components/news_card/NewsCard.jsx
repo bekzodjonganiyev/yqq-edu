@@ -26,12 +26,12 @@ const ShortInfoCard = ({
     year = String(date.getFullYear());
   return (
     <Link to={`/news/details/${category}/${endpoint}`}>
-      <div className={`flex ${inner ? "gap-5" : "flex-col w-[430px]"}`}>
-        <div className={` ${inner ? "w-[250px] h-[180px]" : 'w-full h-auto'} mb-2 relative`}>
+      <div className={`flex rounded-xl  border-red-900 ${inner ? "gap-5 sm:flex-row flex-col " : "flex-col w-[100%] md:w-56 lg:w-72 xl:w-[380] 2xl:w-[430px]"}`}>
+        <div className={`relative`}>
           <LazyLoadImage
             src={`https://source.unsplash.com/2ShvY8Lf6l0/800x599`}
             alt={`Image Alt`}
-            className={`img-lazy ${inner ? "lazy-image-inner" : "lazy-image"} `}
+            className={`img-lazy ${inner ? "sm:w-60 sm:h-44 w-full h-auto" : "w-full h-full "} rounded-xl`}
             placeholderSrc={placeholder}
             effect="blur" // opacity | black-and-white
           />
@@ -46,7 +46,7 @@ const ShortInfoCard = ({
             <CalendarIcon />{" "}
             <span>{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
           </div>
-          <p className={`font-bold mt-2 ${inner ? "text-xl" : "news-title"} `}>
+          <p className={`font-bold mt-2 ${inner ? "xl:text-xl lg:text-lg text-sm" : "news-title"} `}>
             Xizmatlar sohasi qanday o‘zgardi? – iqtisodchi bilan imkoniyatlar
             haqida suhbat Xizmatlar sohasi qanday o‘zgardi? – iqtisodchi bilan
             imkoniyatlar haqida suhbat Xizmatlar sohasi qanday o‘zgardi? –

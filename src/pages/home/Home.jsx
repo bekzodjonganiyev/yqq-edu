@@ -11,7 +11,6 @@ import {
 } from "../../components";
 
 const Home = () => {
-  const generateArray = (items) => [...Array.from(Array(items).keys())];
   const mock = {
     uz: {
       title: "Men haqimda",
@@ -59,7 +58,11 @@ const Home = () => {
   const [allNews, setAllNews] = useState([]);
   async function getDataAll() {
     try {
-      const res = await fetch(`http://localhost:4000/api/news/all`);
+      const res = await fetch(`http://localhost:4000/api/news/all`, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       return res.json();
     } catch (err) {
       const e = { message: err.message, error: true, success: false };
@@ -75,8 +78,8 @@ const Home = () => {
       <Hero />
 
       {/* Latest News */}
-      <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10">
-        <div className="w-9/12 flex flex-wrap gap-5">
+      <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10 lg:flex-row flex-col">
+        <div className="lg:w-9/12 w-full flex flex-wrap gap-5 ">
           {allNews
             .filter((item) => item.category === "a")
             .slice(0, 3)
@@ -91,7 +94,7 @@ const Home = () => {
               />
             ))}
         </div>
-        <div className="w-3/12 ">
+        <div className="lg:w-3/12 w-full">
           <RecommendContent
             title="So'ngi yangiliklar"
             inner={false}
@@ -105,7 +108,7 @@ const Home = () => {
 
       {/* Actual News */}
       <div className="container mx-auto w-[90%]  my-10">
-        <div className=" flex flex-auto flex-wrap justify-between">
+        <div className=" flex flex-wrap justify-between">
           {allNews
             .filter((item) => item.category === "b")
             .slice(0, 3)
@@ -159,8 +162,8 @@ const Home = () => {
       {/* About Me */}
 
       {/* Video News */}
-      <div className="container mx-auto w-[90%] my-10 flex justify-between gap-10">
-        <div className="w-2/3 h-[580px] relative">
+      <div className="container mx-auto w-[90%] my-10 flex justify-between gap-10  transition-all">
+        <div className="w-2/3 h-[580px] relative md:block hidden ">
           <LazyLoadImage
             src={video}
             alt={`Egamnazar`}
@@ -173,7 +176,7 @@ const Home = () => {
             <span className={`play-btn`} href="#"></span>
           </span>
         </div>
-        <div className="w-1/3 h-[580px] overflow-y-scroll">
+        <div className=" md:w-1/3 w-full h-[580px] overflow-y-scroll">
           <RecommendContent
             inner={false}
             title={"Video yangiliklar"}

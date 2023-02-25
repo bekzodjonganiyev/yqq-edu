@@ -12,6 +12,8 @@ const RecommendContent = lazy(() => import("./recommend_content/RecommendContent
 const Sidebar = lazy(() => import("./admin/sidebar/Sidebar"));
 const LoginRegister = lazy(() => import("./admin/login_register/LoginRegister"));
 const ProtectedRoute = lazy(() => import("./admin/protected_route/ProtectedRoute"));
+const Loader = lazy(() => import("./loader/Loader"));
+const SkeletonPost = lazy(() => import("./skeleton_loader/SkeletonPost"));
 
 export {
   Navbar,
@@ -25,5 +27,7 @@ export {
   Sidebar,
   AdminLayout,
   LoginRegister,
-  ProtectedRoute
+  ProtectedRoute,
+  Loader,
+  SkeletonPost
 };

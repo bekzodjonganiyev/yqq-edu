@@ -6,12 +6,17 @@ import "./index.css";
 
 import App from "./App";
 import { UsersProvider } from "./context";
+import { Loader, SkeletonPost } from "./components";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UsersProvider>
       <BrowserRouter>
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense
+          fallback={[...Array(10).keys()].map((i) => (
+            <SkeletonPost key={i} />
+          ))}
+        >
           <App />
         </Suspense>
       </BrowserRouter>

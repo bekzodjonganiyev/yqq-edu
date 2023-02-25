@@ -1,17 +1,17 @@
-.img-wrapper {
+/* .img-wrapper {
   position: relative;
   width: 430px;
   height: 280px;
   margin-bottom: 5px;
-}
+} */
 
-.img-wrapper-inner{
+/* .img-wrapper-inner{
   position: relative;
   width: 250px;
   height: 180px;
   margin-bottom: 5px;
-}
-
+} */
+/* 
 .lazy-image{
   position: relative;
   width: 430px;
@@ -24,7 +24,7 @@
   width: 250px;
   height: 180px;
   border-radius: 10px;
-}
+} */
 
 .news-title {
   white-space: pre-line;

@@ -1,7 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 
-import { Layout, MoreDetails, AdminLayout, LoginRegister, ProtectedRoute } from "./components";
+import {
+  Layout,
+  MoreDetails,
+  AdminLayout,
+  LoginRegister,
+  ProtectedRoute,
+  Loader,
+  SkeletonPost,
+} from "./components";
 import {
   Home,
   LatestNews,
@@ -23,11 +31,26 @@ function App() {
       onScroll={(e) => smallActions.handleScroll(e.currentTarget.scrollTop)}
     >
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
+              <Layout />
+            </Suspense>
+          }
+        >
           <Route
             index
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <Home />
               </Suspense>
             }
@@ -35,7 +58,11 @@ function App() {
           <Route
             path="latest-news"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <LatestNews />
               </Suspense>
             }
@@ -43,7 +70,11 @@ function App() {
           <Route
             path="actual-news"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <ActualNews />
               </Suspense>
             }
@@ -51,7 +82,11 @@ function App() {
           <Route
             path="video-news"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <VideoNews />
               </Suspense>
             }
@@ -59,7 +94,11 @@ function App() {
           <Route
             path="photo-news"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <PhotoNews />
               </Suspense>
             }
@@ -67,50 +106,81 @@ function App() {
           <Route
             path="news/details/:category/:id"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <MoreDetails />
               </Suspense>
             }
           />
         </Route>
-        <Route path="/egamnazar-dashboard" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+        <Route
+          path="/egamnazar-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route
             index
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <Dashboard />
               </Suspense>
             }
           />
-           <Route
+          <Route
             path="news"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <News />
               </Suspense>
             }
           />
-           <Route
+          <Route
             path="users"
             element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
                 <Users />
               </Suspense>
             }
           />
         </Route>
         <Route
-            path="egamnazar-login"
-            element={
-              <Suspense fallback={<h1 className="">Loading...</h1>}>
-                <LoginRegister/>
-              </Suspense>
-            }
-          />
+          path="egamnazar-login"
+          element={
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
+              <LoginRegister />
+            </Suspense>
+          }
+        />
         <Route
           path="404"
           element={
-            <Suspense fallback={<h1 className="">Loading...</h1>}>
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
               <FourZeroFour />
             </Suspense>
           }
@@ -118,7 +188,11 @@ function App() {
         <Route
           path="*"
           element={
-            <Suspense fallback={<h1 className="">Loading...</h1>}>
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
               <FourZeroFour />
             </Suspense>
           }

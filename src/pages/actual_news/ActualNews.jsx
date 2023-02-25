@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { NewsCard, RecommendContent } from "../../components";
+import { Loader, NewsCard, RecommendContent } from "../../components";
 
 const ActualNews = () => {
   // const generateArray = (items) => [...Array.from(Array(items).keys())];
   const [allNews, setAllNews] = useState([]);
   async function getDataAll() {
     try {
-      const res = await fetch(`http://localhost:4000/api/news/all`);
+      const res = await fetch(`http://localhost:4000/api/news/all`, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       return res.json();
     } catch (err) {
       const e = { message: err.message, error: true, success: false };
@@ -35,11 +39,7 @@ const ActualNews = () => {
             ))}
         </div>
         <div className="w-3/12 ">
-          <RecommendContent
-            inner={true}
-            url={"news/all"}
-            category={"b"}
-          />
+          <RecommendContent inner={true} url={"news/all"} category={"b"} />
         </div>
       </div>
     </div>
