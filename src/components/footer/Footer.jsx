@@ -11,14 +11,13 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-black w-full py-10">
-      <div className="container mx-auto w-[90%]">
-        <Link to="/" className="my-9">
+      <div className="container mx-auto w-[90%] lg:block flex justify-between items-center max-md:flex-col">
+        <Link to="/" className="my-9 block">
           <MainLogo />
         </Link>
-        <br />
-        <div className="flex gap-4 items-end justify-between">
-          <div className="flex flex-col justify-between gap-[35px]">
-            <div className="flex gap-4">
+        <div className="flex gap-4 items-end justify-between ">
+          <div className="flex lg:flex-col flex-row-reverse lg:gap-[35px] gap-28 max-md:flex-col max-md:gap-10 max-md:items-center">
+            <div className="flex lg:gap-4 gap-10">
               <FacebookIcon color="white" />
               <InstagramIcon color="white" />
               <YouTubeIcon color="white" />
@@ -29,7 +28,7 @@ const Footer = () => {
               <span className="text-white"> +998 94 332 00 16</span>
             </div>
           </div>
-          <p className="text-[#F2F2F2]">
+          <p className="text-[#F2F2F2] lg:block hidden">
             Guvohnoma: №0987. Berilgan sanasi: 22.06.2015-yil. Muassis: “WEB
             EXPERT” MCHJ. Tahririyat manzili: 100043, Toshkent shahri, K.
             Yormatov koʻchasi, 12-uy. <br /> Elektron manzil: info@kun.uz.{" "}

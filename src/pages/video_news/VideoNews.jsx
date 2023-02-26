@@ -24,8 +24,8 @@ const VideoNews = () => {
   }, []);
   return (
     <div className="w-full">
-      <div className="container mx-auto w-[90%] flex justify-between gap-5 ">
-        <div className="w-9/12 flex flex-wrap gap-5">
+      <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
+        <div className="lg:w-9/12 w-full flex flex-wrap gap-5">
           {allNews
             .filter((item) => item.category === "d")
             .map((subItem) => (
@@ -39,7 +39,7 @@ const VideoNews = () => {
               />
             ))}
         </div>
-        <div className="w-3/12 ">
+        <div className="lg:w-3/12 w-full">
         <RecommendContent inner={true} url={"news/all"} category={"d"} />
         </div>
       </div>

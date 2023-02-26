@@ -85,38 +85,19 @@ const PhotoNews = () => {
   ];
 
   return (
-    <div className="container mx-auto w-[90%] my-10 ">
-      <div>
-        <div class="container mx-auto space-y-2 lg:space-y-0 lg:gap-2 lg:grid lg:grid-cols-3">
-          <div class="w-full rounded">
-            <img
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-              alt="image"
-            />
-          </div>
-          <div class="w-full rounded">
-            <img
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-              alt="image"
-            />
-          </div>
-          <div class="w-full rounded">
-            <img
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-              alt="image"
-            />
-          </div>
-        </div>
+    <div className="container mx-auto my-10  w-[90%] flex justify-between gap-10 lg:flex-row flex-col">
+      <div className="lg:w-9/12 w-full gap-5">
+        <ImageGalary />
       </div>
-      {/* <div>
+      <div className="lg:w-3/12 w-full">
         <RecommendContent
           inner={true}
           video={false}
           url={"news/all"}
           category={"c"}
-          ownRoute={"/video-news"}
+          ownRoute={"/photo-news"}
         />
-      </div> */}
+      </div>
     </div>
   );
 };

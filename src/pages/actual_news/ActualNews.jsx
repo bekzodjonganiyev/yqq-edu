@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Loader, NewsCard, RecommendContent } from "../../components";
+import { NewsCard, RecommendContent } from "../../components";
 
 const ActualNews = () => {
   // const generateArray = (items) => [...Array.from(Array(items).keys())];
@@ -23,8 +23,8 @@ const ActualNews = () => {
   }, []);
   return (
     <div className="w-full">
-      <div className="container mx-auto w-[90%] flex justify-between gap-5 ">
-        <div className="w-9/12 flex flex-wrap gap-5">
+      <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
+        <div className="lg:w-9/12 w-full flex flex-wrap gap-5">
           {allNews
             .filter((item) => item.category === "b")
             .map((subItem) => (
@@ -38,7 +38,7 @@ const ActualNews = () => {
               />
             ))}
         </div>
-        <div className="w-3/12 ">
+        <div className="lg:w-3/12 w-full">
           <RecommendContent inner={true} url={"news/all"} category={"b"} />
         </div>
       </div>

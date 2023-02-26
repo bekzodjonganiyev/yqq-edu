@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadImage,
+  LazyLoadComponent,
+} from "react-lazy-load-image-component";
 
 import egamnazar from "../../assets/images/egamnazar.png";
 import video from "../../assets/images/video.png";
@@ -75,7 +78,9 @@ const Home = () => {
   }, []);
   return (
     <div>
-      <Hero />
+      <LazyLoadComponent>
+        <Hero />
+      </LazyLoadComponent>
 
       {/* Latest News */}
       <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10 lg:flex-row flex-col">

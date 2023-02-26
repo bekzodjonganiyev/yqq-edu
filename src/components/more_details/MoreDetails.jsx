@@ -37,7 +37,7 @@ const MoreDetails = () => {
 
   async function getDataById(id) {
     try {
-      const res = await fetch(`http://localhost:4000/api/news/${id}`,{
+      const res = await fetch(`http://localhost:4000/api/news/${id}`, {
         headers: {
           "Content-type": "application/json",
         },
@@ -94,9 +94,9 @@ const MoreDetails = () => {
     });
   }, [id]);
   return (
-    <div className=" container mx-auto w-[90%] flex justify-between gap-5 my-10">
+    <div className=" container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
       <div className="w-9/12">
-        <div className="flex items-center gap-2 mb-8">
+        <div className="lg:w-9/12 w-full flex flex-wrap gap-5">
           <CalendarIcon inner={true} />{" "}
           <span className="font-bold">{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
         </div>
@@ -114,7 +114,7 @@ const MoreDetails = () => {
           Test get
         </button>
       </div>
-      <div className="w-3/12">
+      <div className="lg:w-3/12 w-full">
         <RecommendContent
           inner={true}
           url={"news/all"}
