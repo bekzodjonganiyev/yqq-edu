@@ -14,6 +14,7 @@ const LoginRegister = lazy(() => import("./admin/login_register/LoginRegister"))
 const ProtectedRoute = lazy(() => import("./admin/protected_route/ProtectedRoute"));
 const Loader = lazy(() => import("./loader/Loader"));
 const SkeletonPost = lazy(() => import("./skeleton_loader/SkeletonPost"));
+const ErrorFallback = lazy(() => import("./error_fallback/ErrorFallback"))
 
 export {
   Navbar,
@@ -29,5 +30,6 @@ export {
   LoginRegister,
   ProtectedRoute,
   Loader,
-  SkeletonPost
+  SkeletonPost,
+  ErrorFallback
 };
