@@ -9,7 +9,7 @@ import { UsersContext } from "../../context";
 
 const Navbar = () => {
   const { pathname } = useLocation();
-  const scrollValue = useContext(UsersContext);
+  const {scrollValue} = useContext(UsersContext);
   const [isOpen, setOpen] = useState(false);
   
   const toggleHamburger = () => {

@@ -15,6 +15,12 @@ const ProtectedRoute = lazy(() => import("./admin/protected_route/ProtectedRoute
 const Loader = lazy(() => import("./loader/Loader"));
 const SkeletonPost = lazy(() => import("./skeleton_loader/SkeletonPost"));
 const ErrorFallback = lazy(() => import("./error_fallback/ErrorFallback"))
+const TextEditor = lazy(() => import("./admin/text_editor/TextEditor"))
+const Form = lazy(() => import("./admin/form/Form"))
+const FormHeader = lazy(() => import("./admin/form_header/FormHeader"))
+const Table = lazy(() => import("./admin/table/Table"))
+const ModalWindow = lazy(() => import("./admin/modal_window/ModalWindow"))
+const EditOneNew = lazy(() => import("./admin/edit_one_new/EditOneNew"))
 
 export {
   Navbar,
@@ -31,5 +37,10 @@ export {
   ProtectedRoute,
   Loader,
   SkeletonPost,
-  ErrorFallback
+  ErrorFallback,
+  TextEditor,
+  Form,
+  FormHeader, 
+  Table,
+  ModalWindow
 };

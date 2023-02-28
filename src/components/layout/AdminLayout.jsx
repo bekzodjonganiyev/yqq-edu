@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom"
-import { Sidebar } from ".."
+import { Outlet } from "react-router-dom";
+import { Sidebar } from "..";
 const AdminLayout = () => {
-  console.log("login qildik")
   return (
     <div className="flex w-screen h-screen">
       <Sidebar />
-      <Outlet />
+      <div className=" w-full px-20 py-10 overflow-x-hidden overflow-y-scroll border border-red-500">
+        <Outlet />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminLayout
+export default AdminLayout;

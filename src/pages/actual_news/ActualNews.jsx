@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NewsCard, RecommendContent } from "../../components";
 
 const ActualNews = () => {
-  // const generateArray = (items) => [...Array.from(Array(items).keys())];
+  const preImg = "http://localhost:4000"
   const [allNews, setAllNews] = useState([]);
   async function getDataAll() {
     try {
@@ -21,6 +21,7 @@ const ActualNews = () => {
   useEffect(() => {
     getDataAll().then((res) => setAllNews(res.data));
   }, []);
+  console.log(allNews)
   return (
     <div className="w-full">
       <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
@@ -35,6 +36,8 @@ const ActualNews = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
+                img={preImg + "/" + subItem.photo}
+                title={subItem?.title_uz}
               />
             ))}
         </div>
