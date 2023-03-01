@@ -1,2 +1,2 @@
-export { UsersProvider, smallActions, newsActions } from "./provider";
-export { UsersContext } from "./context";
+export { UsersProvider, ScrollProvider, smallActions, newsActions } from "./provider";
+export { UsersContext, ScrollContext } from "./context";

@@ -9,22 +9,22 @@ import {
 
 const Hero = () => {
   return (
-    <div className="mx-auto bg-hero bg-origin-content bg-no-repeat bg-cover w-full h-[100px] sm:h-[300px] md:h-[500px] xl:h-[800px] 2xl:h-screen border border-zinc-500">
+    <div className="mx-auto bg-hero bg-origin-content bg-no-repeat bg-cover  w-full h-[800px] sm:h-[300px] md:h-[500px] xl:h-[800px] 2xl:h-screen border border-zinc-500">
       {/* HERO TEXT */}
-      <div className="mx-auto container w-[90%] flex items-center gap-10 box-border mt-24">
+      <div className="mx-auto container w-[90%] flex items-center gap-10 box-border mt-24 xl:flex-row flex-col-reverse">
         {/* SOCIAL MEDIAS */}
-        <div className="flex flex-col items-center gap-5">
+        <div className="flex flex-row items-center gap-5 xl:flex-col">
           <VerticalLineIcon />
           <FacebookIcon  />
           <InstagramIcon />
           <YouTubeIcon />
           <TelegramIcon />
-          <VerticalLineIcon />
+          <VerticalLineIcon  />
         </div>
 
         {/* INTRO TEXT */}
-        <div className="w-[700px]">
-          <h1 className="text-5xl text-white mb-8 font-bold">
+        <div className="2xl:w-[700px]">
+          <h1 className="2xl:text-5xl max-xl:text-3xl text-white mb-8 font-bold text-5xl">
             Haqiqiy jurnalist bedor bo`lishi kerak… haqiqiy jurnalist{" "}
             vijdonli bo`lishi lozim…
           </h1>

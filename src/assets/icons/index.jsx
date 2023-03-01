@@ -168,6 +168,7 @@ const VerticalLineIcon = () => (
     viewBox="0 0 2 150"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className="xl:rotate-0 rotate-90 xl:block hidden"
   >
     <path d="M1 0V150" stroke="#F06D06" strokeWidth="2" />
   </svg>

@@ -38,6 +38,13 @@ body {
   background-position: top;
   background-repeat: no-repeat;
 }
+
+.bg-img {
+  background-image: url("./assets/images/egamnazar.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
 /* For Hero section */
 @tailwind base;
 @tailwind components;

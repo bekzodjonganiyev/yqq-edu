@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { NewsCard, RecommendContent } from "../../components";
+import { imgPrefix } from "../../context/provider";
 
 const VideoNews = () => {
   const generateArray = (items) => [...Array.from(Array(items).keys())];
   const [allNews, setAllNews] = useState([]);
   async function getDataAll() {
     try {
-      const res = await fetch(`http://localhost:4000/api/news/all`,
-      {
+      const res = await fetch(`http://localhost:4000/api/news/all`, {
         headers: {
           "Content-type": "application/json",
         },
@@ -24,8 +24,12 @@ const VideoNews = () => {
   }, []);
   return (
     <div className="w-full">
+      <h1 className="container mx-auto w-[90%] my-10 font-semibold text-3xl">
+        Video yangilillar
+      </h1>
+
       <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
-        <div className="lg:w-9/12 w-full flex flex-wrap gap-5">
+        <div className="lg:w-9/12 w-full flex flex-col gap-5">
           {allNews
             .filter((item) => item.category === "d")
             .map((subItem) => (
@@ -36,11 +40,13 @@ const VideoNews = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
+                title={subItem.title_uz}
+                img={imgPrefix + subItem.photo}
               />
             ))}
         </div>
         <div className="lg:w-3/12 w-full">
-        <RecommendContent inner={true} url={"news/all"} category={"d"} />
+          <RecommendContent inner={true} url={"news/all"} category={"d"} />
         </div>
       </div>
     </div>

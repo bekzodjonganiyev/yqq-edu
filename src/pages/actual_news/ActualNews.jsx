@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NewsCard, RecommendContent } from "../../components";
 
 const ActualNews = () => {
-  const preImg = "http://localhost:4000"
+  const preImg = "http://localhost:4000";
   const [allNews, setAllNews] = useState([]);
   async function getDataAll() {
     try {
@@ -21,11 +21,15 @@ const ActualNews = () => {
   useEffect(() => {
     getDataAll().then((res) => setAllNews(res.data));
   }, []);
-  console.log(allNews)
+  console.log(allNews);
   return (
     <div className="w-full">
+      <h1 className="container mx-auto w-[90%] my-10 font-semibold text-3xl">
+        Dolzarb yangilillar
+      </h1>
+
       <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
-        <div className="lg:w-9/12 w-full flex flex-wrap gap-5">
+        <div className="lg:w-9/12 w-full flex flex-col gap-5">
           {allNews
             .filter((item) => item.category === "b")
             .map((subItem) => (

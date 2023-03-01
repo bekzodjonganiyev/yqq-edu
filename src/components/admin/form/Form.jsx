@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import "./Form.css";
 
 import { TextEditor } from "../..";
-import { newsActions } from "../../../context";
+import { newsActions, UsersContext } from "../../../context";
 
-const Form = () => {
-  const [editor, setEditor] = useState({});
-  
+const Form = ({ title, body, category, date, id }) => {
+  const { isLoading, modalClose } = useContext(UsersContext);
+  const [editor, setEditor] = useState({
+    uz: body ? body.uz : "",
+    ru: body ? body.ru : "",
+    en: body ? body.en : "",
+  });
+
   async function postData(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -20,7 +25,9 @@ const Form = () => {
     formData.append("category", e.target.category.value);
     formData.append("photo", e.target.photo.files[0]);
     formData.append("date", e.target.date.value);
-    newsActions.addNews(formData, "news/add");
+    if (id) {
+      newsActions.editNews(id, formData);
+    } else newsActions.addNews(formData, "news/add");
   }
   return (
     <form className="flex flex-col gap-10" onSubmit={postData}>
@@ -32,6 +39,7 @@ const Form = () => {
           name="title_uz"
           id="titleUz"
           maxLength={100}
+          defaultValue={title && title.uz}
         />
       </div>
 
@@ -43,6 +51,7 @@ const Form = () => {
           name="title_ru"
           id="titleRu"
           maxLength={100}
+          defaultValue={title && title.ru}
         />
       </div>
 
@@ -54,6 +63,7 @@ const Form = () => {
           name="title_en"
           id="titleEn"
           maxLength={100}
+          defaultValue={title && title.en}
         />
       </div>
 
@@ -96,6 +106,7 @@ const Form = () => {
             name="category"
             id="category"
             className="border border-gray-500 rounded p-2"
+            defaultValue={category ? category : ""}
           >
             <option value="" hidden>
               ...
@@ -116,6 +127,7 @@ const Form = () => {
             type="date"
             name="date"
             className="block border border-gray-500 rounded p-1"
+            defaultValue={date ? date : null}
           />
         </div>
       </div>

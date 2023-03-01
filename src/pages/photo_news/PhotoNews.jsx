@@ -85,18 +85,24 @@ const PhotoNews = () => {
   ];
 
   return (
-    <div className="container mx-auto my-10  w-[90%] flex justify-between gap-10 lg:flex-row flex-col">
-      <div className="lg:w-9/12 w-full gap-5">
-        <ImageGalary />
-      </div>
-      <div className="lg:w-3/12 w-full">
-        <RecommendContent
-          inner={true}
-          video={false}
-          url={"news/all"}
-          category={"c"}
-          ownRoute={"/photo-news"}
-        />
+    <div>
+      <h1 className="container mx-auto w-[90%] my-10 font-semibold text-3xl">
+        Foto yangilillar
+      </h1>
+
+      <div className="container mx-auto my-10  w-[90%] flex justify-between gap-10 lg:flex-row flex-col">
+        <div className="lg:w-9/12 w-full gap-5">
+          <ImageGalary />
+        </div>
+        <div className="lg:w-3/12 w-full">
+          <RecommendContent
+            inner={true}
+            video={false}
+            url={"news/all"}
+            category={"c"}
+            ownRoute={"/photo-news"}
+          />
+        </div>
       </div>
     </div>
   );

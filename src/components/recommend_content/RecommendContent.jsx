@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { CalendarIcon } from "../../assets/icons";
 import videopng from "../../assets/images/video.png";
 
+import { imgPrefix } from "../../context/provider";
+
 const RecommendContent = ({
   title = "Namuna uchun sarlavha",
   inner,
@@ -55,7 +57,7 @@ const RecommendContent = ({
               {video && (
                 <div className="relative w-1/2">
                   <LazyLoadImage
-                    src={videopng}
+                    src={imgPrefix + item.photo}
                     alt={`Egamnazar`}
                     className={`img-lazy object-cover rounded-md`}
                     effect="blur" // opacity | black-and-white
@@ -70,7 +72,7 @@ const RecommendContent = ({
                   <CalendarIcon />
                   <span>{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
                 </div>
-                <p className="font-bold text-sm pb-4">{item.nameuz}</p>
+                <p className="font-bold text-sm pb-4">{item.title_uz}</p>
               </div>
             </div>
 

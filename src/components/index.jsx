@@ -19,8 +19,7 @@ const TextEditor = lazy(() => import("./admin/text_editor/TextEditor"))
 const Form = lazy(() => import("./admin/form/Form"))
 const FormHeader = lazy(() => import("./admin/form_header/FormHeader"))
 const Table = lazy(() => import("./admin/table/Table"))
-const ModalWindow = lazy(() => import("./admin/modal_window/ModalWindow"))
-const EditOneNew = lazy(() => import("./admin/edit_one_new/EditOneNew"))
+const EditForm = lazy(() => import("./admin/edit_form/EditForm"))
 
 export {
   Navbar,
@@ -42,5 +41,5 @@ export {
   Form,
   FormHeader, 
   Table,
-  ModalWindow
+  EditForm
 };

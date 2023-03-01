@@ -13,6 +13,8 @@ import {
   RecommendContent,
 } from "../../components";
 
+import { imgPrefix } from "../../context/provider";
+
 const Home = () => {
   const mock = {
     uz: {
@@ -96,6 +98,8 @@ const Home = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
+                title={subItem.title_uz}
+                img={imgPrefix + subItem.photo}
               />
             ))}
         </div>
@@ -125,6 +129,8 @@ const Home = () => {
                 inner={false}
                 endpoint={sebItem._id}
                 category={sebItem.category}
+                title={sebItem.title_uz}
+                img={imgPrefix + sebItem.photo}
               />
             ))}
         </div>
@@ -139,18 +145,18 @@ const Home = () => {
 
       {/* About Me */}
       <div className="bg-[#F2F2F2]">
-        <div className="container mx-auto w-[90%] my-10 flex gap-10">
-          <div className="w-1/3">
+        <div className="container mx-auto w-[90%] my-10 flex xl:flex-row flex-col gap-10">
+          <div className="xl:w-1/2 w-full border border-red-900">
             <LazyLoadImage
               src={egamnazar}
               alt={`Egamnazar`}
               width="100%"
-              height="100%"
+              height="80%"
               className={`img-lazy`}
               effect="blur" // opacity | black-and-white
             />
           </div>
-          <div className="w-2/3 py-8 box-border">
+          <div className="xl:w-1/2 w-full py-8 box-border">
             <h1 className="text-6xl font-bold mb-8">{mock.uz.title}</h1>
             <p className="mb-8">{mock.uz.about}</p>
             <ul>
