@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
 import { CalendarIcon } from "../../assets/icons";
-import videopng from "../../assets/images/video.png";
-
 import { imgPrefix } from "../../context/provider";
+import { newsActions, UsersContext } from "../../context";
 
 const RecommendContent = ({
   title = "Namuna uchun sarlavha",
@@ -16,33 +15,15 @@ const RecommendContent = ({
   newsId,
   ownRoute,
 }) => {
-  const date = new Date();
-  const minut = String(date.getMinutes()).padStart(2.0),
-    hour = String(date.getHours()).padStart(2, 0),
-    day = String(date.getDate()).padStart(2, 0),
-    month = String(date.getMonth() + 1).padStart(2, 0),
-    year = String(date.getFullYear());
+  const { news } = useContext(UsersContext);
   const [allNews, setAllNews] = useState([]);
-  async function getDataAll() {
-    try {
-      const res = await fetch(`http://localhost:4000/api/${url}`, {
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      return res.json();
-    } catch (err) {
-      const e = { message: err.message, error: true, success: false };
-      return e;
-    }
-  }
 
   useEffect(() => {
-    getDataAll().then((res) => {
-      const filtered = res.data.filter((item) => item.category === category);
-      setAllNews(filtered.slice(0, 5));
-    });
+    newsActions.getNews("news/all");
+    const filtered = news.filter((item) => item.category === category);
+    setAllNews(filtered.slice(0, 5));
   }, []);
+  let lang = "uz";
 
   return (
     <div className="bg-[#F2F2F2] rounded-xl p-4 hover:cursor-pointer">
@@ -50,8 +31,11 @@ const RecommendContent = ({
       {!inner && <h3 className="text-bold text-3xl mb-4">{title}</h3>}
 
       {/* Date and short info */}
-      {allNews.slice(0, 5).map((item) => (
-        <Link to={`/news/details/${category}/${item._id}`} key={item._id}>
+      {allNews.map((item) => (
+        <Link
+          to={`/${lang}/news/details/${category}/${item._id}`}
+          key={item._id}
+        >
           <div className="mb-4">
             <div className="flex justify-between gap-4">
               {video && (
@@ -70,7 +54,7 @@ const RecommendContent = ({
               <div className="">
                 <div className="flex items-center gap-2 ">
                   <CalendarIcon />
-                  <span>{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
+                  <span>{item.date}</span>
                 </div>
                 <p className="font-bold text-sm pb-4">{item.title_uz}</p>
               </div>

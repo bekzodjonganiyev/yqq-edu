@@ -25,6 +25,7 @@ import {
 import {  smallActions } from "./context";
 
 function App() {
+  let lang = "uz"
   return (
     // <ScrollProvider>
       <div
@@ -57,7 +58,7 @@ function App() {
               }
             />
             <Route
-              path="latest-news"
+              path={`${lang}/latest-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -69,7 +70,7 @@ function App() {
               }
             />
             <Route
-              path="actual-news"
+              path={`${lang}/actual-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -81,7 +82,7 @@ function App() {
               }
             />
             <Route
-              path="video-news"
+              path={`${lang}/video-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -93,7 +94,7 @@ function App() {
               }
             />
             <Route
-              path="photo-news"
+              path={`${lang}/photo-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -105,7 +106,8 @@ function App() {
               }
             />
             <Route
-              path="news/details/:category/:id"
+              path={`${lang}/news/details/:category/:id`}
+
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (

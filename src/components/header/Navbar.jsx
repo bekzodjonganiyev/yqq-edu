@@ -16,6 +16,7 @@ const Navbar = () => {
   const toggleHamburger = () => {
     setOpen(!isOpen)
   }
+  let lang = "uz"
   return (
     <header
       className={`py-4 ${
@@ -34,10 +35,10 @@ const Navbar = () => {
         </div>
         <div className={`w-3/6 xl:flex justify-between ${isOpen ? "xl:static absolute top-0 left-0 max-xl:w-full max-xl:h-screen xl:bg-inherit bg-[rgba(0,0,0,0.96)] max-xl:flex max-xl:flex-col max-xl:justify-start max-xl:pt-24" : "hidden"}`}>
           <Link to="/" className="max-xl:block hidden pl-14 -mt-16 mb-14" onClick={() => toggleHamburger()}><MainLogo /></Link>
-          <Link to="latest-news" className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8" onClick={() => toggleHamburger()}>So‘ngi yangiliklar</Link>
-          <Link to="actual-news" className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8" onClick={() => toggleHamburger()}>Dolzarb Xabarlar</Link>
-          <Link to="photo-news" className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8" onClick={() => toggleHamburger()}>Foto yangiliklar</Link>
-          <Link to="video-news" className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900" onClick={() => toggleHamburger()}>Video yangiliklar</Link>
+          <Link to={`${lang}/latest-news`} className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8" onClick={() => toggleHamburger()}>So‘ngi yangiliklar</Link>
+          <Link to={`${lang}/actual-news`} className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8" onClick={() => toggleHamburger()}>Dolzarb Xabarlar</Link>
+          <Link to={`${lang}/photo-news`} className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8" onClick={() => toggleHamburger()}>Foto yangiliklar</Link>
+          <Link to={`${lang}/video-news`} className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900" onClick={() => toggleHamburger()}>Video yangiliklar</Link>
           <div className="max-xl:block hidden pl-14 mt-8" onClick={() => alert("Bu funksiya ishlab chiqish jarayonida")}> Uz <DropDownIcon /></div>
         </div>
         <div className="w-2/6 flex items-center justify-end gap-3">
