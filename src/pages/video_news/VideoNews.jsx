@@ -1,26 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { NewsCard, RecommendContent } from "../../components";
 import { imgPrefix } from "../../context/provider";
+import { UsersContext, newsActions } from "../../context";
 
 const VideoNews = () => {
-  const generateArray = (items) => [...Array.from(Array(items).keys())];
-  const [allNews, setAllNews] = useState([]);
-  async function getDataAll() {
-    try {
-      const res = await fetch(`http://localhost:4000/api/news/all`, {
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      return res.json();
-    } catch (err) {
-      const e = { message: err.message, error: true, success: false };
-      return e;
-    }
-  }
+  // const generateArray = (items) => [...Array.from(Array(items).keys())];
+  const {news} = useContext(UsersContext)
 
   useEffect(() => {
-    getDataAll().then((res) => setAllNews(res.data));
+    newsActions.getNews("news/all")
   }, []);
   return (
     <div className="w-full">
@@ -30,7 +18,7 @@ const VideoNews = () => {
 
       <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
         <div className="lg:w-9/12 w-full flex flex-col gap-5">
-          {allNews
+          {news
             .filter((item) => item.category === "d")
             .map((subItem) => (
               <NewsCard

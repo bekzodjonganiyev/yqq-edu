@@ -1,27 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { NewsCard, RecommendContent } from "../../components";
+import { newsActions, UsersContext } from "../../context";
+import { imgPrefix } from "../../context/provider";
 
 const ActualNews = () => {
-  const preImg = "http://localhost:4000";
-  const [allNews, setAllNews] = useState([]);
-  async function getDataAll() {
-    try {
-      const res = await fetch(`http://localhost:4000/api/news/all`, {
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      return res.json();
-    } catch (err) {
-      const e = { message: err.message, error: true, success: false };
-      return e;
-    }
-  }
+  const {news} = useContext(UsersContext)
 
   useEffect(() => {
-    getDataAll().then((res) => setAllNews(res.data));
+    newsActions.getNews("news/all")
   }, []);
-  console.log(allNews);
   return (
     <div className="w-full">
       <h1 className="container mx-auto w-[90%] my-10 font-semibold text-3xl">
@@ -30,7 +17,7 @@ const ActualNews = () => {
 
       <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
         <div className="lg:w-9/12 w-full flex flex-col gap-5">
-          {allNews
+          {news
             .filter((item) => item.category === "b")
             .map((subItem) => (
               <NewsCard
@@ -40,7 +27,7 @@ const ActualNews = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
-                img={preImg + "/" + subItem.photo}
+                img={ imgPrefix+ subItem.photo}
                 title={subItem?.title_uz}
               />
             ))}

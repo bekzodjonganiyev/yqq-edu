@@ -1,6 +1,10 @@
-import { ImageGalary, NewsCard, RecommendContent } from "../../components";
+import { ImageGalary, RecommendContent } from "../../components";
+import { imgPrefix } from "../../context/provider";
+import { UsersContext, newsActions } from "../../context";
+import { useContext } from "react";
 
 const PhotoNews = () => {
+  const {news} = useContext(UsersContext)
   const photos = [
     {
       src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   LazyLoadImage,
   LazyLoadComponent,
@@ -14,8 +14,10 @@ import {
 } from "../../components";
 
 import { imgPrefix } from "../../context/provider";
+import { newsActions, UsersContext } from "../../context";
 
 const Home = () => {
+  const {news} = useContext(UsersContext)
   const mock = {
     uz: {
       title: "Men haqimda",
@@ -60,23 +62,9 @@ const Home = () => {
       },
     },
   };
-  const [allNews, setAllNews] = useState([]);
-  async function getDataAll() {
-    try {
-      const res = await fetch(`http://localhost:4000/api/news/all`, {
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      return res.json();
-    } catch (err) {
-      const e = { message: err.message, error: true, success: false };
-      return e;
-    }
-  }
 
   useEffect(() => {
-    getDataAll().then((res) => setAllNews(res.data));
+    newsActions.getNews("news/all")
   }, []);
   return (
     <div>
@@ -87,7 +75,7 @@ const Home = () => {
       {/* Latest News */}
       <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10 lg:flex-row flex-col">
         <div className="lg:w-9/12 w-full flex flex-wrap gap-5 ">
-          {allNews
+          {news
             .filter((item) => item.category === "a")
             .slice(0, 3)
             .map((subItem) => (
@@ -118,7 +106,7 @@ const Home = () => {
       {/* Actual News */}
       <div className="container mx-auto w-[90%]  my-10">
         <div className=" flex flex-wrap justify-between">
-          {allNews
+          {news
             .filter((item) => item.category === "b")
             .slice(0, 3)
             .map((sebItem) => (
