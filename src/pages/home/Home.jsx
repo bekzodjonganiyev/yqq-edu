@@ -88,6 +88,7 @@ const Home = () => {
                 category={subItem.category}
                 title={subItem.title_uz}
                 img={imgPrefix + subItem.photo}
+                dateProps={subItem.date}
               />
             ))}
         </div>
@@ -134,14 +135,14 @@ const Home = () => {
       {/* About Me */}
       <div className="bg-[#F2F2F2]">
         <div className="container mx-auto w-[90%] my-10 flex xl:flex-row flex-col gap-10">
-          <div className="xl:w-1/2 w-full border border-red-900">
+          <div className="xl:w-1/2 w-full">
             <LazyLoadImage
               src={egamnazar}
               alt={`Egamnazar`}
               width="100%"
               height="80%"
               className={`img-lazy`}
-              effect="blur" // opacity | black-and-white
+              effect="opacity" // opacity | black-and-white
             />
           </div>
           <div className="xl:w-1/2 w-full py-8 box-border">
@@ -169,7 +170,7 @@ const Home = () => {
             width="100%"
             height="auto"
             className={`img-lazy w-full h-[580px]  object-cover rounded-xl`}
-            effect="blur" // opacity | black-and-white
+            effect="opacity" // opacity | black-and-white
           />
           <span className="glightbox_video">
             <span className={`play-btn`} href="#"></span>

@@ -4,8 +4,8 @@ import { UsersContext, ScrollContext } from "./context";
 
 export let newsActions = null;
 export let smallActions = null;
-export const baseUrl = "http://back.yqqedu.uz/api";
-export const imgPrefix = "http://back.yqqedu.uz/";
+export const baseUrl = "http://localhost:4000/api";
+export const imgPrefix = "http://localhost:4000/";
 
 export const UsersProvider = ({ children }) => {
   const [scrollValue, setScrollValue] = useState(0);
@@ -28,9 +28,7 @@ export const UsersProvider = ({ children }) => {
   newsActions = {
     getNews: async (url) => {
       setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${url}`, { headers: config })
-      ).json();
+      const data = (await fetch(`${baseUrl}/${url}`, { headers: config })).json();
       data.then((res) => {
         if (res.success) {
           setNews(res.data);
@@ -47,9 +45,7 @@ export const UsersProvider = ({ children }) => {
     },
     getNewById: async (id) => {
       setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/news/${id}`, { headers: config })
-      ).json();
+      const data = (await fetch(`${baseUrl}/news/${id}`, { headers: config })).json();
       data.then((res) => {
         if (res.success) {
           setNewById(res.data);

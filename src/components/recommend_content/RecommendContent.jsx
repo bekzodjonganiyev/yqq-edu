@@ -20,7 +20,7 @@ const RecommendContent = ({
   const [allNews, setAllNews] = useState([]);
 
   useEffect(() => {
-      newsActions.getNews("news/all")
+      newsActions.getNews(url)
       const filtered = news.filter((item) => item.category === category);
       setAllNews(filtered.slice(0, 5));
   }, [news]);

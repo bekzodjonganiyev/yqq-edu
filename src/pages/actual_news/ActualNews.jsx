@@ -29,6 +29,7 @@ const ActualNews = () => {
                 category={subItem.category}
                 img={ imgPrefix+ subItem.photo}
                 title={subItem?.title_uz}
+                dateProps={subItem.date}
               />
             ))}
         </div>

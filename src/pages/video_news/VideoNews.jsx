@@ -30,6 +30,7 @@ const VideoNews = () => {
                 category={subItem.category}
                 title={subItem.title_uz}
                 img={imgPrefix + subItem.photo}
+                dateProps={subItem.date}
               />
             ))}
         </div>

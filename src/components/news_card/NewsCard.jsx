@@ -18,12 +18,6 @@ const ShortInfoCard = ({
   video,
   inner
 }) => {
-  const date = new Date();
-  const minut = String(date.getMinutes()).padStart(2.0),
-    hour = String(date.getHours()).padStart(2, 0),
-    day = String(date.getDate()).padStart(2, 0),
-    month = String(date.getMonth() + 1).padStart(2, 0),
-    year = String(date.getFullYear());
   return (
     <Link to={`/news/details/${category}/${endpoint}`}>
       <div className={`flex rounded-xl  border-red-900 ${inner ? "gap-5 sm:flex-row flex-col " : "flex-col w-[100%] md:w-56 lg:w-72 xl:w-[380] 2xl:w-[430px]"}`}>
@@ -44,7 +38,7 @@ const ShortInfoCard = ({
         <div className={`${inner ? "w-4/6" : ""}`}>
           <div className="flex items-center gap-2 ">
             <CalendarIcon />{" "}
-            <span>{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
+            <span>{dateProps}</span>
           </div>
           <p className={`font-bold mt-2 ${inner ? "xl:text-xl lg:text-lg text-sm" : "news-title"} `}>
             {title}
