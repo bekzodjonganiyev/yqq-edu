@@ -17,7 +17,6 @@ const MoreDetails = () => {
       navigate("/404");
     }
   }, [id]);
-  console.log(newById)
 
   return (
     <div className=" container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col py-10">

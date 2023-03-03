@@ -120,6 +120,7 @@ const Home = () => {
                 category={sebItem.category}
                 title={sebItem.title_uz}
                 img={imgPrefix + sebItem.photo}
+                dateProps={subItem.date}
               />
             ))}
         </div>
