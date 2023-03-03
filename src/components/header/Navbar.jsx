@@ -6,7 +6,11 @@ import { useTranslation } from "react-i18next";
 
 import "./Navbar.css";
 
-import { DropDownIcon, MainLogo, PhoneIcon, LangIcon } from "../../assets/icons";
+import {
+  MainLogo,
+  PhoneIcon,
+  LangIcon,
+} from "../../assets/icons";
 import logo from "../../assets/images/logo.png";
 import { UsersContext } from "../../context";
 
@@ -35,6 +39,12 @@ const Navbar = () => {
 
   const toggleHamburger = () => {
     setOpen({ hamburger: !isOpen.hamburger });
+  };
+
+  const changeLanguage = (code) => {
+    i18next.changeLanguage(code);
+    window.location.reload();
+    window.location.href = `/`;
   };
   return (
     <header
@@ -94,12 +104,19 @@ const Navbar = () => {
           >
             {t("Header.videoNews")}
           </Link>
-          <div
-            className="max-xl:block hidden pl-14 mt-8"
-            onClick={() => alert("Bu funksiya ishlab chiqish jarayonida")}
-          >
+          <div className="max-xl:flex gap-4 hidden pl-14 mt-8">
             {" "}
-            Uz <DropDownIcon />
+            {language.map((item) => (
+              <button
+                className="bg-[#F2F2F2] text-black rounded p-2"
+                onClick={() => {
+                  changeLanguage(item.code);
+                  toggleHamburger();
+                }}
+              >
+                {item.name}
+              </button>
+            ))}
           </div>
         </div>
         <div className="w-2/6 flex items-center justify-end gap-3">
@@ -119,9 +136,7 @@ const Navbar = () => {
                     key={item.code}
                     className="px-2.5 hover:bg-black hover:text-white"
                     onClick={() => {
-                      i18next.changeLanguage(item.code);
-                      window.location.reload();
-                      window.location.href = `/`;
+                      changeLanguage(item.code);
                     }}
                   >
                     {item.name}

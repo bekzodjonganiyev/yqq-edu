@@ -18,7 +18,7 @@
   "RecommendContent": {
     "title0": "{{recommend_content_title0}}",
     "title": "{{recommend_content_title}}",
-    "button": "Ko'proq yangiliklar"
+    "button": "More news"
   },
   "MoreDetails": {
     "title": "{{more_details_title}}",

@@ -96,7 +96,7 @@ const Home = () => {
         </div>
         <div className="lg:w-3/12 w-full">
           <RecommendContent
-            title="So'ngi yangiliklar"
+            title={t("Header.lastNews")}
             inner={false}
             url={"news/all"}
             category={"a"}
@@ -181,7 +181,7 @@ const Home = () => {
         <div className=" md:w-1/3 w-full h-[580px] overflow-y-scroll">
           <RecommendContent
             inner={false}
-            title={"Video yangiliklar"}
+            title={t("Header.videoNews")}
             video={true}
             url={"news/all"}
             category={"d"}

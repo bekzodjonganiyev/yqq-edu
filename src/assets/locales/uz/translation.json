@@ -16,7 +16,6 @@
     "title": "{{news_card_title}}"
   },
   "RecommendContent": {
-    "title0": "{{recommend_content_title0}}",
     "title": "{{recommend_content_title}}",
     "button": "Ko'proq yangiliklar"
   },

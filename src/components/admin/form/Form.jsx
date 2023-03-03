@@ -34,6 +34,7 @@ const Form = ({ title, body, category, date, id }) => {
       <div className="flex flex-col">
         <label htmlFor="titleUz">Yangilik mavzusi UZB</label>
         <input
+          required
           className=" rounded-lg p-2 border border-slate-600"
           type="text"
           name="title_uz"
@@ -46,6 +47,7 @@ const Form = ({ title, body, category, date, id }) => {
       <div className="flex flex-col">
         <label htmlFor="titleRu">Yangilik mavzusi RUS</label>
         <input
+          required
           className=" rounded-lg p-2 border border-slate-600"
           type="text"
           name="title_ru"
@@ -58,6 +60,7 @@ const Form = ({ title, body, category, date, id }) => {
       <div className="flex flex-col">
         <label htmlFor="titleEn">Yangilik mavzusi ING</label>
         <input
+          required
           className=" rounded-lg p-2 border border-slate-600"
           type="text"
           name="title_en"
@@ -92,6 +95,7 @@ const Form = ({ title, body, category, date, id }) => {
             Yangilik mavzusi uchun poster
           </label>
           <input
+            required
             type="file"
             name="photo"
             className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-white file:text-black border border-gray-500 rounded cursor-pointer"
