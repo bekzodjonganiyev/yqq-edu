@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import "./Navbar.css";
 
-import { DropDownIcon, MainLogo, PhoneIcon } from "../../assets/icons";
+import { DropDownIcon, MainLogo, PhoneIcon, LangIcon } from "../../assets/icons";
 import logo from "../../assets/images/logo.png";
 import { UsersContext } from "../../context";
 
@@ -15,7 +15,6 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const { scrollValue } = useContext(UsersContext);
   const [isOpen, setOpen] = useState({ hamburger: false, lang: false });
-  const [langTitle, setLangTitle] = useState(localStorage.getItem("langTitle") || "Uz");
   const language = [
     {
       code: "en",
@@ -110,17 +109,21 @@ const Navbar = () => {
           </div>
           <div
             className="items-center gap-3 text-black bg-[#F2F2F2] ml-10 p-2.5 rounded cursor-pointer xl:flex hidden relative"
-            onClick={() => setOpen({...isOpen, lang: !isOpen.lang})}
+            onClick={() => setOpen({ ...isOpen, lang: !isOpen.lang })}
           >
-            {langTitle} <DropDownIcon />
+            <LangIcon />
             {isOpen.lang && (
               <ul className="absolute bg-[#F2F2F2] pb-2 text-black top-10 left-0 w-full rounded">
                 {language.map((item) => (
-                  <li className="px-2.5" onClick={() => {
-                    i18next.changeLanguage(item.code)
-                    setLangTitle(item.name)
-                    localStorage.setItem("langTitle", item.name)
-                  }}>
+                  <li
+                    key={item.code}
+                    className="px-2.5 hover:bg-black hover:text-white"
+                    onClick={() => {
+                      i18next.changeLanguage(item.code);
+                      window.location.reload();
+                      window.location.href = `/`;
+                    }}
+                  >
                     {item.name}
                   </li>
                 ))}

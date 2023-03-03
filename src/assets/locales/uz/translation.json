@@ -16,10 +16,11 @@
     "title": "{{news_card_title}}"
   },
   "RecommendContent": {
+    "title0": "{{recommend_content_title0}}",
     "title": "{{recommend_content_title}}",
-    "button": "{{recommend_content_button}}"
+    "button": "Ko'proq yangiliklar"
   },
-  "MoreDeails": {
+  "MoreDetails": {
     "title": "{{more_details_title}}",
     "body": "{{more_details_body}}"
   }

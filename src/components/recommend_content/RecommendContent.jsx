@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import { CalendarIcon } from "../../assets/icons";
 import { imgPrefix } from "../../context/provider";
@@ -15,6 +17,7 @@ const RecommendContent = ({
   newsId,
   ownRoute,
 }) => {
+  const { t } = useTranslation();
   const { news } = useContext(UsersContext);
   const [allNews, setAllNews] = useState([]);
 
@@ -51,12 +54,18 @@ const RecommendContent = ({
                   </span>
                 </div>
               )}
-              <div className="">
+              <div className="w-1/2">
                 <div className="flex items-center gap-2 ">
                   <CalendarIcon />
                   <span>{item.date}</span>
                 </div>
-                <p className="font-bold text-sm pb-4">{item.title_uz}</p>
+                <p className="font-bold text-sm pb-4">
+                  {t("RecommendContent.title", {
+                    recommend_content_title: `${
+                      item?.[`title_${i18next.language}`]
+                    }`,
+                  })}
+                </p>
               </div>
             </div>
 
@@ -67,14 +76,11 @@ const RecommendContent = ({
 
       {/* See more button */}
       {!inner && (
-        // <button  className="rounded bg-[#F06D06] py-2 text-white text-bold w-full">
-
-        // </button>
         <Link
           to={ownRoute}
           className="rounded bg-[#F06D06] py-2 text-white text-bold w-full block text-center"
         >
-          Ko'roq yangilklar
+          {t("RecommendContent.button")}
         </Link>
       )}
     </div>

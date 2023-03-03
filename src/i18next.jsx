@@ -26,7 +26,7 @@ i18n
   .init({
     resources,
     supportedLngs: ["en", "ru", "uz"],
-    fallbackLng: "ru",
+    fallbackLng: "uz",
     detection: {
       order: [
         "cookie",

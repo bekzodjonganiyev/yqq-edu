@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import {
   FacebookIcon,
   InstagramIcon,
@@ -9,6 +11,7 @@ import {
   YouTubeIcon,
 } from "../../assets/icons";
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="bg-black w-full py-10">
       <div className="container mx-auto w-[90%] lg:block flex justify-between items-center max-md:flex-col">
@@ -28,16 +31,12 @@ const Footer = () => {
               <span className="text-white"> +998 94 332 00 16</span>
             </div>
           </div>
-          <p className="text-[#F2F2F2] lg:block hidden">
-            Guvohnoma: №0987. Berilgan sanasi: 22.06.2015-yil. Muassis: “WEB
-            EXPERT” MCHJ. Tahririyat manzili: 100043, Toshkent shahri, K.
-            Yormatov koʻchasi, 12-uy. <br /> Elektron manzil: info@kun.uz.{" "}
-            <br /> Saytda eʼlon qilinayotgan mualliflik maqolalarida keltirilgan
-            fikrlar muallifga tegishli va ular Kun.uz tahririyati nuqtai
-            nazarini ifoda etmasligi mumkin.Ⓣ - <br /> maqola va materiallarda
-            qo‘yilgan mazkur belgi ularning tijorat va reklama huquqlari asosida
-            eʼlon qilinganligini bildiradi.
-          </p>
+          <p
+            className="text-[#F2F2F2] lg:block hidden"
+            dangerouslySetInnerHTML={{
+              __html: t("Footer.info"),
+            }}
+          ></p>
         </div>
       </div>
     </footer>

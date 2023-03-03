@@ -56,7 +56,7 @@ function App() {
               }
             />
             <Route
-              path={`${i18next.language}/latest-news`}
+              path={`:lang/latest-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -68,7 +68,7 @@ function App() {
               }
             />
             <Route
-              path={`${i18next.language}/actual-news`}
+              path={`:lang/actual-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -80,7 +80,7 @@ function App() {
               }
             />
             <Route
-              path={`${i18next.language}/video-news`}
+              path={`:lang/video-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -92,7 +92,7 @@ function App() {
               }
             />
             <Route
-              path={`${i18next.language}/photo-news`}
+              path={`:lang/photo-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -104,7 +104,7 @@ function App() {
               }
             />
             <Route
-              path={`${i18next.language}/news/details/:category/:id`}
+              path={`:lang/news/details/:category/:id`}
 
               element={
                 <Suspense

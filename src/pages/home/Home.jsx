@@ -3,6 +3,8 @@ import {
   LazyLoadImage,
   LazyLoadComponent,
 } from "react-lazy-load-image-component";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 import egamnazar from "../../assets/images/egamnazar.png";
 import video from "../../assets/images/video.png";
@@ -17,6 +19,7 @@ import { imgPrefix } from "../../context/provider";
 import { newsActions, UsersContext } from "../../context";
 
 const Home = () => {
+  const {t} = useTranslation()
   const {news} = useContext(UsersContext)
   const mock = {
     uz: {
@@ -86,8 +89,8 @@ const Home = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
-                title={subItem.title_uz}
                 img={imgPrefix + subItem.photo}
+                title={t("NewsCard.title", {news_card_title: `${subItem?.[`title_${i18next.language}`]}`})}
               />
             ))}
         </div>
@@ -97,7 +100,7 @@ const Home = () => {
             inner={false}
             url={"news/all"}
             category={"a"}
-            ownRoute={"/latest-news"}
+            ownRoute={`/${i18next.language}/latest-news`}
           />
         </div>
       </div>
@@ -117,8 +120,8 @@ const Home = () => {
                 inner={false}
                 endpoint={sebItem._id}
                 category={sebItem.category}
-                title={sebItem.title_uz}
                 img={imgPrefix + sebItem.photo}
+                title={t("NewsCard.title", {news_card_title: `${sebItem?.[`title_${i18next.language}`]}`})}
               />
             ))}
         </div>
@@ -182,7 +185,7 @@ const Home = () => {
             video={true}
             url={"news/all"}
             category={"d"}
-            ownRoute={"/video-news"}
+            ownRoute={`/${i18next.language}/video-news`}
           />
         </div>
       </div>

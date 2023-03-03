@@ -1,9 +1,13 @@
 import { ImageGalary, RecommendContent } from "../../components";
+import { useContext } from "react";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
+
 import { imgPrefix } from "../../context/provider";
 import { UsersContext, newsActions } from "../../context";
-import { useContext } from "react";
 
 const PhotoNews = () => {
+  const {t} = useTranslation()
   const {news} = useContext(UsersContext)
   const photos = [
     {
@@ -91,7 +95,7 @@ const PhotoNews = () => {
   return (
     <div>
       <h1 className="container mx-auto w-[90%] my-10 font-semibold text-3xl">
-        Foto yangilillar
+      {t("Header.photoNews")}
       </h1>
 
       <div className="container mx-auto my-10  w-[90%] flex justify-between gap-10 lg:flex-row flex-col">

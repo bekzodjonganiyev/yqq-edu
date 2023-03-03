@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import { RecommendContent } from "..";
 import { CalendarIcon } from "../../assets/icons";
 
 const MoreDetails = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const all = useParams();
   const navigate = useNavigate();
@@ -47,8 +50,16 @@ const MoreDetails = () => {
           <CalendarIcon inner={true} />{" "}
           <span className="font-bold">{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
         </div>
-        <h1 className="text-4xl font-bold mb-8">{newsById?.title_uz}</h1>
-        <div dangerouslySetInnerHTML={{ __html: newsById?.body_uz }} />
+        <h1 className="text-4xl font-bold mb-8">
+          {t("MoreDetails.title", { more_details_title: `${newsById?.[`title_${i18next.language}`]}` })}
+        </h1>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: t("MoreDetails.body", {
+              more_details_body: `${newsById?.[`body_${i18next.language}`]}`,
+            }),
+          }}
+        />
       </div>
       <div className="lg:w-3/12 w-full">
         <RecommendContent
