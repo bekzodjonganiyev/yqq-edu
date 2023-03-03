@@ -28,9 +28,7 @@ export const UsersProvider = ({ children }) => {
   newsActions = {
     getNews: async (url) => {
       setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${url}`, { headers: config })
-      ).json();
+      const data = (await fetch(`${baseUrl}/${url}`, { headers: config })).json();
       data.then((res) => {
         if (res.success) {
           setNews(res.data);
@@ -47,9 +45,7 @@ export const UsersProvider = ({ children }) => {
     },
     getNewById: async (id) => {
       setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/news/${id}`, { headers: config })
-      ).json();
+      const data = (await fetch(`${baseUrl}/news/${id}`, { headers: config })).json();
       data.then((res) => {
         if (res.success) {
           setNewById(res.data);

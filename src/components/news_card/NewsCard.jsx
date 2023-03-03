@@ -47,7 +47,7 @@ const ShortInfoCard = ({
         <div className={`${inner ? "w-4/6" : ""}`}>
           <div className="flex items-center gap-2 ">
             <CalendarIcon />{" "}
-            <span>{`${hour}:${minut} / ${day}.${month}.${year}`}</span>
+            <span>{dateProps}</span>
           </div>
           <p className={`font-bold mt-2 ${inner ? "xl:text-xl lg:text-lg text-sm" : "news-title"} `}>
             {t("NewsCard.title", {news_card_title: title})}

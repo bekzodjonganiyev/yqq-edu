@@ -30,7 +30,7 @@ const News = () => {
 
   useEffect(() => {
     newsActions.getNews("news/all");
-  }, [onEdit.open]);
+  }, [onEdit.open, status]);
 
   const analyseNameTableHead = [
     "T/r",

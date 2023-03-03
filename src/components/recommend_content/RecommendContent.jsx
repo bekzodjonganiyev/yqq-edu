@@ -22,11 +22,10 @@ const RecommendContent = ({
   const [allNews, setAllNews] = useState([]);
 
   useEffect(() => {
-    newsActions.getNews("news/all");
-    const filtered = news.filter((item) => item.category === category);
-    setAllNews(filtered.slice(0, 5));
-  }, []);
-  let lang = "uz";
+      newsActions.getNews(url)
+      const filtered = news.filter((item) => item.category === category);
+      setAllNews(filtered.slice(0, 5));
+  }, [news]);
 
   return (
     <div className="bg-[#F2F2F2] rounded-xl p-4 hover:cursor-pointer">
@@ -36,7 +35,7 @@ const RecommendContent = ({
       {/* Date and short info */}
       {allNews.map((item) => (
         <Link
-          to={`/${lang}/news/details/${category}/${item._id}`}
+          to={`/${i18next.language}/news/details/${category}/${item._id}`}
           key={item._id}
         >
           <div className="mb-4">
