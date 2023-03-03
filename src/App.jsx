@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
+import i18next from "i18next";
 
 import {
   Layout,
@@ -21,13 +22,10 @@ import {
   News,
 } from "./pages";
 
-// import { ScrollProvider, smallActions } from "./context";
 import {  smallActions } from "./context";
 
 function App() {
-  let lang = "uz"
   return (
-    // <ScrollProvider>
       <div
         className={`w-screen h-screen overflow-x-hidden flex flex-col`}
         onScroll={(e) => smallActions.handleScroll(e.currentTarget.scrollTop)}
@@ -58,7 +56,7 @@ function App() {
               }
             />
             <Route
-              path={`${lang}/latest-news`}
+              path={`${i18next.language}/latest-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -70,7 +68,7 @@ function App() {
               }
             />
             <Route
-              path={`${lang}/actual-news`}
+              path={`${i18next.language}/actual-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -82,7 +80,7 @@ function App() {
               }
             />
             <Route
-              path={`${lang}/video-news`}
+              path={`${i18next.language}/video-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -94,7 +92,7 @@ function App() {
               }
             />
             <Route
-              path={`${lang}/photo-news`}
+              path={`${i18next.language}/photo-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -106,7 +104,7 @@ function App() {
               }
             />
             <Route
-              path={`${lang}/news/details/:category/:id`}
+              path={`${i18next.language}/news/details/:category/:id`}
 
               element={
                 <Suspense
@@ -202,7 +200,6 @@ function App() {
           />
         </Routes>
       </div>
-    // </ScrollProvider>
   );
 }
 
