@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import "./Navbar.css";
 
-import { MainLogo, PhoneIcon, LangIcon } from "../../assets/icons";
+import { PhoneIcon, LangIcon } from "../../assets/icons";
 import logo from "../../assets/images/logo.png";
 import { UsersContext } from "../../context";
 
