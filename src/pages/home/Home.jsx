@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   LazyLoadImage,
   LazyLoadComponent,
@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import egamnazar from "../../assets/images/egamnazar.png";
 import video from "../../assets/images/video.png";
+import tgIcon from "../../assets/images/tg_icon.png";
 import {
   Hero,
   NewsCard,
@@ -19,8 +20,9 @@ import { imgPrefix } from "../../context/provider";
 import { newsActions, UsersContext } from "../../context";
 
 const Home = () => {
-  const {t} = useTranslation()
-  const {news} = useContext(UsersContext)
+  const { t } = useTranslation();
+  const { news } = useContext(UsersContext);
+  const [alert, setAlert] = useState(localStorage.getItem("alert"));
   const mock = {
     uz: {
       title: "Men haqimda",
@@ -67,10 +69,25 @@ const Home = () => {
   };
 
   useEffect(() => {
-    newsActions.getNews("news/all")
+    newsActions.getNews("news/all");
+    localStorage.setItem("alert", true)
   }, []);
   return (
     <div>
+      {!alert && (
+        <div className="absolute z-50 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
+          <div className="p-8 bg-[#222] rounded-xl w-[30%] h-[30%] relative flex gap-4 items-center  ">
+            <button className="absolute right-4 top-4 text-white" onClick={() => setAlert(true)}>X</button>
+            <h1 className="text-white text-xl">
+              <a href="" target={"_blank"}  className="underline hover:text-blue-400">
+                Telegram kanalimizga
+              </a>{" "}
+              obuna bo'ling{" "}
+            </h1>
+              <img src={tgIcon} alt="tg icon" width={40} height="auto" />
+          </div>
+        </div>
+      )}
       <LazyLoadComponent>
         <Hero />
       </LazyLoadComponent>
@@ -91,7 +108,9 @@ const Home = () => {
                 category={subItem.category}
                 dateProps={subItem.date}
                 img={imgPrefix + subItem.photo}
-                title={t("NewsCard.title", {news_card_title: `${subItem?.[`title_${i18next.language}`]}`})}
+                title={t("NewsCard.title", {
+                  news_card_title: `${subItem?.[`title_${i18next.language}`]}`,
+                })}
               />
             ))}
         </div>
@@ -123,7 +142,9 @@ const Home = () => {
                 category={sebItem.category}
                 dateProps={sebItem.date}
                 img={imgPrefix + sebItem.photo}
-                title={t("NewsCard.title", {news_card_title: `${sebItem?.[`title_${i18next.language}`]}`})}
+                title={t("NewsCard.title", {
+                  news_card_title: `${sebItem?.[`title_${i18next.language}`]}`,
+                })}
               />
             ))}
         </div>
