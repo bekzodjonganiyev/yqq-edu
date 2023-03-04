@@ -32,6 +32,7 @@ const VideoNews = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
+                dateProps={subItem.date}
                 img={imgPrefix + subItem.photo}
                 title={t("NewsCard.title", {news_card_title: `${subItem?.[`title_${i18next.language}`]}`})}
               />

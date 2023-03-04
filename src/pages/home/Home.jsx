@@ -77,7 +77,7 @@ const Home = () => {
 
       {/* Latest News */}
       <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10 lg:flex-row flex-col">
-        <div className="lg:w-9/12 w-full flex flex-wrap gap-5 ">
+        <div className="lg:w-9/12 w-full flex flex-col gap-5 ">
           {news
             .filter((item) => item.category === "a")
             .slice(0, 3)
@@ -89,6 +89,7 @@ const Home = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
+                dateProps={subItem.date}
                 img={imgPrefix + subItem.photo}
                 title={t("NewsCard.title", {news_card_title: `${subItem?.[`title_${i18next.language}`]}`})}
               />
@@ -120,6 +121,7 @@ const Home = () => {
                 inner={false}
                 endpoint={sebItem._id}
                 category={sebItem.category}
+                dateProps={sebItem.date}
                 img={imgPrefix + sebItem.photo}
                 title={t("NewsCard.title", {news_card_title: `${sebItem?.[`title_${i18next.language}`]}`})}
               />

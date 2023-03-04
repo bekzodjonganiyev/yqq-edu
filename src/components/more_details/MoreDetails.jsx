@@ -29,12 +29,12 @@ const MoreDetails = () => {
           <span className="font-bold">{newById.date}</span>
         </div>
         <h1 className="text-4xl font-bold mb-8">
-          {t("MoreDetails.title", { more_details_title: `${newsById?.[`title_${i18next.language}`]}` })}
+          {t("MoreDetails.title", { more_details_title: `${newById?.[`title_${i18next.language}`]}` })}
         </h1>
         <div
           dangerouslySetInnerHTML={{
             __html: t("MoreDetails.body", {
-              more_details_body: `${newsById?.[`body_${i18next.language}`]}`,
+              more_details_body: `${newById?.[`body_${i18next.language}`]}`,
             }),
           }}
         />
@@ -43,7 +43,7 @@ const MoreDetails = () => {
         <RecommendContent
           inner={true}
           url={"news/all"}
-          category={category}
+          category={all?.category}
         />
       </div>
     </div>

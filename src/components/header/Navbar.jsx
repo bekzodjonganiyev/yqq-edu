@@ -6,11 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import "./Navbar.css";
 
-import {
-  MainLogo,
-  PhoneIcon,
-  LangIcon,
-} from "../../assets/icons";
+import { MainLogo, PhoneIcon, LangIcon } from "../../assets/icons";
 import logo from "../../assets/images/logo.png";
 import { UsersContext } from "../../context";
 
@@ -74,8 +70,9 @@ const Navbar = () => {
             className="max-xl:block hidden pl-14 -mt-16 mb-14"
             onClick={() => toggleHamburger()}
           >
-            <MainLogo />
+            <img src={logo} alt="" width={"150"} height={"20"} className="" />
           </Link>
+
           <Link
             to={`${i18next.language}/latest-news`}
             className="max-xl:pl-14 max-xl:text-[#F06D06]  border-red-900 max-xl:mb-8"
