@@ -21,12 +21,6 @@ const ShortInfoCard = ({
   inner
 }) => {
   const {t} = useTranslation()
-  const date = new Date();
-  const minut = String(date.getMinutes()).padStart(2.0),
-    hour = String(date.getHours()).padStart(2, 0),
-    day = String(date.getDate()).padStart(2, 0),
-    month = String(date.getMonth() + 1).padStart(2, 0),
-    year = String(date.getFullYear());
   return (
     <Link to={`/${i18next.language}/news/details/${category}/${endpoint}`}>
       <div className={`flex rounded-xl  border-red-900 ${inner ? "gap-5 sm:flex-row flex-col " : "flex-col w-[100%] md:w-56 lg:w-72 xl:w-[380] 2xl:w-[430px]"}`}>

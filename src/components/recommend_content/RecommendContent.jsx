@@ -53,7 +53,7 @@ const RecommendContent = ({
                   </span>
                 </div>
               )}
-              <div className="w-1/2">
+              <div className={`${video ? "w-1/2" : "w-full"}`}>
                 <div className="flex items-center gap-2 ">
                   <CalendarIcon />
                   <span>{item.date}</span>
