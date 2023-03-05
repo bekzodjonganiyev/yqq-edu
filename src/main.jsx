@@ -8,6 +8,7 @@ import "./index.css";
 import App from "./App";
 import { UsersProvider } from "./context";
 import { SkeletonPost, ErrorFallback } from "./components";
+import "./i18next"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

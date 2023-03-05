@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
+import i18next from "i18next";
 
 import {
   Layout,
@@ -21,12 +22,10 @@ import {
   News,
 } from "./pages";
 
-// import { ScrollProvider, smallActions } from "./context";
 import {  smallActions } from "./context";
 
 function App() {
   return (
-    // <ScrollProvider>
       <div
         className={`w-screen h-screen overflow-x-hidden flex flex-col`}
         onScroll={(e) => smallActions.handleScroll(e.currentTarget.scrollTop)}
@@ -57,7 +56,7 @@ function App() {
               }
             />
             <Route
-              path="latest-news"
+              path={`:lang/latest-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -69,7 +68,7 @@ function App() {
               }
             />
             <Route
-              path="actual-news"
+              path={`:lang/actual-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -81,7 +80,7 @@ function App() {
               }
             />
             <Route
-              path="video-news"
+              path={`:lang/video-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -93,7 +92,7 @@ function App() {
               }
             />
             <Route
-              path="photo-news"
+              path={`:lang/photo-news`}
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -105,7 +104,8 @@ function App() {
               }
             />
             <Route
-              path="news/details/:category/:id"
+              path={`:lang/news/details/:category/:id`}
+
               element={
                 <Suspense
                   fallback={[...Array(10).keys()].map((i) => (
@@ -200,7 +200,6 @@ function App() {
           />
         </Routes>
       </div>
-    // </ScrollProvider>
   );
 }
 

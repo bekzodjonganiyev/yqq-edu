@@ -1,10 +1,14 @@
 import { useContext, useEffect } from "react";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
+
 import { NewsCard, RecommendContent } from "../../components";
 import { imgPrefix } from "../../context/provider";
 import { UsersContext, newsActions } from "../../context";
 
 const VideoNews = () => {
   // const generateArray = (items) => [...Array.from(Array(items).keys())];
+  const {t} = useTranslation()
   const {news} = useContext(UsersContext)
 
   useEffect(() => {
@@ -13,7 +17,7 @@ const VideoNews = () => {
   return (
     <div className="w-full">
       <h1 className="container mx-auto w-[90%] my-10 font-semibold text-3xl">
-        Video yangilillar
+      {t("Header.videoNews")}
       </h1>
 
       <div className="container mx-auto w-[90%] flex justify-between gap-5 lg:flex-row flex-col">
@@ -28,9 +32,9 @@ const VideoNews = () => {
                 inner={true}
                 endpoint={subItem._id}
                 category={subItem.category}
-                title={subItem.title_uz}
-                img={imgPrefix + subItem.photo}
                 dateProps={subItem.date}
+                img={imgPrefix + subItem.photo}
+                title={t("NewsCard.title", {news_card_title: `${subItem?.[`title_${i18next.language}`]}`})}
               />
             ))}
         </div>

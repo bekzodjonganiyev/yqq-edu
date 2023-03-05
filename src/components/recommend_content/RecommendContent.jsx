@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import { CalendarIcon } from "../../assets/icons";
-
 import { imgPrefix } from "../../context/provider";
 import { newsActions, UsersContext } from "../../context";
 
@@ -16,7 +17,8 @@ const RecommendContent = ({
   newsId,
   ownRoute,
 }) => {
-  const {news} = useContext(UsersContext)
+  const { t } = useTranslation();
+  const { news } = useContext(UsersContext);
   const [allNews, setAllNews] = useState([]);
 
   useEffect(() => {
@@ -32,7 +34,10 @@ const RecommendContent = ({
 
       {/* Date and short info */}
       {allNews.map((item) => (
-        <Link to={`/news/details/${category}/${item._id}`} key={item._id}>
+        <Link
+          to={`/${i18next.language}/news/details/${category}/${item._id}`}
+          key={item._id}
+        >
           <div className="mb-4">
             <div className="flex justify-between gap-4">
               {video && (
@@ -48,12 +53,18 @@ const RecommendContent = ({
                   </span>
                 </div>
               )}
-              <div className="">
+              <div className={`${video ? "w-1/2" : "w-full"}`}>
                 <div className="flex items-center gap-2 ">
                   <CalendarIcon />
                   <span>{item.date}</span>
                 </div>
-                <p className="font-bold text-sm pb-4">{item.title_uz}</p>
+                <p className="font-bold text-sm pb-4">
+                  {t("RecommendContent.title", {
+                    recommend_content_title: `${
+                      item?.[`title_${i18next.language}`]
+                    }`,
+                  })}
+                </p>
               </div>
             </div>
 
@@ -64,14 +75,11 @@ const RecommendContent = ({
 
       {/* See more button */}
       {!inner && (
-        // <button  className="rounded bg-[#F06D06] py-2 text-white text-bold w-full">
-
-        // </button>
         <Link
           to={ownRoute}
           className="rounded bg-[#F06D06] py-2 text-white text-bold w-full block text-center"
         >
-          Ko'roq yangilklar
+          {t("RecommendContent.button")}
         </Link>
       )}
     </div>
