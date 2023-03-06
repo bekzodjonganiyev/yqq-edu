@@ -1,24 +1,30 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { userActions, UsersContext } from "../../../context";
 
 const LoginRegister = () => {
   const navigate = useNavigate();
+  const {users} = useContext(UsersContext)
   const [register, setRegister] = useState(false);
-  let user = null
+  let user = null;
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     user = {
       name: e.target.name.value,
       phone: e.target.phone.value,
-      password: e.target.password.value
-    }
-    localStorage.setItem("token", JSON.stringify(user))
+      password: e.target.password.value,
+    };
+    register ? userActions.registerUser(user, "user/register") : userActions.loginUser(user, "user/login")
     setTimeout(() => {
-      navigate("/egamnazar-dashboard")
-    }, 2000)
-  }
+      navigate("/egamnazar-dashboard");
+    }, 2000);
+  };
 
-  const userRegister = () => {};
+  useEffect(() => {
+    // userActions.getUsers("user/users")
+  }, [])
+  const userRegister = () => {
+  };
 
   const userLogin = () => {};
   return (
@@ -66,23 +72,29 @@ const LoginRegister = () => {
           <h3 className="my-4 text-2xl font-semibold text-gray-700">
             {register ? "Ro'yxatdan o'tish" : "Admin panelga kirish"}
           </h3>
-          <form action="#" className="flex flex-col space-y-5 py-20" onSubmit={handleSubmit}>
-            <div className="flex flex-col space-y-1">
-              <label
-                htmlFor="email"
-                className="text-sm font-semibold text-gray-500"
-              >
-                Name
-              </label>
-              <input
-                required
-                name="name"
-                type="text"
-                id="email"
-                autoFocus
-                className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
-              />
-            </div>
+          <form
+            action="#"
+            className="flex flex-col space-y-5 py-20"
+            onSubmit={handleSubmit}
+          >
+            {register && (
+              <div className="flex flex-col space-y-1">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-semibold text-gray-500"
+                >
+                  Name
+                </label>
+                <input
+                  required
+                  name="name"
+                  type="text"
+                  id="email"
+                  autoFocus
+                  className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                />
+              </div>
+            )}
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="phone"

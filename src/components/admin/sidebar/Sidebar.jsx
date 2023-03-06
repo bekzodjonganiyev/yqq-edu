@@ -1,9 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { DashboardIcon, LogoutIcon, NewsIcon, UsersIcon } from "../../../assets/icons";
+import {
+  DashboardIcon,
+  LogoutIcon,
+  NewsIcon,
+  UsersIcon,
+} from "../../../assets/icons";
 
 const Sidebar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
       <div className="space-y-3">
@@ -28,7 +33,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <NewsIcon />
-                <span className="text-gray-100">News</span>
+                <span className="text-gray-100">Yangiliklar</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -37,15 +42,42 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Users</span>
+                <span className="text-gray-100">Adminlar</span>
               </Link>
             </li>
             <li className="rounded-sm">
-              <button 
+              <Link
+                to={"banner"}
+                className="flex items-center p-2 space-x-3 rounded-md"
+              >
+                <UsersIcon />
+                <span className="text-gray-100">Banner</span>
+              </Link>
+            </li>
+            <li className="rounded-sm">
+              <Link
+                to={"media"}
+                className="flex items-center p-2 space-x-3 rounded-md"
+              >
+                <UsersIcon />
+                <span className="text-gray-100">Media</span>
+              </Link>
+            </li>
+            <li className="rounded-sm">
+              <Link
+                to={"photos"}
+                className="flex items-center p-2 space-x-3 rounded-md"
+              >
+                <UsersIcon />
+                <span className="text-gray-100">Foto yangilik</span>
+              </Link>
+            </li>
+            <li className="rounded-sm">
+              <button
                 onClick={() => {
-                    window.localStorage.removeItem("token")
-                    navigate("/")
-                    window.location.reload(false)
+                  window.localStorage.removeItem("token");
+                  navigate("/");
+                  window.location.reload(false);
                 }}
                 to={"#"}
                 className="flex items-center p-2 space-x-3 rounded-md"

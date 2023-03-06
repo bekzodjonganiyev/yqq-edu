@@ -20,186 +20,224 @@ import {
   Dashboard,
   Users,
   News,
+  Banner,
+  Media,
+  Photos,
 } from "./pages";
 
-import {  smallActions } from "./context";
+import { smallActions } from "./context";
 
 function App() {
   return (
-      <div
-        className={`w-screen h-screen overflow-x-hidden flex flex-col`}
-        onScroll={(e) => smallActions.handleScroll(e.currentTarget.scrollTop)}
-      >
-        <Routes>
+    <div
+      className={`w-screen h-screen overflow-x-hidden flex flex-col`}
+      onScroll={(e) => smallActions.handleScroll(e.currentTarget.scrollTop)}
+    >
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
+              <Layout />
+            </Suspense>
+          }
+        >
           <Route
-            path="/"
+            index
             element={
               <Suspense
                 fallback={[...Array(10).keys()].map((i) => (
                   <SkeletonPost key={i} />
                 ))}
               >
-                <Layout />
-              </Suspense>
-            }
-          >
-            <Route
-              index
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <Home />
-                </Suspense>
-              }
-            />
-            <Route
-              path={`:lang/latest-news`}
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <LatestNews />
-                </Suspense>
-              }
-            />
-            <Route
-              path={`:lang/actual-news`}
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <ActualNews />
-                </Suspense>
-              }
-            />
-            <Route
-              path={`:lang/video-news`}
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <VideoNews />
-                </Suspense>
-              }
-            />
-            <Route
-              path={`:lang/photo-news`}
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <PhotoNews />
-                </Suspense>
-              }
-            />
-            <Route
-              path={`:lang/news/details/:category/:id`}
-
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <MoreDetails />
-                </Suspense>
-              }
-            />
-          </Route>
-          <Route
-            path="/egamnazar-dashboard"
-            element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route
-              index
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <Dashboard />
-                </Suspense>
-              }
-            />
-            <Route
-              path="news"
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <News />
-                </Suspense>
-              }
-            />
-            <Route
-              path="users"
-              element={
-                <Suspense
-                  fallback={[...Array(10).keys()].map((i) => (
-                    <SkeletonPost key={i} />
-                  ))}
-                >
-                  <Users />
-                </Suspense>
-              }
-            />
-          </Route>
-          <Route
-            path="egamnazar-login"
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <LoginRegister />
+                <Home />
               </Suspense>
             }
           />
           <Route
-            path="404"
+            path={`:lang/latest-news`}
             element={
               <Suspense
                 fallback={[...Array(10).keys()].map((i) => (
                   <SkeletonPost key={i} />
                 ))}
               >
-                <FourZeroFour />
+                <LatestNews />
               </Suspense>
             }
           />
           <Route
-            path="*"
+            path={`:lang/actual-news`}
             element={
               <Suspense
                 fallback={[...Array(10).keys()].map((i) => (
                   <SkeletonPost key={i} />
                 ))}
               >
-                <FourZeroFour />
+                <ActualNews />
               </Suspense>
             }
           />
-        </Routes>
-      </div>
+          <Route
+            path={`:lang/video-news`}
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <VideoNews />
+              </Suspense>
+            }
+          />
+          <Route
+            path={`:lang/photo-news`}
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <PhotoNews />
+              </Suspense>
+            }
+          />
+          <Route
+            path={`:lang/news/details/:category/:id`}
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <MoreDetails />
+              </Suspense>
+            }
+          />
+        </Route>
+        <Route
+          path="/egamnazar-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            index
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Dashboard />
+              </Suspense>
+            }
+          />
+          <Route
+            path="news"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <News />
+              </Suspense>
+            }
+          />
+          <Route
+            path="users"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Users />
+              </Suspense>
+            }
+          />
+          <Route
+            path="banner"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Banner />
+              </Suspense>
+            }
+          />
+          <Route
+            path="media"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Media />
+              </Suspense>
+            }
+          />
+          <Route
+            path="photos"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Photos />
+              </Suspense>
+            }
+          />
+        </Route>
+        <Route
+          path="egamnazar-login"
+          element={
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
+              <LoginRegister />
+            </Suspense>
+          }
+        />
+        <Route
+          path="404"
+          element={
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
+              <FourZeroFour />
+            </Suspense>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Suspense
+              fallback={[...Array(10).keys()].map((i) => (
+                <SkeletonPost key={i} />
+              ))}
+            >
+              <FourZeroFour />
+            </Suspense>
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 

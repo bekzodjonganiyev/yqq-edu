@@ -4,22 +4,172 @@ import { UsersContext, ScrollContext } from "./context";
 
 export let newsActions = null;
 export let smallActions = null;
-export const baseUrl = "http://back.yqqedu.uz/api";
-export const imgPrefix = "http://back.yqqedu.uz/";
+export let userActions = null;
+export const baseUrl = "http://localhost:4000/api";
+export const imgPrefix = "http://localhost:4000/";
 
 export const UsersProvider = ({ children }) => {
+  // Scroll value handled here
   const [scrollValue, setScrollValue] = useState(0);
+
+  // Fetching results here
   const [news, setNews] = useState([]);
   const [newById, setNewById] = useState({});
+  const [users, setUsers] = useState([]);
+  const [media, setMedia] = useState([]);
+  const [banner, setBanner] = useState([]);
+
+  // Action states for UI
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [alert, setAlert] = useState(false);
   const [modalClose, setModalClose] = useState(false);
-  const config = { "Content-type": "application/json" };
+
+  const config = {
+    "Content-type": "application/json",
+    token: localStorage.getItem("token"),
+  };
 
   smallActions = {
     handleScroll: (newValue) => {
       setScrollValue(newValue);
+    },
+    getMedia: async (url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, { headers: config })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          setMedia(res.data)
+          setIsLoading(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+          setMedia([])
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+    
+    addMedia: async (body, url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, {
+          method: "POST",
+          body,
+          headers: { token: localStorage.getItem("token") },
+        })
+      ).json();
+      data.then((res) => {
+        if (res.status === 200) {
+          setAlert(true);
+          setIsLoading(false);
+          setError(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    editMedia: () => {},
+
+    deleteMedia: async (id) => {
+      setIsLoading(true)
+      const data = (
+        await fetch(`${baseUrl}/media/${id}`, {
+          method: "DELETE",
+          headers: config,
+        })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          const filteredNews = media.filter((item) => item._id !== id);
+          setMedia(filteredNews);
+          setIsLoading(false);
+          setAlert(true);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    getBanner: async (url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, { headers: config })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          setBanner(res.data)
+          setIsLoading(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+          setBanner([])
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    addBanner: async (body, url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, {
+          method: "POST",
+          body,
+          headers: { token: localStorage.getItem("token") },
+        })
+      ).json();
+      data.then((res) => {
+        if (res.status === 200) {
+          setError(false);
+          setAlert(true);
+          setIsLoading(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000); 
+    },
+
+    deleteBanner: async (id) => {
+      setIsLoading(true)
+      const data = (
+        await fetch(`${baseUrl}/banner/${id}`, {
+          method: "DELETE",
+          headers: config,
+        })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          const filteredNews = banner.filter((item) => item._id !== id);
+          setBanner(filteredNews);
+          setIsLoading(false);
+          setAlert(true);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
     },
   };
 
@@ -28,24 +178,28 @@ export const UsersProvider = ({ children }) => {
   newsActions = {
     getNews: async (url) => {
       setIsLoading(true);
-      const data = (await fetch(`${baseUrl}/${url}`, { headers: config })).json();
+      const data = (
+        await fetch(`${baseUrl}/${url}`, { headers: config })
+      ).json();
       data.then((res) => {
         if (res.success) {
           setNews(res.data);
+          setIsLoading(false);
         } else {
           setError(true);
           setNews([]);
         }
       });
       setTimeout(() => {
-        setIsLoading(false);
         setError(false);
         setAlert(false);
       }, 3000);
     },
     getNewById: async (id) => {
       setIsLoading(true);
-      const data = (await fetch(`${baseUrl}/news/${id}`, { headers: config })).json();
+      const data = (
+        await fetch(`${baseUrl}/news/${id}`, { headers: config })
+      ).json();
       data.then((res) => {
         if (res.success) {
           setNewById(res.data);
@@ -58,15 +212,23 @@ export const UsersProvider = ({ children }) => {
     },
     addNews: async (body, url) => {
       setIsLoading(true);
-      const data = await fetch(`${baseUrl}/${url}`, {
-        method: "POST",
-        body,
-      }).then((res) => res.json());
-      setAlert(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        setError(false);
-      }, 1000);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, {
+          method: "POST",
+          body,
+          headers: { token: localStorage.getItem("token") },
+        })
+      ).json();
+      data.then((res) => {
+        if (res.status === 200) {
+          setAlert(true);
+          setIsLoading(false);
+          setError(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
       setTimeout(() => {
         setAlert(false);
       }, 3000);
@@ -85,7 +247,9 @@ export const UsersProvider = ({ children }) => {
           }, 2000);
         }
       });
-      setTimeout(() => {setModalClose(false)}, 7000)
+      setTimeout(() => {
+        setModalClose(false);
+      }, 7000);
     },
 
     deleteNew: async (id) => {
@@ -107,8 +271,101 @@ export const UsersProvider = ({ children }) => {
         setAlert(false);
       }, 3000);
     },
-    closeModal: () => {
-      setModalClose(true);
+  };
+
+  userActions = {
+    getUsers: async (url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, { headers: config })
+      ).json();
+      data.then((res) => {
+        if (res.message === "success") {
+          setUsers(res.data);
+          setIsLoading(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+          setUsers([]);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    registerUser: async (body, url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: config,
+        })
+      ).json();
+      data.then((res) => {
+        if (res.message === "success created") {
+          setAlert(true);
+          setIsLoading(false);
+          localStorage.setItem("token", res.token);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(true);
+      }, 3000);
+    },
+
+    loginUser: async (body, url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: config,
+        })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          setAlert(true);
+          setIsLoading(false);
+          localStorage.setItem("token", res.token);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(true);
+      }, 3000);
+    },
+
+    editUser: () => {},
+
+    deleteUser: async (id) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/user/${id}`, {
+          method: "DELETE",
+          headers: config,
+        })
+      ).json();
+      data.then((res) => {
+        if (res.message === "success") {
+          const filteredNews = users.filter((item) => item._id !== id);
+          setUsers(filteredNews);
+          setIsLoading(false);
+          setAlert(true);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
     },
   };
 
@@ -122,6 +379,9 @@ export const UsersProvider = ({ children }) => {
         error,
         alert,
         modalClose,
+        users,
+        media,
+        banner
       }}
     >
       {children}

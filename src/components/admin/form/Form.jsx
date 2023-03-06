@@ -39,7 +39,6 @@ const Form = ({ title, body, category, date, id }) => {
           type="text"
           name="title_uz"
           id="titleUz"
-          minLength={100}
           defaultValue={title && title.uz}
         />
       </div>
@@ -52,7 +51,6 @@ const Form = ({ title, body, category, date, id }) => {
           type="text"
           name="title_ru"
           id="titleRu"
-          minLength={100}
           defaultValue={title && title.ru}
         />
       </div>
@@ -65,7 +63,6 @@ const Form = ({ title, body, category, date, id }) => {
           type="text"
           name="title_en"
           id="titleEn"
-          minLength={100}
           defaultValue={title && title.en}
         />
       </div>
