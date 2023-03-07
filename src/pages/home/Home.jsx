@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import {
   LazyLoadImage,
@@ -17,60 +17,14 @@ import {
   RecommendContent,
 } from "../../components";
 
-import { imgPrefix, smallActions } from "../../context/provider";
+import { imgPrefix } from "../../context/provider";
 import { newsActions, UsersContext } from "../../context";
 
-const ImageSlider = ({ images }) => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((currentImage) => (currentImage + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // useEffect(() => {
-  //   const imageElement = imageRef.current;
-  //   const animate = (timestamp) => {
-  //     imageElement.style.opacity = "0";
-  //     imageElement.style.scale = "0.8";
-  //     imageElement.style.transition = " 1s";
-
-  //     for (let i = 0; i < 100; i++) {
-  //       setTimeout(() => {
-  //         imageElement.style.backgroundImage = `url(${images[currentImage]})`;
-  //         imageElement.style.opacity = (i + 1) / 10;
-  //         imageElement.style.scale = (i + 1) / i - 0.01;
-  //         imageElement.style.transition = "opacity 4s";
-  //       }, (i + 1) * 50);
-  //     }
-  //   };
-  //   requestAnimationFrame(animate);
-  // }, [currentImage]);
-
-  return (
-    <div
-      ref={imageRef}
-      style={{
-        height: "100vh",
-        width: "100vw",
-        backgroundImage: `url(${images[currentImage]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    />
-  );
-};
 
 const Home = () => {
   const { t } = useTranslation();
-  const { news, banner } = useContext(UsersContext);
+  const { news } = useContext(UsersContext);
   const [alert, setAlert] = useState(localStorage.getItem("alert"));
-  const [currentImage, setCurrentImage] = useState(0);
-  const imageRef = useRef(null);
   const mock = {
     uz: {
       title: "Men haqimda",
@@ -116,25 +70,16 @@ const Home = () => {
     },
   };
 
-  const images = banner.map((item) => imgPrefix + item.banner_img);
   useEffect(() => {
     newsActions.getNews("news/all");
-    smallActions.getBanner("banner/get/all");
     localStorage.setItem("alert", true);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((currentImage) => (currentImage + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   return (
     <div>
       {!alert && (
         <div className="absolute z-50 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
-          <div className="p-8 bg-[#222] rounded-xl w-[30%] h-[30%] relative flex gap-4 items-center  ">
+          <div className="p-8 bg-[#222] rounded-xl sm:w-[30%] h-[30%] relative flex gap-4 items-center  ">
             <button
               className="absolute right-4 top-4 text-white"
               onClick={() => setAlert(true)}
@@ -156,21 +101,11 @@ const Home = () => {
         </div>
       )}
       <LazyLoadComponent>
-        { banner?.length === 0 && <Hero />}
-        {/* <ImageSlider images={images}/> */}
-        <div
-          ref={imageRef}
-          style={{
-            height: "100vh",
-            width: "100vw",
-            backgroundImage: `url(${images[currentImage]})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
+        <Hero />
       </LazyLoadComponent>
 
       {/* Latest News */}
+      <h1 className="container mx-auto w-[90%] mt-14 -mb-6 font-semibold text-3xl">{t("Header.lastNews")}</h1>
       <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10 lg:flex-row flex-col">
         <div className="lg:w-9/12 w-full flex flex-col gap-5 ">
           {news
@@ -206,6 +141,9 @@ const Home = () => {
 
       {/* Actual News */}
       <div className="container mx-auto w-[90%]  my-10">
+      <h1 className=" mt-14 mb-4 font-semibold text-3xl">
+      {t("Header.actualNews")}
+      </h1>
         <div className=" flex flex-wrap justify-between">
           {news
             .filter((item) => item.category === "b")
@@ -231,6 +169,9 @@ const Home = () => {
 
       {/* Image Gallary */}
       <div className="container mx-auto w-[90%] my-10">
+      <h1 className=" mt-14 mb-4 font-semibold text-3xl">
+      {t("Header.photoNews")}
+      </h1>
         <ImageGalary />
       </div>
       {/* Image Gallary */}
@@ -265,6 +206,7 @@ const Home = () => {
       {/* About Me */}
 
       {/* Video News */}
+      <h1 className="container mx-auto w-[90%] mt-14 -mb-6 font-semibold text-3xl">{t("Header.videoNews")}</h1>
       <div className="container mx-auto w-[90%] my-10 flex justify-between gap-10  transition-all">
         <div className="w-2/3 h-[580px] relative md:block hidden ">
           <LazyLoadImage

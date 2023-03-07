@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { FormHeader, SkeletonPost } from "../../../components";
 
+import { FormHeader, SkeletonPost } from "../../../components";
 import { UsersContext, smallActions } from "../../../context";
 import { imgPrefix } from "../../../context/provider";
 

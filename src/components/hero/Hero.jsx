@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import styled, { keyframes } from "styled-components";
 import { UsersContext, smallActions } from "../../context";
 
 import {
@@ -20,23 +21,34 @@ const Hero = () => {
   const images = banner.map(
     (item) => "url(" + imgPrefix + item.banner_img + ")"
   );
-  function randomImg() {
-    let a;
-    setInterval(() => {a = Math.random()}, 7000)
-    console.log(a)
-    return a
+  const change = keyframes`
+  0% {
+    background-image: ${images[5]};
   }
-  console.log(randomImg())
-  // function changeBg() {
-  //   const heroBg = document.querySelector("#hero-bg");
-  //   const bg = images[Math.floor(Math.random() * images.length)];
-  //   heroBg.style.backgroundImage = bg;
-  // }
-  // setInterval(changeBg, 7000);
-
+  20% {
+    background-image: ${images[0]};
+  }
+  40% {
+    background-image: ${images[1]};
+  }
+  60% {
+    background-image: ${images[2]};
+  }
+  80% {
+    background-image: ${images[3]};
+  }
+  100% {
+    background-image: ${images[4]};
+  }
+`;
+  const BgImages = styled.div`
+    width: 100vw;
+    backgroundreapeat: no-repeat;
+    animation: ${change} 20s infinite;
+  `;
 
   return (
-    <div
+    <BgImages
       id="hero-bg"
       className="mx-auto bg-hero bg-origin-content bg-no-repeat bg-cover  w-full h-[800px] sm:h-[300px] md:h-[500px] xl:h-[800px] 2xl:h-screen border"
     >
@@ -60,7 +72,7 @@ const Hero = () => {
           <p className="text-white text-xl">{t("Hero.description")}</p>
         </div>
       </div>
-    </div>
+    </BgImages>
   );
 };
 

@@ -99,7 +99,8 @@ const Banner = () => {
     const formData = new FormData();
     formData.append("title", e.target.title.value);
     formData.append("banner_img", e.target.banner_img.files[0]);
-    smallActions.addBanner(formData, "banner/add");
+    if (banner.length > 10) null
+    else {smallActions.addBanner(formData, "banner/add")};
   }
 
   useEffect(() => {
