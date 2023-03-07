@@ -25,6 +25,17 @@ body {
     border-radius: 10px; */
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 /* For Navbar */
 .bg-language-btn, .footer-text {
   background: rgba(255, 255, 255, 0.6);

@@ -19,13 +19,10 @@ const RecommendContent = ({
 }) => {
   const { t } = useTranslation();
   const { news } = useContext(UsersContext);
-  const [allNews, setAllNews] = useState([]);
 
   useEffect(() => {
-      newsActions.getNews(url)
-      const filtered = news.filter((item) => item.category === category);
-      setAllNews(filtered.slice(0, 5));
-  }, [news]);
+    newsActions.getNews(url);
+  }, []);
 
   return (
     <div className="bg-[#F2F2F2] rounded-xl p-4 hover:cursor-pointer">
@@ -33,45 +30,48 @@ const RecommendContent = ({
       {!inner && <h3 className="text-bold text-3xl mb-4">{title}</h3>}
 
       {/* Date and short info */}
-      {allNews.map((item) => (
-        <Link
-          to={`/${i18next.language}/news/details/${category}/${item._id}`}
-          key={item._id}
-        >
-          <div className="mb-4">
-            <div className="flex justify-between gap-4">
-              {video && (
-                <div className="relative w-1/2">
-                  <LazyLoadImage
-                    src={imgPrefix + item.photo}
-                    alt={`Egamnazar`}
-                    className={`img-lazy object-cover rounded-md`}
-                    effect="blur" // opacity | black-and-white
-                  />
-                  <span className="glightbox_video">
-                    <span className={`play-btn-inner`}></span>
-                  </span>
+      {news
+        .filter((item) => item.category === category)
+        .slice(0, 5)
+        .map((item) => (
+          <Link
+            to={`/${i18next.language}/news/details/${category}/${item._id}`}
+            key={item._id}
+          >
+            <div className="mb-4">
+              <div className="flex justify-between gap-4">
+                {video && (
+                  <div className="relative w-1/2">
+                    <LazyLoadImage
+                      src={imgPrefix + item.photo}
+                      alt={`Egamnazar`}
+                      className={`img-lazy object-cover rounded-md`}
+                      effect="blur" // opacity | black-and-white
+                    />
+                    <span className="glightbox_video">
+                      <span className={`play-btn-inner`}></span>
+                    </span>
+                  </div>
+                )}
+                <div className={`${video ? "w-1/2" : "w-full"}`}>
+                  <div className="flex items-center gap-2 ">
+                    <CalendarIcon />
+                    <span>{item.date}</span>
+                  </div>
+                  <p className="font-bold text-sm pb-4">
+                    {t("RecommendContent.title", {
+                      recommend_content_title: `${
+                        item?.[`title_${i18next.language}`]
+                      }`,
+                    })}
+                  </p>
                 </div>
-              )}
-              <div className={`${video ? "w-1/2" : "w-full"}`}>
-                <div className="flex items-center gap-2 ">
-                  <CalendarIcon />
-                  <span>{item.date}</span>
-                </div>
-                <p className="font-bold text-sm pb-4">
-                  {t("RecommendContent.title", {
-                    recommend_content_title: `${
-                      item?.[`title_${i18next.language}`]
-                    }`,
-                  })}
-                </p>
               </div>
-            </div>
 
-            {!video && <hr className="border-1 border-gray-500" />}
-          </div>
-        </Link>
-      ))}
+              {!video && <hr className="border-1 border-gray-500" />}
+            </div>
+          </Link>
+        ))}
 
       {/* See more button */}
       {!inner && (

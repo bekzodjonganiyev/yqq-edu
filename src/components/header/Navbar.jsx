@@ -104,7 +104,8 @@ const Navbar = () => {
           <div className="max-xl:flex gap-4 hidden pl-14 mt-8">
             {" "}
             {language.map((item) => (
-              <button
+              <button 
+                key={item.code}
                 className="bg-[#F2F2F2] text-black rounded p-2"
                 onClick={() => {
                   changeLanguage(item.code);

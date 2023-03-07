@@ -37,7 +37,7 @@ const Banner = () => {
               onClick={() => {
                 const deleteConfirm = confirm("O'chirishni xoxlaysizmi? ⚡");
                 deleteConfirm && smallActions.deleteBanner(item._id);
-                window.location.reload(false);
+                // window.location.reload(false);
               }}
             >
               Faylni o'chirish

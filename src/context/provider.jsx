@@ -5,8 +5,8 @@ import { UsersContext, ScrollContext } from "./context";
 export let newsActions = null;
 export let smallActions = null;
 export let userActions = null;
-export const baseUrl = "http://back.yqqedu.uz/api";
-export const imgPrefix = "http://back.yqqedu.uz/";
+export const baseUrl = "http://localhost:4000/api";
+export const imgPrefix = "http://localhost:4000/";
 
 export const UsersProvider = ({ children }) => {
   // Scroll value handled here
@@ -18,6 +18,7 @@ export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [media, setMedia] = useState([]);
   const [banner, setBanner] = useState([]);
+  const [photos, setPhotos] = useState([]);
 
   // Action states for UI
   const [isLoading, setIsLoading] = useState(false);
@@ -104,6 +105,7 @@ export const UsersProvider = ({ children }) => {
       }, 3000);
     },
 
+    // About Banner
     getBanner: async (url) => {
       setIsLoading(true);
       const data = (
@@ -148,6 +150,8 @@ export const UsersProvider = ({ children }) => {
       }, 3000); 
     },
 
+    editBanner: () => {},
+
     deleteBanner: async (id) => {
       setIsLoading(true)
       const data = (
@@ -157,7 +161,7 @@ export const UsersProvider = ({ children }) => {
         })
       ).json();
       data.then((res) => {
-        if (res.success) {
+        if (res.status === 200) {
           const filteredNews = banner.filter((item) => item._id !== id);
           setBanner(filteredNews);
           setIsLoading(false);
@@ -171,6 +175,78 @@ export const UsersProvider = ({ children }) => {
         setAlert(false);
       }, 3000);
     },
+    // About Banner
+
+    // About Photo News
+    getPhotos: async (url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, { headers: config })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          setPhotos(res.data)
+          setIsLoading(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+          setPhotos([])
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    
+    },
+
+    addPhotos: async (body, url) => {
+      setIsLoading(true);
+      const data = (
+        await fetch(`${baseUrl}/${url}`, {
+          method: "POST",
+          body,
+          headers: { token: localStorage.getItem("token") },
+        })
+      ).json();
+      data.then((res) => {
+        if (res.status === 200) {
+          setError(false);
+          setAlert(true);
+          setIsLoading(false);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000); 
+    },
+
+    deletePhotos: async (id) => {
+      setIsLoading(true)
+      const data = (
+        await fetch(`${baseUrl}/photo/${id}`, {
+          method: "DELETE",
+          headers: config,
+        })
+      ).json();
+      data.then((res) => {
+        if (res.success) {
+          const filteredNews = photos.filter((item) => item._id !== id);
+          setPhotos(filteredNews);
+          setIsLoading(false);
+          setAlert(true);
+        } else {
+          setError(true);
+          setIsLoading(false);
+        }
+      });
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+    // About Photo News
   };
 
   const aka = null;
@@ -187,11 +263,11 @@ export const UsersProvider = ({ children }) => {
           setIsLoading(false);
         } else {
           setError(true);
+          setIsLoading(false);
           setNews([]);
         }
       });
       setTimeout(() => {
-        setError(false);
         setAlert(false);
       }, 3000);
     },
@@ -206,7 +282,8 @@ export const UsersProvider = ({ children }) => {
           setIsLoading(false);
         } else {
           setError(true);
-          setNews({});
+          setNewById({});
+          setIsLoading(false);
         }
       });
     },
@@ -237,7 +314,7 @@ export const UsersProvider = ({ children }) => {
     editNews: async (id, body) => {
       setIsLoading(true);
       const data = (
-        await fetch(`${baseUrl}/news/${id}`, { method: "PUT", body })
+        await fetch(`${baseUrl}/news/${id}`, { method: "PUT", body, headers:{token: localStorage.getItem("token")} })
       ).json();
       data.then((res) => {
         if (res.success) {
@@ -381,7 +458,8 @@ export const UsersProvider = ({ children }) => {
         modalClose,
         users,
         media,
-        banner
+        banner,
+        photos
       }}
     >
       {children}

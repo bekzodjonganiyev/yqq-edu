@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
+
 import {
   LazyLoadImage,
   LazyLoadComponent,
@@ -16,13 +17,60 @@ import {
   RecommendContent,
 } from "../../components";
 
-import { imgPrefix } from "../../context/provider";
+import { imgPrefix, smallActions } from "../../context/provider";
 import { newsActions, UsersContext } from "../../context";
+
+const ImageSlider = ({ images }) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((currentImage) => (currentImage + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // useEffect(() => {
+  //   const imageElement = imageRef.current;
+  //   const animate = (timestamp) => {
+  //     imageElement.style.opacity = "0";
+  //     imageElement.style.scale = "0.8";
+  //     imageElement.style.transition = " 1s";
+
+  //     for (let i = 0; i < 100; i++) {
+  //       setTimeout(() => {
+  //         imageElement.style.backgroundImage = `url(${images[currentImage]})`;
+  //         imageElement.style.opacity = (i + 1) / 10;
+  //         imageElement.style.scale = (i + 1) / i - 0.01;
+  //         imageElement.style.transition = "opacity 4s";
+  //       }, (i + 1) * 50);
+  //     }
+  //   };
+  //   requestAnimationFrame(animate);
+  // }, [currentImage]);
+
+  return (
+    <div
+      ref={imageRef}
+      style={{
+        height: "100vh",
+        width: "100vw",
+        backgroundImage: `url(${images[currentImage]})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    />
+  );
+};
 
 const Home = () => {
   const { t } = useTranslation();
-  const { news } = useContext(UsersContext);
+  const { news, banner } = useContext(UsersContext);
   const [alert, setAlert] = useState(localStorage.getItem("alert"));
+  const [currentImage, setCurrentImage] = useState(0);
+  const imageRef = useRef(null);
   const mock = {
     uz: {
       title: "Men haqimda",
@@ -68,28 +116,58 @@ const Home = () => {
     },
   };
 
+  const images = banner.map((item) => imgPrefix + item.banner_img);
   useEffect(() => {
     newsActions.getNews("news/all");
-    localStorage.setItem("alert", true)
+    smallActions.getBanner("banner/get/all");
+    localStorage.setItem("alert", true);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((currentImage) => (currentImage + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       {!alert && (
         <div className="absolute z-50 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
           <div className="p-8 bg-[#222] rounded-xl w-[30%] h-[30%] relative flex gap-4 items-center  ">
-            <button className="absolute right-4 top-4 text-white" onClick={() => setAlert(true)}>X</button>
+            <button
+              className="absolute right-4 top-4 text-white"
+              onClick={() => setAlert(true)}
+            >
+              X
+            </button>
             <h1 className="text-white text-xl">
-              <a href="" target={"_blank"}  className="underline hover:text-blue-400">
+              <a
+                href=""
+                target={"_blank"}
+                className="underline hover:text-blue-400"
+              >
                 Telegram kanalimizga
               </a>{" "}
               obuna bo'ling{" "}
             </h1>
-              <img src={tgIcon} alt="tg icon" width={40} height="auto" />
+            <img src={tgIcon} alt="tg icon" width={40} height="auto" />
           </div>
         </div>
       )}
       <LazyLoadComponent>
-        <Hero />
+        { banner?.length === 0 && <Hero />}
+        {/* <ImageSlider images={images}/> */}
+        <div
+          ref={imageRef}
+          style={{
+            height: "100vh",
+            width: "100vw",
+            backgroundImage: `url(${images[currentImage]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
       </LazyLoadComponent>
 
       {/* Latest News */}
