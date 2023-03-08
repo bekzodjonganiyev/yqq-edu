@@ -22,27 +22,15 @@ const Banner = () => {
             className="w-80 h-52"
           />
           <p className="bg-gray-100 p-2">{item.title}</p>
-          <div className="flex justify-between w-full">
-            <button
-              className="py-2 px-4 bg-green-500 hover:bg-green-400 text-white text-sm"
-              onClick={() => {
-                copyToClipboard(imgPrefix + item.banner_img);
-                alert("COPIED✔: " + imgPrefix + item.banner_img);
-              }}
-            >
-              Havolani ko'chirish
-            </button>{" "}
-            <button
-              className="py-2 px-4 bg-red-500  hover:bg-red-400 text-white text-sm"
-              onClick={() => {
-                const deleteConfirm = confirm("O'chirishni xoxlaysizmi? ⚡");
-                deleteConfirm && smallActions.deleteBanner(item._id);
-                // window.location.reload(false);
-              }}
-            >
-              Faylni o'chirish
-            </button>
-          </div>
+          <button
+            className="py-2 px-4 bg-red-500  hover:bg-red-400 text-white text-sm w-full"
+            onClick={() => {
+              const deleteConfirm = confirm("O'chirishni xoxlaysizmi? ⚡");
+              deleteConfirm && smallActions.deleteBanner(item._id);
+            }}
+          >
+            Faylni o'chirish
+          </button>
           <br />
         </div>
       ))}
@@ -99,8 +87,10 @@ const Banner = () => {
     const formData = new FormData();
     formData.append("title", e.target.title.value);
     formData.append("banner_img", e.target.banner_img.files[0]);
-    if (banner.length > 10) null
-    else {smallActions.addBanner(formData, "banner/add")};
+    if (banner.length > 10) null;
+    else {
+      smallActions.addBanner(formData, "banner/add");
+    }
   }
 
   useEffect(() => {
