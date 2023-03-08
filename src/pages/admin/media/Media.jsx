@@ -108,8 +108,22 @@ const Media = () => {
 
 function FileDisplay({ file }) {
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(() => {
+      console.log(text);
+      alert("COPIED✔: " + text);
+    })
+    .catch(() => {
+      alert("SOMETING WRONG");
+    })
   };
+
+  function updateClipboard(newClip) {
+    navigator.clipboard.writeText(newClip).then(() => {
+      /* clipboard successfully set */
+    }, () => {
+      /* clipboard write failed */
+    });
+  }
 
   return (
     <div className="w-80 h-32">
@@ -120,7 +134,6 @@ function FileDisplay({ file }) {
           className="py-2 px-4 bg-green-500 hover:bg-green-400 text-white text-sm"
           onClick={() => {
             copyToClipboard(imgPrefix + file.link);
-            alert("COPIED✔: " + imgPrefix + file.link);
           }}
         >
           Havolani ko'chirish
