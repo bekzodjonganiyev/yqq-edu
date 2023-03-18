@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,7 @@ import { UsersContext } from "../../context";
 const Navbar = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const navigate = useNavigate()
   const { scrollValue } = useContext(UsersContext);
   const [isOpen, setOpen] = useState({ hamburger: false, lang: false });
   const language = [
@@ -38,9 +39,12 @@ const Navbar = () => {
   };
 
   const changeLanguage = (code) => {
+    let pathnameLang = "uz"
+    if (pathname.split("/")[1] === "uz") pathnameLang = "uz"
+    if (pathname.split("/")[1] === "ru") pathnameLang = "ru"
+    if (pathname.split("/")[1] === "en") pathnameLang = "en"
+    navigate(pathname.replace(pathnameLang, code));
     i18next.changeLanguage(code);
-    window.location.reload();
-    window.location.href = `/`;
   };
   return (
     <header
