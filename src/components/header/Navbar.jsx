@@ -124,7 +124,7 @@ const Navbar = () => {
         <div className="w-2/6 flex items-center justify-end gap-3">
           <div className="flex items-center gap-2 max-[779px]:hidden">
             <PhoneIcon />
-            <span> +998 94 332 00 16</span>
+            <span> +998934497434 </span>
           </div>
           <div
             className="items-center gap-3 text-black bg-[#F2F2F2] ml-10 p-2.5 rounded cursor-pointer xl:flex hidden relative"

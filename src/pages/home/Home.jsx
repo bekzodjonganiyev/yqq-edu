@@ -20,75 +20,49 @@ import {
 import { imgPrefix } from "../../context/provider";
 import { newsActions, UsersContext } from "../../context";
 
-
 const Home = () => {
   const { t } = useTranslation();
   const { news } = useContext(UsersContext);
-  const [alert, setAlert] = useState(localStorage.getItem("alert"));
+  const [alert, setAlert] = useState(false);
   const mock = {
     uz: {
-      title: "Men haqimda",
+      title: "Tahririyat haqida",
       about:
-        "Men Hasanboy Rasulov 1992-yil tug’ilganman. Ma’lumotim oliy. Ushbu saytni maktab o’qituvchilariga, o’quvchilarga va ingliz tili o’rganuvchilarga maslahat, tavsiyalar berib va ma’lumotlar almashib borish uchun tashkil etdim. Sizda har qanday qiziqarli ma’lumotlar, takliflar bo’lsa @hasanboy_uz telegram adressiga yuborishingiz mumkin. Men bilan bog’lanishning men uchun eng qulay usuli bu telegram orqali bog’lanish. Telefon qilinganda yoki SMS yozilganda javob bermasligim ehtimoli yuqori.Sizning murojaatingiz bee’tibor qoldirilmaydi. Savollaringizga qo’ldan kelganicha va bilimim yetganicha javob berishga harakat qilaman.",
-      hobbi: {
-        title: "Mening sevimli mashg'ulotimlarim:",
-        content: [
-          "Kitob o’qish",
-          "Kitob o’qish",
-          "Kitob o’qish",
-          "Kitob o’qish",
-        ],
-      },
+        "Yoshlarni qo‘llab-quvvatlash loyihasi 2019-yil o'z faoliyatini boshlagan bo'lib ayni paytda 150 000 nafarndan ziyod kuzatuvchilarga ega. Ushbu loyiha asosan ta'limga oid yangiliklar, muammolar, takliflar va fikr-mulohazalarni jamoatchilikka yetkazish, huquqiy maslahatlar berish faoliyati bilan shug'ullanib keladi. Ushbu loyiha nodavlat tashkilot bo'lib yoshlarni moliyaviy jihatdan qo'llab-quvvatlash xususiyatiga ega emas.",
     },
     ru: {
-      title: "Men haqimda",
+      title: "Tahririyat haqida",
       about:
-        "Men Hasanboy Rasulov 1992-yil tug’ilganman. Ma’lumotim oliy. Ushbu saytni maktab o’qituvchilariga, o’quvchilarga va ingliz tili o’rganuvchilarga maslahat, tavsiyalar berib va ma’lumotlar almashib borish uchun tashkil etdim. Sizda har qanday qiziqarli ma’lumotlar, takliflar bo’lsa @hasanboy_uz telegram adressiga yuborishingiz mumkin. Men bilan bog’lanishning men uchun eng qulay usuli bu telegram orqali bog’lanish. Telefon qilinganda yoki SMS yozilganda javob bermasligim ehtimoli yuqori.Sizning murojaatingiz bee’tibor qoldirilmaydi. Savollaringizga qo’ldan kelganicha va bilimim yetganicha javob berishga harakat qilaman.",
-      hobbi: {
-        title: "Mening sevimli mashg'ulotim:",
-        content: [
-          "Kitob o’qish",
-          "Kitob o’qish",
-          "Kitob o’qish",
-          "Kitob o’qish",
-        ],
-      },
+        "Yoshlarni qo‘llab-quvvatlash loyihasi 2019-yil o'z faoliyatini boshlagan bo'lib ayni paytda 150 000 nafarndan ziyod kuzatuvchilarga ega. Ushbu loyiha asosan ta'limga oid yangiliklar, muammolar, takliflar va fikr-mulohazalarni jamoatchilikka yetkazish, huquqiy maslahatlar berish faoliyati bilan shug'ullanib keladi. Ushbu loyiha nodavlat tashkilot bo'lib yoshlarni moliyaviy jihatdan qo'llab-quvvatlash xususiyatiga ega emas.",
     },
     en: {
-      title: "Men haqimda",
+      title: "Tahririyat haqida",
       about:
-        "Men Hasanboy Rasulov 1992-yil tug’ilganman. Ma’lumotim oliy. Ushbu saytni maktab o’qituvchilariga, o’quvchilarga va ingliz tili o’rganuvchilarga maslahat, tavsiyalar berib va ma’lumotlar almashib borish uchun tashkil etdim. Sizda har qanday qiziqarli ma’lumotlar, takliflar bo’lsa @hasanboy_uz telegram adressiga yuborishingiz mumkin. Men bilan bog’lanishning men uchun eng qulay usuli bu telegram orqali bog’lanish. Telefon qilinganda yoki SMS yozilganda javob bermasligim ehtimoli yuqori.Sizning murojaatingiz bee’tibor qoldirilmaydi. Savollaringizga qo’ldan kelganicha va bilimim yetganicha javob berishga harakat qilaman.",
-      hobbi: {
-        title: "Mening sevimli mashg'ulotim:",
-        content: [
-          "Kitob o’qish",
-          "Kitob o’qish",
-          "Kitob o’qish",
-          "Kitob o’qish",
-        ],
-      },
+        "Yoshlarni qo‘llab-quvvatlash loyihasi 2019-yil o'z faoliyatini boshlagan bo'lib ayni paytda 150 000 nafarndan ziyod kuzatuvchilarga ega. Ushbu loyiha asosan ta'limga oid yangiliklar, muammolar, takliflar va fikr-mulohazalarni jamoatchilikka yetkazish, huquqiy maslahatlar berish faoliyati bilan shug'ullanib keladi. Ushbu loyiha nodavlat tashkilot bo'lib yoshlarni moliyaviy jihatdan qo'llab-quvvatlash xususiyatiga ega emas.",
     },
   };
 
   useEffect(() => {
     newsActions.getNews("news/all");
-    localStorage.setItem("alert", true);
+    setTimeout(() => {
+      setAlert(true);
+    }, 2000);
   }, []);
 
   return (
     <div>
-      {!alert && (
+      {alert && (
         <div className="absolute z-50 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
           <div className="p-8 bg-[#222] rounded-xl sm:w-[30%] h-[30%] relative flex gap-4 items-center  ">
             <button
               className="absolute right-4 top-4 text-white"
-              onClick={() => setAlert(true)}
+              onClick={() => setAlert(false)}
             >
               X
             </button>
             <h1 className="text-white text-xl">
               <a
-                href=""
+                href="http://t.me/YQQUZB_KANAL"
                 target={"_blank"}
                 className="underline hover:text-blue-400"
               >
@@ -105,7 +79,9 @@ const Home = () => {
       </LazyLoadComponent>
 
       {/* Latest News */}
-      <h1 className="container mx-auto w-[90%] mt-14 -mb-6 font-semibold text-3xl">{t("Header.lastNews")}</h1>
+      <h1 className="container mx-auto w-[90%] mt-14 -mb-6 font-semibold text-3xl">
+        {t("Header.lastNews")}
+      </h1>
       <div className="container mx-auto w-[90%] flex justify-between gap-5 my-10 lg:flex-row flex-col">
         <div className="lg:w-9/12 w-full flex flex-col gap-5 ">
           {news
@@ -141,9 +117,9 @@ const Home = () => {
 
       {/* Actual News */}
       <div className="container mx-auto w-[90%]  my-10">
-      <h1 className=" mt-14 mb-4 font-semibold text-3xl">
-      {t("Header.actualNews")}
-      </h1>
+        <h1 className=" mt-14 mb-4 font-semibold text-3xl">
+          {t("Header.actualNews")}
+        </h1>
         <div className=" flex flex-wrap justify-between">
           {news
             .filter((item) => item.category === "b")
@@ -169,9 +145,9 @@ const Home = () => {
 
       {/* Image Gallary */}
       <div className="container mx-auto w-[90%] my-10">
-      <h1 className=" mt-14 mb-4 font-semibold text-3xl">
-      {t("Header.photoNews")}
-      </h1>
+        <h1 className=" mt-14 mb-4 font-semibold text-3xl">
+          {t("Header.photoNews")}
+        </h1>
         <ImageGalary />
       </div>
       {/* Image Gallary */}
@@ -184,7 +160,7 @@ const Home = () => {
               src={egamnazar}
               alt={`Egamnazar`}
               width="100%"
-              height="80%"
+              height="100%"
               className={`img-lazy`}
               effect="opacity" // opacity | black-and-white
             />
@@ -192,21 +168,15 @@ const Home = () => {
           <div className="xl:w-1/2 w-full py-8 box-border">
             <h1 className="text-6xl font-bold mb-8">{mock.uz.title}</h1>
             <p className="mb-8">{mock.uz.about}</p>
-            <ul>
-              <p className="text-4xl font-bold mb-8">{mock.uz.hobbi.title}</p>
-              {mock.uz.hobbi.content.map((i, id) => (
-                <li key={id} className="list-inside list-disc mb-4">
-                  {i}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
       {/* About Me */}
 
       {/* Video News */}
-      <h1 className="container mx-auto w-[90%] mt-14 -mb-6 font-semibold text-3xl">{t("Header.videoNews")}</h1>
+      <h1 className="container mx-auto w-[90%] mt-14 -mb-6 font-semibold text-3xl">
+        {t("Header.videoNews")}
+      </h1>
       <div className="container mx-auto w-[90%] my-10 flex justify-between gap-10  transition-all">
         <div className="w-2/3 h-[580px] relative md:block hidden ">
           <LazyLoadImage

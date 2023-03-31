@@ -3,12 +3,15 @@ import { Form, SkeletonPost } from "../..";
 import { newsActions, UsersContext } from "../../../context";
 
 const EditForm = ({ id, closeModal }) => {
-  const { newById, isLoading, error, alert, modalClose } = useContext(UsersContext);
+  const { newById, isLoading, error, alert, modalClose } =
+    useContext(UsersContext);
   useEffect(() => {
     newsActions.getNewById(id);
-}, []);
+  }, []);
 
-if (modalClose) {closeModal()}
+  if (modalClose) {
+    closeModal();
+  }
 
   let content = isLoading ? (
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)

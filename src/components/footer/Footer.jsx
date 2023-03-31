@@ -6,7 +6,6 @@ import logo from "../../assets/images/logo.png";
 import {
   FacebookIcon,
   InstagramIcon,
-  MainLogo,
   PhoneIcon,
   TelegramIcon,
   YouTubeIcon,
@@ -29,7 +28,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2">
               <PhoneIcon />
-              <span className="text-white"> +998 94 332 00 16</span>
+              <span className="text-white"> +998934497434</span>
             </div>
           </div>
           <p
