@@ -50,36 +50,6 @@ const Photos = () => {
         </div>
       )}
       <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
-        <div className="flex flex-col">
-          <label htmlFor="title_uz">Foto yangilik uchun nom UZ</label>
-          <input
-            required
-            className=" rounded-lg p-2 border border-slate-600"
-            type="text"
-            id="title_uz"
-            name="title_uz"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="title_ru">Foto yangilik uchun nom RU</label>
-          <input
-            required
-            className=" rounded-lg p-2 border border-slate-600"
-            type="text"
-            id="title_ru"
-            name="title_ru"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="title_en">Foto yangilik uchun nom EN</label>
-          <input
-            required
-            className=" rounded-lg p-2 border border-slate-600"
-            type="text"
-            id="title_en"
-            name="title_en"
-          />
-        </div>
         <div className="flex items-center gap-10">
           <div className="flex flex-col w-1/2">
             <label htmlFor="photo">Rasm tanlang</label>
@@ -142,9 +112,6 @@ const Photos = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("title_uz", e.target.title_uz.value);
-    formData.append("title_ru", e.target.title_ru.value);
-    formData.append("title_en", e.target.title_en.value);
     formData.append("width", e.target.width.value);
     formData.append("height", e.target.height.value);
     formData.append("photo", e.target.photo.files[0]);

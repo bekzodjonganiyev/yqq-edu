@@ -5,8 +5,8 @@ import { UsersContext, ScrollContext } from "./context";
 export let newsActions = null;
 export let smallActions = null;
 export let userActions = null;
-export const baseUrl = "http://back.yqqedu.uz/api";
-export const imgPrefix = "http://back.yqqedu.uz/";
+export const baseUrl = "https://new-tkti-back.herokuapp.com";
+export const imgPrefix = "https://new-tkti-back.herokuapp.com/"
 
 export const UsersProvider = ({ children }) => {
   // Scroll value handled here
