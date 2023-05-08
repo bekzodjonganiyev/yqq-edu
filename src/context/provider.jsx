@@ -15,6 +15,8 @@ export const UsersProvider = ({ children }) => {
   // Fetching results here
   const [news, setNews] = useState([]);
   const [newById, setNewById] = useState({});
+  const [vacancys, setVacancys] = useState([]);
+  const [vacancyById, setVacancyById] = useState({});
   const [users, setUsers] = useState([]);
   const [media, setMedia] = useState([]);
   const [banner, setBanner] = useState([]);
@@ -42,19 +44,19 @@ export const UsersProvider = ({ children }) => {
       ).json();
       data.then((res) => {
         if (res.success) {
-          setMedia(res.data)
+          setMedia(res.data);
           setIsLoading(false);
         } else {
           setError(true);
           setIsLoading(false);
-          setMedia([])
+          setMedia([]);
         }
       });
       setTimeout(() => {
         setAlert(false);
       }, 3000);
     },
-    
+
     addMedia: async (body, url) => {
       setIsLoading(true);
       const data = (
@@ -82,7 +84,7 @@ export const UsersProvider = ({ children }) => {
     editMedia: () => {},
 
     deleteMedia: async (id) => {
-      setIsLoading(true)
+      setIsLoading(true);
       const data = (
         await fetch(`${baseUrl}/media/${id}`, {
           method: "DELETE",
@@ -113,12 +115,12 @@ export const UsersProvider = ({ children }) => {
       ).json();
       data.then((res) => {
         if (res.success) {
-          setBanner(res.data)
+          setBanner(res.data);
           setIsLoading(false);
         } else {
           setError(true);
           setIsLoading(false);
-          setBanner([])
+          setBanner([]);
         }
       });
       setTimeout(() => {
@@ -147,13 +149,13 @@ export const UsersProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert(false);
-      }, 3000); 
+      }, 3000);
     },
 
     editBanner: () => {},
 
     deleteBanner: async (id) => {
-      setIsLoading(true)
+      setIsLoading(true);
       const data = (
         await fetch(`${baseUrl}/banner/${id}`, {
           method: "DELETE",
@@ -185,21 +187,20 @@ export const UsersProvider = ({ children }) => {
       ).json();
       data.then((res) => {
         if (res.success) {
-          setPhotos(res.data)
+          setPhotos(res.data);
           setIsLoading(false);
         } else {
           setError(true);
           setIsLoading(false);
-          setPhotos([])
+          setApplication([]);
         }
       });
       setTimeout(() => {
         setAlert(false);
       }, 3000);
-    
     },
 
-    addPhotos: async (body, url) => {
+    addApplication: async (body, url) => {
       setIsLoading(true);
       const data = (
         await fetch(`${baseUrl}/${url}`, {
@@ -220,11 +221,34 @@ export const UsersProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert(false);
-      }, 3000); 
+      }, 3000);
     },
 
-    deletePhotos: async (id) => {
-      setIsLoading(true)
+    editApplication: async (id, body) => {
+      console.log(body);
+      setIsLoading(true);
+      const res = (
+        await fetch(`${baseUrl}/application/${id}`, {
+          method: "PUT",
+          body,
+          headers: { token: localStorage.getItem("token") },
+        })
+      ).json();
+      // const res = await fetch(`${baseUrl}/application/${id}`, {method: "PUT", body, headers: {token: localStorage.getItem("token")}})
+      res.then((res) => {
+        if (res.success) {
+          setTimeout(() => {
+            setIsLoading(false);
+            setModalClose(true);
+          }, 2000);
+        } else {
+          setError(true);
+        }
+      });
+    },
+
+    deleteApplication: async (id) => {
+      setIsLoading(true);
       const data = (
         await fetch(`${baseUrl}/photo/${id}`, {
           method: "DELETE",
@@ -233,8 +257,8 @@ export const UsersProvider = ({ children }) => {
       ).json();
       data.then((res) => {
         if (res.success) {
-          const filteredNews = photos.filter((item) => item._id !== id);
-          setPhotos(filteredNews);
+          const filteredNews = application.filter((item) => item._id !== id);
+          setApplication(filteredNews);
           setIsLoading(false);
           setAlert(true);
         } else {
@@ -249,8 +273,6 @@ export const UsersProvider = ({ children }) => {
     // About Photo News
   };
 
-  const aka = null;
-
   newsActions = {
     getNews: async (url) => {
       setIsLoading(true);
@@ -259,7 +281,11 @@ export const UsersProvider = ({ children }) => {
       ).json();
       data.then((res) => {
         if (res.success) {
-          setNews(res.data);
+          if (url === "news/all") {
+            setNews(res.data);
+          } else {
+            setVacancys(res.data);
+          }
           setIsLoading(false);
         } else {
           setError(true);
@@ -271,22 +297,29 @@ export const UsersProvider = ({ children }) => {
         setAlert(false);
       }, 3000);
     },
-    getNewById: async (id) => {
+
+    getNewById: async (url, id) => {
       setIsLoading(true);
       const data = (
-        await fetch(`${baseUrl}/news/${id}`, { headers: config })
+        await fetch(`${baseUrl}/${url}/${id}`, { headers: config })
       ).json();
       data.then((res) => {
         if (res.success) {
-          setNewById(res.data);
+          if (url === "news") {
+            setNewById(res.data);
+          } else {
+            setVacancyById(res.data);
+          }
           setIsLoading(false);
         } else {
           setError(true);
           setNewById({});
+          setVacancyById({});
           setIsLoading(false);
         }
       });
     },
+
     addNews: async (body, url) => {
       setIsLoading(true);
       const data = (
@@ -314,7 +347,11 @@ export const UsersProvider = ({ children }) => {
     editNews: async (id, body) => {
       setIsLoading(true);
       const data = (
-        await fetch(`${baseUrl}/news/${id}`, { method: "PUT", body, headers:{token: localStorage.getItem("token")} })
+        await fetch(`${baseUrl}/${id}`, {
+          method: "PUT",
+          body,
+          headers: { token: localStorage.getItem("token") },
+        })
       ).json();
       data.then((res) => {
         if (res.success) {
@@ -329,16 +366,21 @@ export const UsersProvider = ({ children }) => {
       }, 7000);
     },
 
-    deleteNew: async (id) => {
+    deleteNew: async (id, url) => {
       setIsLoading(true);
       const data = (
-        await fetch(`${baseUrl}/news/${id}`, {
+        await fetch(`${baseUrl}/${url}/${id}`, {
           method: "DELETE",
           headers: config,
         })
       ).json();
-      const filteredNews = news.filter((item) => item._id !== id);
-      setNews(filteredNews);
+      if (url === "news") {
+        const filteredNews = news.filter((item) => item._id !== id);
+        setNews(filteredNews);
+      } else {
+        const filteredVacancys = vacancys.filter((item) => item._id !== id);
+        setVacancys(filteredVacancys);
+      }
       setAlert(true);
       setTimeout(() => {
         setIsLoading(false);
@@ -452,6 +494,8 @@ export const UsersProvider = ({ children }) => {
         scrollValue,
         news,
         newById,
+        vacancys,
+        vacancyById,
         isLoading,
         error,
         alert,
@@ -459,7 +503,7 @@ export const UsersProvider = ({ children }) => {
         users,
         media,
         banner,
-        photos
+        photos,
       }}
     >
       {children}

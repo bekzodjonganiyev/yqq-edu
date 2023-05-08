@@ -91,7 +91,7 @@ const Media = () => {
     smallActions.addMedia(formData, "media/add");
   }
   useEffect(() => {
-    smallActions.getMedia("media/get/all");
+    smallActions.getMedia("media/all");
   }, [status]);
   return (
     <div>

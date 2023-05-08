@@ -12,6 +12,7 @@ const Form = ({ title, body, category, date, id }) => {
     ru: body ? body.ru : "",
     en: body ? body.en : "",
   });
+  const [url, setUrl] = useState("")
 
   async function postData(e) {
     e.preventDefault();
@@ -22,12 +23,11 @@ const Form = ({ title, body, category, date, id }) => {
     formData.append("body_uz", editor?.uz);
     formData.append("body_ru", editor?.ru);
     formData.append("body_en", editor?.en);
-    formData.append("category", e.target.category.value);
     formData.append("photo", e.target.photo.files[0]);
     formData.append("date", e.target.date.value);
     if (id) {
       newsActions.editNews(id, formData);
-    } else newsActions.addNews(formData, "news/add");
+    } else newsActions.addNews(formData, url);
   }
   return (
     <form className="flex flex-col gap-10" onSubmit={postData}>
@@ -108,14 +108,13 @@ const Form = ({ title, body, category, date, id }) => {
             id="category"
             className="border border-gray-500 rounded p-2"
             defaultValue={category ? category : ""}
+            onChange={(e) => setUrl(e.target.value)}
           >
             <option value="" hidden>
               ...
             </option>
-            <option value="a">So`ngi yangiliklar</option>
-            <option value="b">Dolzarb yangiliklar</option>
-            <option value="c">Foto yangiliklar</option>
-            <option value="d">Video yangiliklar</option>
+            <option value="news/add">Blog qo'shish</option>
+            <option value="elon/add">Vakansiya qo'shish</option>
           </select>
         </div>
 

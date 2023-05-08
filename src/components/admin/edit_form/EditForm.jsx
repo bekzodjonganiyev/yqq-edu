@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { Form, SkeletonPost } from "../..";
 import { newsActions, UsersContext } from "../../../context";
 
-const EditForm = ({ id, closeModal }) => {
+const EditForm = ({ id, closeModal, url }) => {
   const { newById, isLoading, error, alert, modalClose } =
     useContext(UsersContext);
   useEffect(() => {
-    newsActions.getNewById(id);
+    newsActions.getNewById(url ,id);
   }, []);
 
   if (modalClose) {
