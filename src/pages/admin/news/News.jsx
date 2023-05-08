@@ -11,10 +11,12 @@ import { DeleteIcon, EditIcon } from "../../../assets/icons";
 
 import { newsActions, UsersContext } from "../../../context";
 const News = () => {
+  const { news, vacancys, isLoading, error, alert, modalClose } =
+    useContext(UsersContext);
   const [status, setStatus] = useState("read");
   const [onEdit, setOnEdit] = useState("");
-  const { news, isLoading, error, alert, modalClose } =
-    useContext(UsersContext);
+  const [url, setUrl] = useState("news/all")
+  const [tableBody, setTableBody] = useState(news)
 
   function categoryChecker(category) {
     let categoryName = "";
@@ -29,8 +31,8 @@ const News = () => {
   }
 
   useEffect(() => {
-    newsActions.getNews("news/all");
-  }, [onEdit.open, status]);
+    newsActions.getNews(url);
+  }, [onEdit.open, status, url]);
 
   const analyseNameTableHead = [
     "T/r",
@@ -93,13 +95,29 @@ const News = () => {
           Muvaffaqiyatli yangilindi
         </div>
       )}
-      <Table
-        headData={analyseNameTableHead}
-        renderHead={renderHead}
-        bodyData={news}
-        renderBody={renderBody}
-        limit={10}
-      />
+      {!isLoading ? (
+        <>
+          <select
+            className="border border-gray-500 rounded p-2"
+            onChange={(e) => setUrl(e.target.value)}
+          >
+            <option value="" hidden>
+              ...
+            </option>
+            <option value="news/all">Bloglar</option>
+            <option value="elon/all">Vakansiyalar</option>
+          </select>
+          <Table
+            headData={analyseNameTableHead}
+            renderHead={renderHead}
+            bodyData={url === "news/all" ? news : vacancys}
+            renderBody={renderBody}
+            limit={10}
+          />
+        </>
+      ) : (
+        [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
+      )}
     </>
   );
   let formData = isLoading ? (
@@ -126,6 +144,7 @@ const News = () => {
         <EditForm
           id={onEdit.id}
           closeModal={() => setOnEdit({ open: false })}
+          url={url.split("/")[0]}
         />
       )}
       <FormHeader

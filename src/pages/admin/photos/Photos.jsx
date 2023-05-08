@@ -32,7 +32,7 @@ const Photos = () => {
             threshold={100}
             effect="black-and-white" // opacity | black-and-white
           />
-          <p className="bg-gray-100 p-2">{item.title_uz}</p>
+          <p className="bg-gray-100 p-2">{item.width} X {item.height}</p>
           <br />
         </div>
       ))}

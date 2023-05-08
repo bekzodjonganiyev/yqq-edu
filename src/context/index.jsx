@@ -5,4 +5,4 @@ export {
   newsActions,
   userActions,
 } from "./provider";
-export { UsersContext, ScrollContext } from "./context";
+export { UsersContext} from "./context";

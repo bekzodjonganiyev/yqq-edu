@@ -3,19 +3,12 @@ import { Suspense } from "react";
 import i18next from "i18next";
 
 import {
-  Layout,
-  MoreDetails,
   AdminLayout,
   LoginRegister,
   ProtectedRoute,
   SkeletonPost,
 } from "./components";
 import {
-  Home,
-  LatestNews,
-  ActualNews,
-  VideoNews,
-  PhotoNews,
   FourZeroFour,
   Dashboard,
   Users,
@@ -34,91 +27,6 @@ function App() {
       onScroll={(e) => smallActions.handleScroll(e.currentTarget.scrollTop)}
     >
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense
-              fallback={[...Array(10).keys()].map((i) => (
-                <SkeletonPost key={i} />
-              ))}
-            >
-              <Layout />
-            </Suspense>
-          }
-        >
-          <Route
-            index
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <Home />
-              </Suspense>
-            }
-          />
-          <Route
-            path={`:lang/latest-news`}
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <LatestNews />
-              </Suspense>
-            }
-          />
-          <Route
-            path={`:lang/actual-news`}
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <ActualNews />
-              </Suspense>
-            }
-          />
-          <Route
-            path={`:lang/video-news`}
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <VideoNews />
-              </Suspense>
-            }
-          />
-          <Route
-            path={`:lang/photo-news`}
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <PhotoNews />
-              </Suspense>
-            }
-          />
-          <Route
-            path={`:lang/news/details/:category/:id`}
-            element={
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <SkeletonPost key={i} />
-                ))}
-              >
-                <MoreDetails />
-              </Suspense>
-            }
-          />
-        </Route>
         <Route
           path="/egamnazar-dashboard"
           element={
