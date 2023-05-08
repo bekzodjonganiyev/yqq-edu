@@ -1,6 +1,5 @@
 import { lazy } from "react";
 
-const Layout = lazy(() => import("./layout/Layout"));
 const AdminLayout = lazy(() => import("./layout/AdminLayout"));
 const Sidebar = lazy(() => import("./admin/sidebar/Sidebar"));
 const LoginRegister = lazy(() => import("./admin/login_register/LoginRegister"));
@@ -15,7 +14,6 @@ const Table = lazy(() => import("./admin/table/Table"))
 const EditForm = lazy(() => import("./admin/edit_form/EditForm"))
 
 export {
-  Layout,
   Sidebar,
   AdminLayout,
   LoginRegister,
