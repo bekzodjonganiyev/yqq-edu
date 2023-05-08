@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UsersContext, ScrollContext } from "./context";
+import { UsersContext } from "./context";
 
 export let newsActions = null;
 export let smallActions = null;
@@ -508,21 +508,5 @@ export const UsersProvider = ({ children }) => {
     >
       {children}
     </UsersContext.Provider>
-  );
-};
-
-export const ScrollProvider = ({ children }) => {
-  const [scrollValue, setScrollValue] = useState(0);
-
-  smallActions = {
-    handleScroll: (newValue) => {
-      setScrollValue(newValue);
-    },
-  };
-
-  return (
-    <ScrollContext.Provider value={scrollValue}>
-      {children}
-    </ScrollContext.Provider>
   );
 };
