@@ -11,11 +11,13 @@ import {
 import {
   FourZeroFour,
   Dashboard,
-  Users,
+  Mottos,
   News,
   Banner,
   Media,
   Photos,
+  Faq,
+  Partners
 } from "./pages";
 
 import { smallActions } from "./context";
@@ -60,14 +62,14 @@ function App() {
             }
           />
           <Route
-            path="users"
+            path="mottos"
             element={
               <Suspense
                 fallback={[...Array(10).keys()].map((i) => (
                   <SkeletonPost key={i} />
                 ))}
               >
-                <Users />
+                <Mottos />
               </Suspense>
             }
           />
@@ -104,6 +106,30 @@ function App() {
                 ))}
               >
                 <Photos />
+              </Suspense>
+            }
+          />
+          <Route
+            path="faq"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Faq />
+              </Suspense>
+            }
+          />
+          <Route
+            path="partners"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Partners />
               </Suspense>
             }
           />

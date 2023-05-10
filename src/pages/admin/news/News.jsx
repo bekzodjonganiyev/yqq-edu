@@ -16,19 +16,6 @@ const News = () => {
   const [status, setStatus] = useState("read");
   const [onEdit, setOnEdit] = useState("");
   const [url, setUrl] = useState("news/all")
-  const [tableBody, setTableBody] = useState(news)
-
-  function categoryChecker(category) {
-    let categoryName = "";
-    return (categoryName =
-      category === "a"
-        ? "So'ngi yangiliklar"
-        : category === "b"
-        ? "Dolzarb yangiliklar"
-        : category === "c"
-        ? "Foto yangiliklar"
-        : "Video yangiliklar");
-  }
 
   useEffect(() => {
     newsActions.getNews(url);
@@ -37,7 +24,6 @@ const News = () => {
   const analyseNameTableHead = [
     "T/r",
     "Yangilik nomi",
-    "Kataegoriya",
     "Sanasi",
     "Amallar",
   ];
@@ -47,7 +33,6 @@ const News = () => {
       <tr key={index} className="cursor-pointer hover:bg-gray-100">
         <td>{index + 1}</td>
         <td>{item.title_uz}</td>
-        <td>{categoryChecker(item.category)}</td>
         <td>{item.date}</td>
         <td className="">
           <button
@@ -120,6 +105,7 @@ const News = () => {
       )}
     </>
   );
+  
   let formData = isLoading ? (
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
   ) : (

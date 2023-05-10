@@ -36,6 +36,11 @@ input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
 
+textarea{
+  min-height: 100px;
+  padding: 10px !important;
+}
+
 /* For Navbar */
 .bg-language-btn, .footer-text {
   background: rgba(255, 255, 255, 0.6);
@@ -45,10 +50,3 @@ input[type=number] {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-@layer base {
-    html {
-      font-family: Public Sans, system-ui, sans-serif;
-    }
-  }

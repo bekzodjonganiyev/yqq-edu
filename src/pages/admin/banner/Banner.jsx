@@ -6,6 +6,22 @@ import { imgPrefix } from "../../../context/provider";
 const Banner = () => {
   const { banner, alert, isLoading, error } = useContext(UsersContext);
   const [status, setStatus] = useState("read");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", e.target.title.value);
+    formData.append("banner_img", e.target.banner_img.files[0]);
+    if (banner.length > 10) null;
+    else {
+      smallActions.addBanner(formData, "banner/add");
+    }
+  }
+
+  useEffect(() => {
+    smallActions.getBanner("banner/get/all");
+  }, [status]);
+
   let fetchedContent = isLoading ? (
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
   ) : error ? (
@@ -81,21 +97,12 @@ const Banner = () => {
   //FORM HERE
 
   const content =
-    status === "read" ? fetchedContent : status === "create" ? form : null;
-  function handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", e.target.title.value);
-    formData.append("banner_img", e.target.banner_img.files[0]);
-    if (banner.length > 10) null;
-    else {
-      smallActions.addBanner(formData, "banner/add");
-    }
-  }
+    status === "read" 
+    ? fetchedContent 
+    : status === "create" 
+    ? form : null;
 
-  useEffect(() => {
-    smallActions.getBanner("banner/get/all");
-  }, [status]);
+
   return (
     <div>
       <FormHeader

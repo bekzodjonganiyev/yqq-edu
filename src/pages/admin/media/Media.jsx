@@ -18,7 +18,7 @@ const Media = () => {
       Malumotlar topilmadi
     </h1>
   ) : (
-    <div className="w-full flex flex-wrap gap-y-44 gap-x-4">
+    <div className="w-full flex flex-wrap gap-y-44 gap-x-10">
       {media.map((item) => (
         <FileDisplay file={item} key={item._id} />
       ))}
@@ -108,11 +108,9 @@ const Media = () => {
 };
 
 function FileDisplay({ file }) {
-  
-
   return (
-    <div className="w-80 h-32">
-      <img src={imgPrefix + file.link} alt={file.name} className="w-80 h-52" />
+    <div className="">
+      <img src={imgPrefix + file.link} alt={file.name} className="h-[400px] w-[300px]" />
       <p className="bg-gray-100 p-2">{file.name}</p>
       <div className="flex justify-between w-full">
         <button

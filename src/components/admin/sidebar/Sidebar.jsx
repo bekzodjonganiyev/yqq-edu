@@ -38,11 +38,11 @@ const Sidebar = () => {
             </li>
             <li className="rounded-sm">
               <Link
-                to={"users"}
+                to={"mottos"}
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Adminlar</span>
+                <span className="text-gray-100">Shiorlar</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -60,7 +60,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Media</span>
+                <span className="text-gray-100">Brendlar</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -70,6 +70,24 @@ const Sidebar = () => {
               >
                 <UsersIcon />
                 <span className="text-gray-100">Foto yangilik</span>
+              </Link>
+            </li>
+            <li className="rounded-sm">
+              <Link
+                to={"faq"}
+                className="flex items-center p-2 space-x-3 rounded-md"
+              >
+                <UsersIcon />
+                <span className="text-gray-100">FAQ</span>
+              </Link>
+            </li>
+            <li className="rounded-sm">
+              <Link
+                to={"partners"}
+                className="flex items-center p-2 space-x-3 rounded-md"
+              >
+                <UsersIcon />
+                <span className="text-gray-100">Hamkorlar</span>
               </Link>
             </li>
             <li className="rounded-sm">

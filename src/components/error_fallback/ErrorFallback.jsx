@@ -1,5 +1,3 @@
-import { Footer, Navbar } from "..";
-
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   return (
     <div className="w-screen h-screen flex flex-col">

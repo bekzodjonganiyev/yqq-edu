@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import { UsersContext } from "./context";
+import apiClient from "../utils/apiClient";
 
 export let newsActions = null;
 export let smallActions = null;
 export let userActions = null;
-export const baseUrl = "https://new-tkti-back.herokuapp.com";
-export const imgPrefix = "https://new-tkti-back.herokuapp.com/"
+export let faqActions = null;
+export const baseUrl = "https://tkti-back-lexde.ondigitalocean.app";
+export const imgPrefix = "https://tkti-back-lexde.ondigitalocean.app/"
 
 export const UsersProvider = ({ children }) => {
   // Scroll value handled here
@@ -21,6 +23,7 @@ export const UsersProvider = ({ children }) => {
   const [media, setMedia] = useState([]);
   const [banner, setBanner] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const [faq, setFaq] = useState([]);
 
   // Action states for UI
   const [isLoading, setIsLoading] = useState(false);
@@ -32,11 +35,27 @@ export const UsersProvider = ({ children }) => {
     "Content-type": "application/json",
     token: localStorage.getItem("token"),
   };
+  
+  faqActions = {
+    getFaq: async (url) => {
+      setIsLoading(true)
+      const res = await apiClient.getAll(url)
+      if (res.status === 200) {
+        setFaq(res.data)
+      } else if (res.status === 404 || res === "Failed to fetch") {
+        setError(true)
+        setFaq([])
+      }
+      setIsLoading(false)
+    }
+  }
 
   smallActions = {
     handleScroll: (newValue) => {
       setScrollValue(newValue);
     },
+
+    // About Brends
     getMedia: async (url) => {
       setIsLoading(true);
       const data = (
@@ -106,6 +125,7 @@ export const UsersProvider = ({ children }) => {
         setAlert(false);
       }, 3000);
     },
+    // About Brends
 
     // About Banner
     getBanner: async (url) => {
@@ -200,7 +220,7 @@ export const UsersProvider = ({ children }) => {
       }, 3000);
     },
 
-    addApplication: async (body, url) => {
+    addPhotos: async (body, url) => {
       setIsLoading(true);
       const data = (
         await fetch(`${baseUrl}/${url}`, {
@@ -224,30 +244,9 @@ export const UsersProvider = ({ children }) => {
       }, 3000);
     },
 
-    editApplication: async (id, body) => {
-      console.log(body);
-      setIsLoading(true);
-      const res = (
-        await fetch(`${baseUrl}/application/${id}`, {
-          method: "PUT",
-          body,
-          headers: { token: localStorage.getItem("token") },
-        })
-      ).json();
-      // const res = await fetch(`${baseUrl}/application/${id}`, {method: "PUT", body, headers: {token: localStorage.getItem("token")}})
-      res.then((res) => {
-        if (res.success) {
-          setTimeout(() => {
-            setIsLoading(false);
-            setModalClose(true);
-          }, 2000);
-        } else {
-          setError(true);
-        }
-      });
-    },
+    editPhotos: async () => {},
 
-    deleteApplication: async (id) => {
+    deletePhotos: async (id) => {
       setIsLoading(true);
       const data = (
         await fetch(`${baseUrl}/photo/${id}`, {
@@ -257,8 +256,8 @@ export const UsersProvider = ({ children }) => {
       ).json();
       data.then((res) => {
         if (res.success) {
-          const filteredNews = application.filter((item) => item._id !== id);
-          setApplication(filteredNews);
+          const filtered = photos.filter((item) => item._id !== id);
+          setPhotos(filtered);
           setIsLoading(false);
           setAlert(true);
         } else {
@@ -504,6 +503,7 @@ export const UsersProvider = ({ children }) => {
         media,
         banner,
         photos,
+        faq
       }}
     >
       {children}
