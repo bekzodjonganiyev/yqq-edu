@@ -6,9 +6,9 @@ import apiClient from "../utils/apiClient";
 export let newsActions = null;
 export let smallActions = null;
 export let userActions = null;
-export let faqActions = null;
+export let faqAndMottoActions = null;
 export const baseUrl = "https://tkti-back-lexde.ondigitalocean.app";
-export const imgPrefix = "https://tkti-back-lexde.ondigitalocean.app/"
+export const imgPrefix = "https://tkti-back-lexde.ondigitalocean.app/";
 
 export const UsersProvider = ({ children }) => {
   // Scroll value handled here
@@ -35,20 +35,57 @@ export const UsersProvider = ({ children }) => {
     "Content-type": "application/json",
     token: localStorage.getItem("token"),
   };
-  
-  faqActions = {
-    getFaq: async (url) => {
-      setIsLoading(true)
-      const res = await apiClient.getAll(url)
+
+  faqAndMottoActions = {
+    get: async (category) => {
+      setIsLoading(true);
+      const res = await apiClient.get("xalqaro_aloqa/all");
       if (res.status === 200) {
-        setFaq(res.data)
-      } else if (res.status === 404 || res === "Failed to fetch") {
-        setError(true)
-        setFaq([])
+        setFaq(res.data.filter((item) => item.category === category));
+      } else {
+        setError(true);
+        setFaq([]);
       }
-      setIsLoading(false)
-    }
-  }
+      setIsLoading(false);
+    },
+
+    add: async (body) => {
+      setIsLoading(true);
+      const res = await apiClient.add("xalqaro_aloqa/add", body);
+      if (res.status === 200) {
+        setAlert(true);
+        setIsLoading(false);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    delete: async (id) => {
+      setIsLoading(true);
+      const res = await apiClient.delete(`xalqaro_aloqa/${id}`);
+      if (res.status === 200) {
+        const filtered = faq.filter((item) => item._id !== id);
+        setIsLoading(false);
+        setFaq(filtered)
+        setAlert(true);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+  };
+  
+  
+  
 
   smallActions = {
     handleScroll: (newValue) => {
@@ -503,7 +540,7 @@ export const UsersProvider = ({ children }) => {
         media,
         banner,
         photos,
-        faq
+        faq,
       }}
     >
       {children}

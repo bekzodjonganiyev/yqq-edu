@@ -3,6 +3,6 @@ export {
   smallActions,
   newsActions,
   userActions,
-  faqActions
+  faqAndMottoActions
 } from "./provider";
 export { UsersContext} from "./context";

@@ -1,44 +1,49 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
-import { EditForm, FormHeader, SkeletonPost, Table } from "../../../components";
-import { DeleteIcon, EditIcon } from "../../../assets/icons";
+import { FormHeader, SkeletonPost, Table } from "../../../components";
+import { DeleteIcon } from "../../../assets/icons";
 
-import { userActions, UsersContext } from "../../../context";
-const News = () => {
-  const { users, isLoading, error, alert } = useContext(UsersContext);
+import { UsersContext, faqAndMottoActions } from "../../../context";
+
+const Faq = () => {
+  const { isLoading, error, faq, alert } = useContext(UsersContext);
   const [status, setStatus] = useState("read");
 
-  const analyseNameTableHead = [
-    "T/r",
-    "Ismi",
-    "telefon raqami",
-    "Paroli",
-    "Amallar",
-  ];
+  function handleSubmit(e) {
+    e.preventDefault();
+    const obj = {
+      title_uz: e.target.title_uz.value,
+      title_ru: e.target.title_ru.value,
+      title_en: e.target.title_en.value,
+      title_ar: e.target.title_ar.value,
+      body_uz: e.target.body_uz.value,
+      body_ru: e.target.body_ru.value,
+      body_en: e.target.body_en.value,
+      body_ar: e.target.body_ar.value,
+      category: "b"
+    };
+    faqAndMottoActions.add(JSON.stringify(obj));
+  }
+  useEffect(() => {
+    faqAndMottoActions.get("b");
+  }, [status]);
+
+  const analyseNameTableHead = ["T/r", "Savol", "Javob", "Amallar"];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => {
     return (
       <tr key={index} className="cursor-pointer hover:bg-gray-100">
         <td>{index + 1}</td>
-        <td>{item.name}</td>
-        <td>{item.phone}</td>
-        <td>{item.password}</td>
+        <td>{item.title_uz}</td>
+        <td>{item.body_uz}</td>
         <td className="">
-          <button
-            className="mr-4 hover:scale-125"
-            onClick={() => {
-              setOnEdit({ open: true, id: item._id });
-            }}
-          >
-            <EditIcon />
-          </button>
           <button
             className="hover:scale-125"
             onClick={() => {
               const deleteConfirm = confirm(
                 "Malumotni o'chirishga tayyormisiz? ⚠"
               );
-              deleteConfirm && userActions.deleteUser(item._id);
+              deleteConfirm && faqAndMottoActions.delete(item._id);
             }}
           >
             <span className="">
@@ -50,30 +55,11 @@ const News = () => {
     );
   };
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    const fmData = new FormData()
-    fmData.append("title_uz". e.target.title_uz.value)
-    fmData.append("title_ru". e.target.title_ru.value)
-    fmData.append("title_en". e.target.title_en.value)
-    fmData.append("title_ar". e.target.title_ar.value)
-    fmData.append("body_uz". e.target.body_uz.value)
-    fmData.append("body_ru". e.target.body_ru.value)
-    fmData.append("body_en". e.target.body_en.value)
-    fmData.append("body_ar". e.target.body_ar.value)
-  }
-
-  // useEffect(() => {
-  //   userActions.getUsers("user/users");
-  // }, []);
-
   let content = null;
   let fetchedContent = isLoading ? (
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
   ) : error ? (
-    <h1 className="text-3xl text-center p-10 bg-gray-100">
-      Malumotlar topilmadi
-    </h1>
+    <h1 className="text-3xl text-center p-10 bg-gray-100">Xatolik ❌</h1>
   ) : (
     <>
       {alert && (
@@ -85,7 +71,7 @@ const News = () => {
       <Table
         headData={analyseNameTableHead}
         renderHead={renderHead}
-        bodyData={[]}
+        bodyData={faq}
         renderBody={renderBody}
         limit={10}
       />
@@ -210,4 +196,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Faq;

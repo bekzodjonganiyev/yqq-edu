@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
-import i18next from "i18next";
 
 import {
   AdminLayout,
@@ -30,7 +29,7 @@ function App() {
     >
       <Routes>
         <Route
-          path="/egamnazar-dashboard"
+          path="/"
           element={
             <ProtectedRoute>
               <AdminLayout />
@@ -135,7 +134,7 @@ function App() {
           />
         </Route>
         <Route
-          path="egamnazar-login"
+          path="yft-login"
           element={
             <Suspense
               fallback={[...Array(10).keys()].map((i) => (
