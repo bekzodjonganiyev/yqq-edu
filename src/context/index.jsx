@@ -4,6 +4,7 @@ export {
   vacancyActions,
   userActions,
   faqAndMottoActions,
-  blogActions
+  blogActions,
+  partnersActions
 } from "./provider";
 export { UsersContext} from "./context";

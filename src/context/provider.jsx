@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 
 import { UsersContext } from "./context";
 import apiClient from "../utils/apiClient";
@@ -8,6 +8,7 @@ export let smallActions = null;
 export let userActions = null;
 export let faqAndMottoActions = null;
 export let blogActions = null;
+export let partnersActions = null;
 export const baseUrl = "https://tkti-back-lexde.ondigitalocean.app";
 export const imgPrefix = "https://tkti-back-lexde.ondigitalocean.app/";
 
@@ -25,6 +26,7 @@ export const UsersProvider = ({ children }) => {
   const [banner, setBanner] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [faq, setFaq] = useState([]);
+  const [partners, setPartners] = useState([]);
 
   // Action states for UI
   const [isLoading, setIsLoading] = useState(false);
@@ -85,6 +87,54 @@ export const UsersProvider = ({ children }) => {
     },
   };
 
+  partnersActions = {
+    get: async () => {
+      setIsLoading(true);
+      const res = await apiClient.get("student_bolim/all");
+      if (res.status === 200) {
+        setPartners(res.data);
+      } else {
+        setError(true);
+        setFaq([]);
+      }
+      setIsLoading(false);
+    },
+
+    add: async (body) => {
+      setIsLoading(true);
+      const res = await apiClient.add("student_bolim/add", body);
+      if (res.status === 200) {
+        setAlert(true);
+        setIsLoading(false);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    delete: async (id) => {
+      setIsLoading(true);
+      const res = await apiClient.delete(`student_bolim/${id}`);
+      if (res.status === 200) {
+        const filtered = partners.filter((item) => item._id !== id);
+        setIsLoading(false);
+        setPartners(filtered);
+        setAlert(true);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+  };
+
   blogActions = {
     get: async () => {
       setIsLoading(true);
@@ -99,14 +149,14 @@ export const UsersProvider = ({ children }) => {
     },
 
     getById: async (id) => {
-      setIsLoading(true)
+      setIsLoading(true);
       const res = await apiClient.get(`news/${id}`);
       if (res.status === 200) {
-        setIsLoading(false)
-        setNewById(res.data)
+        setIsLoading(false);
+        setNewById(res.data);
       } else {
-        setIsLoading(false)
-        setError(true)
+        setIsLoading(false);
+        setError(true);
       }
     },
 
@@ -176,14 +226,14 @@ export const UsersProvider = ({ children }) => {
     },
 
     getById: async (id) => {
-      setIsLoading(true)
+      setIsLoading(true);
       const res = await apiClient.get(`elon/${id}`);
       if (res.status === 200) {
-        setIsLoading(false)
-        setVacancyById(res.data)
+        setIsLoading(false);
+        setVacancyById(res.data);
       } else {
-        setIsLoading(false)
-        setError(true)
+        setIsLoading(false);
+        setError(true);
       }
     },
 
@@ -692,6 +742,7 @@ export const UsersProvider = ({ children }) => {
         banner,
         photos,
         faq,
+        partners,
       }}
     >
       {children}
