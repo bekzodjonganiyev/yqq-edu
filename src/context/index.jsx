@@ -1,8 +1,9 @@
 export {
   UsersProvider,
   smallActions,
-  newsActions,
+  vacancyActions,
   userActions,
-  faqAndMottoActions
+  faqAndMottoActions,
+  blogActions
 } from "./provider";
 export { UsersContext} from "./context";

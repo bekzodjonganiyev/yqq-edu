@@ -9,18 +9,18 @@ import {
 } from "../../../components";
 import { DeleteIcon, EditIcon } from "../../../assets/icons";
 
-import { blogActions, UsersContext } from "../../../context";
+import { vacancyActions, UsersContext } from "../../../context";
 const News = () => {
-  const { news, isLoading, error, alert, modalClose } =
+  const { vacancys, isLoading, error, alert, modalClose } =
     useContext(UsersContext);
   const [status, setStatus] = useState("read");
   const [onEdit, setOnEdit] = useState("");
 
   useEffect(() => {
-    blogActions.get();
+    vacancyActions.get();
   }, [onEdit.open, status]);
 
-  const analyseNameTableHead = ["T/r", "Blog nomi", "Sanasi", "Amallar"];
+  const analyseNameTableHead = ["T/r", "Vakansiya nomi", "Sanasi", "Amallar"];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => {
     return (
@@ -43,7 +43,7 @@ const News = () => {
               const deleteConfirm = confirm(
                 "Malumotni o'chirishga tayyormisiz? ⚠"
               );
-              deleteConfirm && blogActions.delete(item._id);
+              deleteConfirm && vacancyActions.delete(item._id);
             }}
           >
             <span className="">
@@ -79,7 +79,7 @@ const News = () => {
           <Table
             headData={analyseNameTableHead}
             renderHead={renderHead}
-            bodyData={news}
+            bodyData={vacancys}
             renderBody={renderBody}
             limit={10}
           />
@@ -114,11 +114,11 @@ const News = () => {
         <EditForm
           id={onEdit.id}
           closeModal={() => setOnEdit({ open: false })}
-          url="news"
+          url="elon"
         />
       )}
       <FormHeader
-        title="Yangiliklar"
+        title="Vakansiyalar"
         event2="Qo'shish"
         handleEvent2={() => setStatus("create")}
         event1="Barcha yangililar"

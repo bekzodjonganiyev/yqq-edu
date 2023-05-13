@@ -33,7 +33,16 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <NewsIcon />
-                <span className="text-gray-100">Yangiliklar</span>
+                <span className="text-gray-100">Bloglar</span>
+              </Link>
+            </li>
+            <li className="rounded-sm">
+              <Link
+                to={"vacancies"}
+                className="flex items-center p-2 space-x-3 rounded-md"
+              >
+                <NewsIcon />
+                <span className="text-gray-100">Valansiyalar</span>
               </Link>
             </li>
             <li className="rounded-sm">

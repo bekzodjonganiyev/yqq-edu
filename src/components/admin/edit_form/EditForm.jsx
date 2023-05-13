@@ -1,13 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { Form, SkeletonPost } from "../..";
-import { newsActions, UsersContext } from "../../../context";
+import { vacancyActions, UsersContext, blogActions } from "../../../context";
 
 const EditForm = ({ id, closeModal, url }) => {
-  const { newById, isLoading, error, alert, modalClose } =
+  const { vacancyById, newById, isLoading, error, alert, modalClose } =
     useContext(UsersContext);
   useEffect(() => {
-    newsActions.getNewById(url ,id);
-  }, []);
+    if (url === "elon") {
+      vacancyActions.getById(id);
+    } else {
+      blogActions.getById(id);
+    }
+  }, [id, url]);
 
   if (modalClose) {
     closeModal();
@@ -18,13 +22,19 @@ const EditForm = ({ id, closeModal, url }) => {
   ) : (
     <Form
       title={{
-        uz: newById.title_uz,
-        ru: newById.title_ru,
-        en: newById.title_en,
+        uz: url === "elon" ? vacancyById.title_uz : newById.title_uz,
+        ru: url === "elon" ? vacancyById.title_ru : newById.title_ru,
+        en: url === "elon" ? vacancyById.title_en : newById.title_en,
+        ar: url === "elon" ? vacancyById.title_ar : newById.title_ar,
       }}
-      body={{ uz: newById.body_uz, ru: newById.body_ru, en: newById.body_en }}
-      category={newById.category}
-      date={newById.date}
+      body={{ 
+        uz: url === "elon" ? vacancyById.body_uz : newById.body_uz, 
+        ru: url === "elon" ? vacancyById.body_ru : newById.body_ru, 
+        en: url === "elon" ? vacancyById.body_en : newById.body_en,
+        ar: url === "elon" ? vacancyById.body_ar : newById.body_ar,
+      }}
+      category={url}
+      date={ url === "elon" ? vacancyById.date : newById.date}
       id={id}
     />
   );

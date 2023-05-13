@@ -3,10 +3,11 @@ import { useState, useMemo } from "react";
 import { UsersContext } from "./context";
 import apiClient from "../utils/apiClient";
 
-export let newsActions = null;
+export let vacancyActions = null;
 export let smallActions = null;
 export let userActions = null;
 export let faqAndMottoActions = null;
+export let blogActions = null;
 export const baseUrl = "https://tkti-back-lexde.ondigitalocean.app";
 export const imgPrefix = "https://tkti-back-lexde.ondigitalocean.app/";
 
@@ -71,7 +72,7 @@ export const UsersProvider = ({ children }) => {
       if (res.status === 200) {
         const filtered = faq.filter((item) => item._id !== id);
         setIsLoading(false);
-        setFaq(filtered)
+        setFaq(filtered);
         setAlert(true);
         setError(false);
       } else {
@@ -83,9 +84,159 @@ export const UsersProvider = ({ children }) => {
       }, 3000);
     },
   };
-  
-  
-  
+
+  blogActions = {
+    get: async () => {
+      setIsLoading(true);
+      const res = await apiClient.get("news/all");
+      if (res.status === 200) {
+        setNews(res.data);
+      } else {
+        setError(true);
+        setNews([]);
+      }
+      setIsLoading(false);
+    },
+
+    getById: async (id) => {
+      setIsLoading(true)
+      const res = await apiClient.get(`news/${id}`);
+      if (res.status === 200) {
+        setIsLoading(false)
+        setNewById(res.data)
+      } else {
+        setIsLoading(false)
+        setError(true)
+      }
+    },
+
+    add: async (body) => {
+      setIsLoading(true);
+      const res = await apiClient.add("news/add", body, "multipart/form-data");
+      if (res.status === 200) {
+        setAlert(true);
+        setIsLoading(false);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    edit: async (id, body) => {
+      setIsLoading(true);
+      const res = apiClient.update(`news/${id}`, body, "multipart/form-data");
+      if (res.status === 200) {
+        setAlert(true);
+        setModalClose(true);
+        setIsLoading(false);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    delete: async (id) => {
+      setIsLoading(true);
+      const res = await apiClient.delete(`news/${id}`);
+      if (res.status === 200) {
+        const filtered = news.filter((item) => item._id !== id);
+        setIsLoading(false);
+        setNews(filtered);
+        setAlert(true);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+  };
+
+  vacancyActions = {
+    get: async () => {
+      setIsLoading(true);
+      const res = await apiClient.get("elon/all");
+      if (res.status === 200) {
+        setVacancys(res.data);
+      } else {
+        setError(true);
+        setVacancys([]);
+      }
+      setIsLoading(false);
+    },
+
+    getById: async (id) => {
+      setIsLoading(true)
+      const res = await apiClient.get(`elon/${id}`);
+      if (res.status === 200) {
+        setIsLoading(false)
+        setVacancyById(res.data)
+      } else {
+        setIsLoading(false)
+        setError(true)
+      }
+    },
+
+    add: async (body) => {
+      setIsLoading(true);
+      const res = await apiClient.add("elon/add", body, "multipart/form-data");
+      if (res.status === 200) {
+        setAlert(true);
+        setIsLoading(false);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+
+    edit: async (id, body) => {
+      setIsLoading(true);
+      const res = apiClient.update(`elon/${id}`, body, "multipart/form-data");
+      if (res.status === 200) {
+        setAlert(true);
+        setModalClose(true);
+        setIsLoading(false);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+    delete: async (id) => {
+      setIsLoading(true);
+      const res = await apiClient.delete(`elon/${id}`);
+      if (res.status === 200) {
+        const filtered = vacancys.filter((item) => item._id !== id);
+        setIsLoading(false);
+        setVacancys(filtered);
+        setAlert(true);
+        setError(false);
+      } else {
+        setIsLoading(false);
+        setError(res);
+      }
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    },
+  };
 
   smallActions = {
     handleScroll: (newValue) => {
@@ -309,124 +460,124 @@ export const UsersProvider = ({ children }) => {
     // About Photo News
   };
 
-  newsActions = {
-    getNews: async (url) => {
-      setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${url}`, { headers: config })
-      ).json();
-      data.then((res) => {
-        if (res.success) {
-          if (url === "news/all") {
-            setNews(res.data);
-          } else {
-            setVacancys(res.data);
-          }
-          setIsLoading(false);
-        } else {
-          setError(true);
-          setIsLoading(false);
-          setNews([]);
-        }
-      });
-      setTimeout(() => {
-        setAlert(false);
-      }, 3000);
-    },
+  // vacancyActions = {
+  //   getNews: async (url) => {
+  //     setIsLoading(true);
+  //     const data = (
+  //       await fetch(`${baseUrl}/${url}`, { headers: config })
+  //     ).json();
+  //     data.then((res) => {
+  //       if (res.success) {
+  //         if (url === "news/all") {
+  //           setNews(res.data);
+  //         } else {
+  //           setVacancys(res.data);
+  //         }
+  //         setIsLoading(false);
+  //       } else {
+  //         setError(true);
+  //         setIsLoading(false);
+  //         setNews([]);
+  //       }
+  //     });
+  //     setTimeout(() => {
+  //       setAlert(false);
+  //     }, 3000);
+  //   },
 
-    getNewById: async (url, id) => {
-      setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${url}/${id}`, { headers: config })
-      ).json();
-      data.then((res) => {
-        if (res.success) {
-          if (url === "news") {
-            setNewById(res.data);
-          } else {
-            setVacancyById(res.data);
-          }
-          setIsLoading(false);
-        } else {
-          setError(true);
-          setNewById({});
-          setVacancyById({});
-          setIsLoading(false);
-        }
-      });
-    },
+  //   getNewById: async (url, id) => {
+  //     setIsLoading(true);
+  //     const data = (
+  //       await fetch(`${baseUrl}/${url}/${id}`, { headers: config })
+  //     ).json();
+  //     data.then((res) => {
+  //       if (res.success) {
+  //         if (url === "news") {
+  //           setNewById(res.data);
+  //         } else {
+  //           setVacancyById(res.data);
+  //         }
+  //         setIsLoading(false);
+  //       } else {
+  //         setError(true);
+  //         setNewById({});
+  //         setVacancyById({});
+  //         setIsLoading(false);
+  //       }
+  //     });
+  //   },
 
-    addNews: async (body, url) => {
-      setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${url}`, {
-          method: "POST",
-          body,
-          headers: { token: localStorage.getItem("token") },
-        })
-      ).json();
-      data.then((res) => {
-        if (res.status === 200) {
-          setAlert(true);
-          setIsLoading(false);
-          setError(false);
-        } else {
-          setError(true);
-          setIsLoading(false);
-        }
-      });
-      setTimeout(() => {
-        setAlert(false);
-      }, 3000);
-    },
+  //   addNews: async (body, url) => {
+  //     setIsLoading(true);
+  //     const data = (
+  //       await fetch(`${baseUrl}/${url}`, {
+  //         method: "POST",
+  //         body,
+  //         headers: { token: localStorage.getItem("token") },
+  //       })
+  //     ).json();
+  //     data.then((res) => {
+  //       if (res.status === 200) {
+  //         setAlert(true);
+  //         setIsLoading(false);
+  //         setError(false);
+  //       } else {
+  //         setError(true);
+  //         setIsLoading(false);
+  //       }
+  //     });
+  //     setTimeout(() => {
+  //       setAlert(false);
+  //     }, 3000);
+  //   },
 
-    editNews: async (id, body) => {
-      setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${id}`, {
-          method: "PUT",
-          body,
-          headers: { token: localStorage.getItem("token") },
-        })
-      ).json();
-      data.then((res) => {
-        if (res.success) {
-          setTimeout(() => {
-            setIsLoading(false);
-            setModalClose(true);
-          }, 2000);
-        }
-      });
-      setTimeout(() => {
-        setModalClose(false);
-      }, 7000);
-    },
+  //   editNews: async (id, body) => {
+  //     setIsLoading(true);
+  //     const data = (
+  //       await fetch(`${baseUrl}/${id}`, {
+  //         method: "PUT",
+  //         body,
+  //         headers: { token: localStorage.getItem("token") },
+  //       })
+  //     ).json();
+  //     data.then((res) => {
+  //       if (res.success) {
+  //         setTimeout(() => {
+  //           setIsLoading(false);
+  //           setModalClose(true);
+  //         }, 2000);
+  //       }
+  //     });
+  //     setTimeout(() => {
+  //       setModalClose(false);
+  //     }, 7000);
+  //   },
 
-    deleteNew: async (id, url) => {
-      setIsLoading(true);
-      const data = (
-        await fetch(`${baseUrl}/${url}/${id}`, {
-          method: "DELETE",
-          headers: config,
-        })
-      ).json();
-      if (url === "news") {
-        const filteredNews = news.filter((item) => item._id !== id);
-        setNews(filteredNews);
-      } else {
-        const filteredVacancys = vacancys.filter((item) => item._id !== id);
-        setVacancys(filteredVacancys);
-      }
-      setAlert(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        setError(false);
-      }, 1000);
-      setTimeout(() => {
-        setAlert(false);
-      }, 3000);
-    },
-  };
+  //   deleteNew: async (id, url) => {
+  //     setIsLoading(true);
+  //     const data = (
+  //       await fetch(`${baseUrl}/${url}/${id}`, {
+  //         method: "DELETE",
+  //         headers: config,
+  //       })
+  //     ).json();
+  //     if (url === "news") {
+  //       const filteredNews = news.filter((item) => item._id !== id);
+  //       setNews(filteredNews);
+  //     } else {
+  //       const filteredVacancys = vacancys.filter((item) => item._id !== id);
+  //       setVacancys(filteredVacancys);
+  //     }
+  //     setAlert(true);
+  //     setTimeout(() => {
+  //       setIsLoading(false);
+  //       setError(false);
+  //     }, 1000);
+  //     setTimeout(() => {
+  //       setAlert(false);
+  //     }, 3000);
+  //   },
+  // };
 
   userActions = {
     getUsers: async (url) => {

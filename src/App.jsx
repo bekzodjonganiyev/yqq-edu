@@ -16,7 +16,8 @@ import {
   Media,
   Photos,
   Faq,
-  Partners
+  Partners,
+  Vacancies
 } from "./pages";
 
 import { smallActions } from "./context";
@@ -57,6 +58,18 @@ function App() {
                 ))}
               >
                 <News />
+              </Suspense>
+            }
+          />
+          <Route
+            path="vacancies"
+            element={
+              <Suspense
+                fallback={[...Array(10).keys()].map((i) => (
+                  <SkeletonPost key={i} />
+                ))}
+              >
+                <Vacancies />
               </Suspense>
             }
           />

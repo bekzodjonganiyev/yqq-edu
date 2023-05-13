@@ -46,10 +46,21 @@ const TextEditor = ({ title, name, value, handleValue }) => {
       <span className="textEditorName">{title.en}</span>
       <Editor
         onEditorChange={(e) => {
-          handleValue.ru && handleValue.en(e);
+          handleValue.en && handleValue.en(e);
           localStorage.setItem(name.en, JSON.stringify(e));
         }}
         value={value.en}
+        init={editorInit}
+      />
+      <br />
+      <br />
+      <span className="textEditorName">{title.ar}</span>
+      <Editor
+        onEditorChange={(e) => {
+          handleValue.ar && handleValue.ar(e);
+          localStorage.setItem(name.ar, JSON.stringify(e));
+        }}
+        value={value.ar}
         init={editorInit}
       />
     </div>

@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import "./Form.css";
 
 import { TextEditor } from "../..";
-import { newsActions, UsersContext } from "../../../context";
+import { blogActions, vacancyActions, UsersContext } from "../../../context";
 
 const Form = ({ title, body, category, date, id }) => {
   const { isLoading, modalClose } = useContext(UsersContext);
@@ -11,8 +11,9 @@ const Form = ({ title, body, category, date, id }) => {
     uz: body ? body.uz : "",
     ru: body ? body.ru : "",
     en: body ? body.en : "",
+    ar: body ? body.ar : "",
   });
-  const [url, setUrl] = useState("")
+  const [url, setUrl] = useState("");
 
   async function postData(e) {
     e.preventDefault();
@@ -20,14 +21,20 @@ const Form = ({ title, body, category, date, id }) => {
     formData.append("title_uz", e.target.title_uz.value);
     formData.append("title_ru", e.target.title_ru.value);
     formData.append("title_en", e.target.title_en.value);
+    formData.append("title_ar", e.target.title_ar.value);
     formData.append("body_uz", editor?.uz);
     formData.append("body_ru", editor?.ru);
     formData.append("body_en", editor?.en);
+    formData.append("body_ar", editor?.ar);
     formData.append("photo", e.target.photo.files[0]);
     formData.append("date", e.target.date.value);
     if (id) {
-      newsActions.editNews(id, formData);
-    } else newsActions.addNews(formData, url);
+      url === "news"
+        ? blogActions.edit(id, formData)
+        : vacancyActions.edit(id, formData);
+    } else {
+      url === "news" ? blogActions.add(formData) : vacancyActions.add(formData);
+    }
   }
   return (
     <form className="flex flex-col gap-10" onSubmit={postData}>
@@ -56,7 +63,7 @@ const Form = ({ title, body, category, date, id }) => {
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="titleEn">Yangilik mavzusi ING</label>
+        <label htmlFor="titleEn">Yangilik mavzusi EN</label>
         <input
           required
           className=" rounded-lg p-2 border border-slate-600"
@@ -66,23 +73,37 @@ const Form = ({ title, body, category, date, id }) => {
           defaultValue={title && title.en}
         />
       </div>
+      <div className="flex flex-col">
+        <label htmlFor="title_ar">Yangilik mavzusi AR</label>
+        <input
+          required
+          className=" rounded-lg p-2 border border-slate-600"
+          type="text"
+          name="title_ar"
+          id="title_ar"
+          defaultValue={title && title.ar}
+        />
+      </div>
 
       <TextEditor
         title={{
           uz: "Yangilik haqida batafsil UZB",
           ru: "Yangilik haqida batafsil RUS",
-          en: "Yangilik haqida batafsil ING",
+          en: "Yangilik haqida batafsil EN",
+          ar: "Yangilik haqida batafsil AR",
         }}
-        name={{ uz: "body_uz", ru: "body_ru", en: "body_en" }}
+        name={{ uz: "body_uz", ru: "body_ru", en: "body_en", ar: "body_ar" }}
         value={{
           uz: editor.uz,
           ru: editor.ru,
           en: editor.en,
+          ar: editor.ar,
         }}
         handleValue={{
           uz: (e) => setEditor({ ...editor, uz: e }),
           ru: (e) => setEditor({ ...editor, ru: e }),
           en: (e) => setEditor({ ...editor, en: e }),
+          ar: (e) => setEditor({ ...editor, ar: e }),
         }}
       />
 
@@ -113,8 +134,8 @@ const Form = ({ title, body, category, date, id }) => {
             <option value="" hidden>
               ...
             </option>
-            <option value="news/add">Blog qo'shish</option>
-            <option value="elon/add">Vakansiya qo'shish</option>
+            <option value="news">Blog qo'shish</option>
+            <option value="elon">Vakansiya qo'shish</option>
           </select>
         </div>
 
