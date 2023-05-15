@@ -13,7 +13,7 @@ const Sidebar = () => {
     <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
       <div className="space-y-3">
         <div className="flex items-center">
-          <h2 className="text-xl font-bold text-white">Egamnazar's Panel </h2>
+          <h2 className="text-xl font-bold text-white">Yangiyer flour trading  </h2>
         </div>
 
         <div className="flex-1">
@@ -33,7 +33,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <NewsIcon />
-                <span className="text-gray-100">Bloglar</span>
+                <span className="text-gray-100">Blogs</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -42,7 +42,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <NewsIcon />
-                <span className="text-gray-100">Valansiyalar</span>
+                <span className="text-gray-100">Vacancy</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -51,7 +51,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Shiorlar</span>
+                <span className="text-gray-100">Motto</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -69,7 +69,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Brendlar</span>
+                <span className="text-gray-100">Brands</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -78,7 +78,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Foto yangilik</span>
+                <span className="text-gray-100">Foto news</span>
               </Link>
             </li>
             <li className="rounded-sm">
@@ -96,7 +96,7 @@ const Sidebar = () => {
                 className="flex items-center p-2 space-x-3 rounded-md"
               >
                 <UsersIcon />
-                <span className="text-gray-100">Hamkorlar</span>
+                <span className="text-gray-100">Partners</span>
               </Link>
             </li>
             <li className="rounded-sm">

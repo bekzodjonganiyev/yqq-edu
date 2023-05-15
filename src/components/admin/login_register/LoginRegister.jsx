@@ -93,7 +93,7 @@ const LoginRegister = () => {
                 type="submit"
                 className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-[#F06D06] rounded-md shadow focus:outline-none focus:ring-blue-200 focus:ring-4"
               >
-                Kirish
+                Enter
               </button>
             </div>
           </form>

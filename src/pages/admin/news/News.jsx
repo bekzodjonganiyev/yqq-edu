@@ -60,18 +60,18 @@ const News = () => {
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
   ) : error ? (
     <h1 className="text-3xl text-center p-10 bg-gray-100">
-      Malumotlar topilmadi
+      Note found
     </h1>
   ) : (
     <>
       {alert && (
         <div className="absolute bottom-4 left-4 py-4 px-10 bg-red-700 rounded-xl z-50 text-white transition-opacity">
-          Malumot o'chirildi
+          Reference deleted
         </div>
       )}
       {modalClose && (
         <div className="absolute bottom-4 left-4 py-4 px-10 bg-amber-500 rounded-xl z-50 text-white transition-opacity">
-          Muvaffaqiyatli yangilindi
+          Successfully updated
         </div>
       )}
       {!isLoading ? (
@@ -96,7 +96,7 @@ const News = () => {
     <>
       {alert && (
         <div className="absolute bottom-4 left-4 py-4 px-10 bg-green-700 rounded-xl z-50 text-white transition-opacity">
-          Malumotlar qo`shildi
+         Information has been added
         </div>
       )}
       <Form />
@@ -118,10 +118,10 @@ const News = () => {
         />
       )}
       <FormHeader
-        title="Yangiliklar"
-        event2="Qo'shish"
+        title="News"
+        event2="Add"
         handleEvent2={() => setStatus("create")}
-        event1="Barcha yangililar"
+        event1="All news"
         handleEvent1={() => setStatus("read")}
       />
       {content}

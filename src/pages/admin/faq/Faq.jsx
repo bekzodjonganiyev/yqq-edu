@@ -85,13 +85,13 @@ const Faq = () => {
     <>
       {alert && (
         <div className="absolute bottom-4 left-4 py-4 px-10 bg-green-700 rounded-xl z-50 text-white transition-opacity">
-          Malumotlar qo`shildi
+          Reference deleted
         </div>
       )}
       <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
         <div className="flex flex-col justify-between gap-10 items-center">
           <div className="flex flex-col w-full">
-            <label htmlFor="title_uz">Shoir uchun sarlavha(UZ)</label>
+            <label htmlFor="title_uz">Title for the poet(UZ)</label>
             <input
               className=" rounded-lg p-2 border border-slate-600"
               type="text"
@@ -100,7 +100,7 @@ const Faq = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="body_uz">Shiorning sharhi(UZ)</label>
+            <label htmlFor="body_uz">Commentary on the motto (UZ)</label>
             <textarea
               className=" w-full text-sm text-gray-500 border border-gray-500 rounded cursor-pointer"
               id="body_uz"
@@ -110,7 +110,7 @@ const Faq = () => {
           <br />
 
           <div className="flex flex-col w-full">
-            <label htmlFor="title_ru">Shoir uchun sarlavha(RU)</label>
+            <label htmlFor="title_ru">Title for the poet(RU)</label>
             <input
               className=" rounded-lg p-2 border border-slate-600"
               type="text"
@@ -119,7 +119,7 @@ const Faq = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="body_ru">Shiorning sharhi(RU)</label>
+            <label htmlFor="body_ru">Commentary on the motto(RU)</label>
             <textarea
               className=" w-full text-sm text-gray-500 border border-gray-500 rounded cursor-pointer"
               id="body_ru"
@@ -129,7 +129,7 @@ const Faq = () => {
           <br />
 
           <div className="flex flex-col w-full">
-            <label htmlFor="title_en">Shoir uchun sarlavha(EN)</label>
+            <label htmlFor="title_en">Title for the poet(En)</label>
             <input
               className=" rounded-lg p-2 border border-slate-600"
               type="text"
@@ -138,7 +138,7 @@ const Faq = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="body_en">Shiorning sharhi(EN)</label>
+            <label htmlFor="body_en">Commentary on the motto(EN)</label>
             <textarea
               className=" w-full text-sm text-gray-500 border border-gray-500 rounded cursor-pointer"
               id="body_en"
@@ -148,7 +148,7 @@ const Faq = () => {
           <br />
 
           <div className="flex flex-col w-full">
-            <label htmlFor="title_ar">Shoir uchun sarlavha(AR)</label>
+            <label htmlFor="title_ar">Title for the poet(Ar)</label>
             <input
               className=" rounded-lg p-2 border border-slate-600"
               type="text"
@@ -157,7 +157,7 @@ const Faq = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="body_ar">Shiorning sharhi(AR)</label>
+            <label htmlFor="body_ar">Commentary on the motto(AR)</label>
             <textarea
               className=" w-full text-sm text-gray-500 border border-gray-500 rounded cursor-pointer"
               id="body_ar"
@@ -169,7 +169,7 @@ const Faq = () => {
           type="submit"
           className="p-2 border border-gray-700 rounded hover:bg-gray-800 hover:text-white w-full"
         >
-          Saqlash
+          Save
         </button>
       </form>
     </>
@@ -185,10 +185,10 @@ const Faq = () => {
   return (
     <div>
       <FormHeader
-        title="Savol javob"
-        event2="Qo'shish"
+        title="Question answer"
+        event2="Add"
         handleEvent2={() => setStatus("create")}
-        event1="Barchasi"
+        event1="Oll"
         handleEvent1={() => setStatus("read")}
       />
       {content}

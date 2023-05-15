@@ -39,7 +39,7 @@ const Form = ({ title, body, category, date, id }) => {
   return (
     <form className="flex flex-col gap-10" onSubmit={postData}>
       <div className="flex flex-col">
-        <label htmlFor="titleUz">Yangilik mavzusi UZB</label>
+        <label htmlFor="titleUz">News topic UZB</label>
         <input
           required
           className=" rounded-lg p-2 border border-slate-600"
@@ -51,7 +51,7 @@ const Form = ({ title, body, category, date, id }) => {
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="titleRu">Yangilik mavzusi RUS</label>
+        <label htmlFor="titleRu">News topic RUS</label>
         <input
           required
           className=" rounded-lg p-2 border border-slate-600"
@@ -63,7 +63,7 @@ const Form = ({ title, body, category, date, id }) => {
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="titleEn">Yangilik mavzusi EN</label>
+        <label htmlFor="titleEn">News topic EN</label>
         <input
           required
           className=" rounded-lg p-2 border border-slate-600"
@@ -74,7 +74,7 @@ const Form = ({ title, body, category, date, id }) => {
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="title_ar">Yangilik mavzusi AR</label>
+        <label htmlFor="title_ar">News topic AR</label>
         <input
           required
           className=" rounded-lg p-2 border border-slate-600"
@@ -122,7 +122,7 @@ const Form = ({ title, body, category, date, id }) => {
 
         <div className="flex flex-col">
           <label htmlFor="category" className="mb-2">
-            Yangilik tipini yanlang
+            Select the type of news
           </label>
           <select
             name="category"
@@ -134,14 +134,14 @@ const Form = ({ title, body, category, date, id }) => {
             <option value="" hidden>
               ...
             </option>
-            <option value="news">Blog qo'shish</option>
-            <option value="elon">Vakansiya qo'shish</option>
+            <option value="news">Add Add vacancy</option>
+            <option value="elon">Add vacancy</option>
           </select>
         </div>
 
         <div className="flex flex-col">
           <label htmlFor="date" className="mb-2">
-            Yangilik vaqtini kiriting
+            Enter the time of the news
           </label>
           <input
             id="date"
@@ -154,7 +154,7 @@ const Form = ({ title, body, category, date, id }) => {
       </div>
 
       <button className="p-2 border border-gray-700 rounded hover:bg-gray-800 hover:text-white">
-        Saqlash
+        Save
       </button>
     </form>
   );

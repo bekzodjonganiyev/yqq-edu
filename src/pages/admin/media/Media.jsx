@@ -15,7 +15,7 @@ const Media = () => {
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
   ) : error ? (
     <h1 className="text-3xl text-center p-10 bg-gray-100">
-      Malumotlar topilmadi
+     Note found
     </h1>
   ) : (
     <div className="w-full flex flex-wrap gap-y-44 gap-x-10">
@@ -33,12 +33,12 @@ const Media = () => {
     <>
       {alert && (
         <div className="absolute bottom-4 left-4 py-4 px-10 bg-green-700 rounded-xl z-50 text-white transition-opacity">
-          Malumotlar qo`shildi
+          Information  add
         </div>
       )}
       <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
         <div className="flex flex-col">
-          <label htmlFor="name">Media uchun biror nom</label>
+          <label htmlFor="name">Media name</label>
           <input
             className=" rounded-lg p-2 border border-slate-600"
             type="text"
@@ -48,7 +48,7 @@ const Media = () => {
         </div>
         <div className="flex justify-between gap-4">
           <div className="flex flex-col w-1/2">
-            <label htmlFor="link">Biror file tanlang</label>
+            <label htmlFor="link">Select a file</label>
             <input
               className=" w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-white file:text-black border border-gray-500 rounded cursor-pointer"
               type="file"
@@ -59,7 +59,7 @@ const Media = () => {
             />
           </div>
           <div className="flex flex-col w-1/2">
-            <label htmlFor="date">Vaqt kiriting</label>
+            <label htmlFor="date">Date time</label>
             <input
               className=" rounded p-1.5 border border-slate-600"
               type="date"
@@ -70,7 +70,7 @@ const Media = () => {
           </div>
         </div>
         <button className="p-2 border border-gray-700 rounded hover:bg-gray-800 hover:text-white w-full">
-          Saqlash
+          Save
         </button>
       </form>
     </>
@@ -96,10 +96,10 @@ const Media = () => {
   return (
     <div>
       <FormHeader
-        title="Media fayllar"
-        event2="Qo'shish"
+        title="Media files"
+        event2="Add"
         handleEvent2={() => setStatus("create")}
-        event1="Barchasi"
+        event1="Oll"
         handleEvent1={() => setStatus("read")}
       />
       {content}
@@ -120,7 +120,7 @@ function FileDisplay({ file }) {
             alert("COPIED✔" + imgPrefix + file.link)
           }}
         >
-          Havolani ko'chirish
+          Move the link
         </button>{" "}
         <button
           className="py-2 px-4 bg-red-500  hover:bg-red-400 text-white text-sm"
@@ -129,7 +129,7 @@ function FileDisplay({ file }) {
             deleteConfirm && smallActions.deleteMedia(file._id);
           }}
         >
-          Faylni o'chirish
+          Delete the file
         </button>
       </div>
       <br />

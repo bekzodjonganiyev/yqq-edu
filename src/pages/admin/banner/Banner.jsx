@@ -26,7 +26,7 @@ const Banner = () => {
     [...Array(10).keys()].map((i) => <SkeletonPost key={i} />)
   ) : error ? (
     <h1 className="text-3xl text-center p-10 bg-gray-100">
-      Malumotlar topilmadi
+    Not found
     </h1>
   ) : (
     <div className="w-full flex flex-wrap gap-y-44 gap-x-4">
@@ -45,7 +45,7 @@ const Banner = () => {
               deleteConfirm && smallActions.deleteBanner(item._id);
             }}
           >
-            Faylni o'chirish
+            Delete file
           </button>
           <br />
         </div>
@@ -60,13 +60,13 @@ const Banner = () => {
     <>
       {alert && (
         <div className="absolute bottom-4 left-4 py-4 px-10 bg-green-700 rounded-xl z-50 text-white transition-opacity">
-          Malumotlar qo`shildi
+          Information add
         </div>
       )}
       <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
         <div className="flex justify-between gap-10 items-center">
           <div className="flex flex-col w-1/2">
-            <label htmlFor="title">Banner uchun biror nom</label>
+            <label htmlFor="title">Banner name</label>
             <input
               className=" rounded-lg p-2 border border-slate-600"
               type="text"
@@ -75,7 +75,7 @@ const Banner = () => {
             />
           </div>
           <div className="flex flex-col w-1/2">
-            <label htmlFor="banner_img">Bir dona rasm tanlang</label>
+            <label htmlFor="banner_img">Choose one picture</label>
             <input
               className=" w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-white file:text-black border border-gray-500 rounded cursor-pointer"
               type="file"
@@ -89,7 +89,7 @@ const Banner = () => {
           type="submit"
           className="p-2 border border-gray-700 rounded hover:bg-gray-800 hover:text-white w-full"
         >
-          Saqlash
+         Save
         </button>
       </form>
     </>
@@ -107,9 +107,9 @@ const Banner = () => {
     <div>
       <FormHeader
         title="Slider rasmlari"
-        event2="Qo'shish"
+        event2="Add"
         handleEvent2={() => setStatus("create")}
-        event1="Barchasi"
+        event1="Oll"
         handleEvent1={() => setStatus("read")}
       />
       {content}
