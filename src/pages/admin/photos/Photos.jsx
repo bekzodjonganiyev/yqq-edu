@@ -128,7 +128,7 @@ const Photos = () => {
         title="Foto News"
         event2="Add"
         handleEvent2={() => setStatus("create")}
-        event1="Oll"
+        event1="All"
         handleEvent1={() => setStatus("read")}
       />
       {content}
