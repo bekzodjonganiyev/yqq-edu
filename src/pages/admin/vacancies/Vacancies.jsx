@@ -121,7 +121,7 @@ const News = () => {
         title="Vakansiyalar"
         event2="add"
         handleEvent2={() => setStatus("create")}
-        event1="All newsr"
+        event1="All news"
         handleEvent1={() => setStatus("read")}
       />
       {content}

@@ -134,7 +134,7 @@ const Form = ({ title, body, category, date, id }) => {
             <option value="" hidden>
               ...
             </option>
-            <option value="news">Add Add vacancy</option>
+            <option value="news">Add Add blogs</option>
             <option value="elon">Add vacancy</option>
           </select>
         </div>
