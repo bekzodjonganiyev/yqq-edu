@@ -125,7 +125,7 @@ const Photos = () => {
   return (
     <div>
       <FormHeader
-        title="Foto News"
+        title="Photo News"
         event2="Add"
         handleEvent2={() => setStatus("create")}
         event1="All"

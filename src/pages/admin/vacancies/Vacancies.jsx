@@ -118,7 +118,7 @@ const News = () => {
         />
       )}
       <FormHeader
-        title="Vakansiyalar"
+        title="Vacancies"
         event2="add"
         handleEvent2={() => setStatus("create")}
         event1="All news"
