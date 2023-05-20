@@ -157,7 +157,7 @@ const Faq = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="body_ar">SMotto description(FA)</label>
+            <label htmlFor="body_ar">Motto description(FA)</label>
             <textarea
               className=" w-full text-sm text-gray-500 border border-gray-500 rounded cursor-pointer"
               id="body_ar"
