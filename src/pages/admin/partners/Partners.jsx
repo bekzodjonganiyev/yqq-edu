@@ -26,7 +26,7 @@ const Partners = () => {
     partnersActions.get();
   }, [status]);
 
-  const analyseNameTableHead = ["T/r", "Logo", "Name", "Amallar"];
+  const analyseNameTableHead = ["T/r", "Logo", "Name", "Actions"];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => {
     return (

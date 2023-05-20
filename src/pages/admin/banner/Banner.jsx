@@ -106,7 +106,7 @@ const Banner = () => {
   return (
     <div>
       <FormHeader
-        title="Slider rasmlari"
+        title="Slider image"
         event2="Add"
         handleEvent2={() => setStatus("create")}
         event1="All"

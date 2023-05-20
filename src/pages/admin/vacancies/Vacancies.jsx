@@ -20,13 +20,13 @@ const News = () => {
     vacancyActions.get();
   }, [onEdit.open, status]);
 
-  const analyseNameTableHead = ["T/r", "Vakansiya nomi", "Sanasi", "Amallar"];
+  const analyseNameTableHead = ["T/r", "Vacancy Name", "Date", "Actions"];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => {
     return (
       <tr key={index} className="cursor-pointer hover:bg-gray-100">
         <td>{index + 1}</td>
-        <td>{item.title_uz}</td>
+        <td>{item.title_en}</td>
         <td>{item.date}</td>
         <td className="">
           {/* <button
