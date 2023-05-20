@@ -74,7 +74,7 @@ const Form = ({ title, body, category, date, id }) => {
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="title_ar">News topic AR</label>
+        <label htmlFor="title_ar">News topic Fa</label>
         <input
           required
           className=" rounded-lg p-2 border border-slate-600"
@@ -87,12 +87,12 @@ const Form = ({ title, body, category, date, id }) => {
 
       <TextEditor
         title={{
-          uz: "Yangilik haqida batafsil UZB",
-          ru: "Yangilik haqida batafsil RUS",
-          en: "Yangilik haqida batafsil EN",
-          ar: "Yangilik haqida batafsil AR",
+          uz: "vacancies title UZB",
+          ru: "vacancies title RUS",
+          en: "vacancies title EN",
+          ar: "vacancies title FA",
         }}
-        name={{ uz: "body_uz", ru: "body_ru", en: "body_en", ar: "body_ar" }}
+        name={{ uz: "body_uz", ru: "body_ru", en: "body_en", ar: "body_fa" }}
         value={{
           uz: editor.uz,
           ru: editor.ru,
@@ -110,7 +110,7 @@ const Form = ({ title, body, category, date, id }) => {
       <div className="flex justify-between">
         <div className="flex flex-col">
           <label htmlFor="photo" className="mb-2">
-            Yangilik mavzusi uchun poster
+            Blog
           </label>
           <input
             required

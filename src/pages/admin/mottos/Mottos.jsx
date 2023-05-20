@@ -148,7 +148,7 @@ const Faq = () => {
           <br />
 
           <div className="flex flex-col w-full">
-            <label htmlFor="title_ar">Motto title(AR)</label>
+            <label htmlFor="title_ar">Motto title(Fa)</label>
             <input
               className=" rounded-lg p-2 border border-slate-600"
               type="text"
@@ -157,7 +157,7 @@ const Faq = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="body_ar">SMotto description(AR)</label>
+            <label htmlFor="body_ar">SMotto description(FA)</label>
             <textarea
               className=" w-full text-sm text-gray-500 border border-gray-500 rounded cursor-pointer"
               id="body_ar"
