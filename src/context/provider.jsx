@@ -9,8 +9,8 @@ export let userActions = null;
 export let faqAndMottoActions = null;
 export let blogActions = null;
 export let partnersActions = null;
-export const baseUrl = "https://dolphin-app-ka7ge.ondigitalocean.app";
-export const imgPrefix = "https://dolphin-app-ka7ge.ondigitalocean.app/";
+export const baseUrl = "https://tkti-back-lexde.ondigitalocean.app";
+export const imgPrefix = "https://tkti-back-lexde.ondigitalocean.app/";
 
 export const UsersProvider = ({ children }) => {
   // Scroll value handled here
